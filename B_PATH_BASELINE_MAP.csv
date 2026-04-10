@@ -1,0 +1,29 @@
+logical_key,canonical_prompt_path,observed_machine_b_path,status,git_policy,baseline_use,notes
+repo_root,E:\bzclaw-side,E:\选品文件夹\amazon-selection-automation,observed_baseline,repo_visible,independent_sidecar_repo,prompt alias differs from observed path on 2026-04-11
+configs_dir,E:\bzclaw-side\configs,E:\选品文件夹\amazon-selection-automation\configs,observed_baseline,repo_visible,fixed_baseline_configs,holds paths and model wiring
+paths_json,E:\bzclaw-side\configs\paths.json,E:\选品文件夹\amazon-selection-automation\configs\paths.json,observed_baseline,repo_visible,path_source_of_truth,fixed local directory wiring
+model_json,E:\bzclaw-side\configs\model.json,E:\选品文件夹\amazon-selection-automation\configs\model.json,observed_baseline,repo_visible,provider_source_of_truth,default provider and policy live here
+models_dir,E:\bzclaw-side\models,E:\选品文件夹\amazon-selection-automation\models,observed_baseline,repo_visible,model_notes_and_adapter_placeholders,current repo keeps usage notes here
+models_readme,E:\bzclaw-side\models\README.md,E:\选品文件夹\amazon-selection-automation\models\README.md,observed_baseline,repo_visible,model_baseline_note,do not claim beyond verified model availability
+scripts_dir,E:\bzclaw-side\scripts,E:\选品文件夹\amazon-selection-automation\scripts,observed_baseline,repo_visible,current_execution_surface,current automation entrypoints live here
+inputs_dir,E:\bzclaw-side\inputs,E:\选品文件夹\amazon-selection-automation\inputs,observed_baseline,repo_visible_live_input,current operator and handoff inputs,do not place secrets here
+selection_run_current,E:\bzclaw-side\inputs\selection_run_current,E:\选品文件夹\amazon-selection-automation\inputs\selection_run_current,observed_baseline,repo_visible_live_input,current run input contract,formal live input layer
+outputs_dir,E:\bzclaw-side\outputs,E:\选品文件夹\amazon-selection-automation\outputs,observed_baseline,root_placeholder_tracked_payload_local,business_output_root,keep business outputs here not screenshots or traces
+selection_runs_root,E:\bzclaw-side\outputs\selection_runs,E:\选品文件夹\amazon-selection-automation\outputs\selection_runs,observed_baseline,local_runtime_payload,run_archive_root,full run archive lives under batch folders
+logs_dir,E:\bzclaw-side\logs,E:\选品文件夹\amazon-selection-automation\logs,observed_baseline,root_placeholder_tracked_payload_local,execution_logs_and_receipts,latest json and history jsonl live here
+reports_dir,E:\bzclaw-side\reports,E:\选品文件夹\amazon-selection-automation\reports,observed_baseline,repo_visible,baseline_contracts_and_reports,repo-visible summaries and contracts
+runs_dir,E:\bzclaw-side\runs,E:\选品文件夹\amazon-selection-automation\runs,observed_baseline,root_placeholder_tracked_payload_local,manual_and_raw_runtime_staging,raw workbook and local evidence staging
+runs_manual_dir,E:\bzclaw-side\runs\manual,E:\选品文件夹\amazon-selection-automation\runs\manual,observed_baseline,local_runtime_payload,manual_raw_download_area,raw SellerSprite workbooks stay here
+playwright_root,E:\bzclaw-side\playwright,E:\选品文件夹\amazon-selection-automation\playwright,observed_baseline,root_placeholder_tracked_payload_local,restricted_browser_sidecar_root,contains auth profiles screenshots traces
+playwright_auth_dir,E:\bzclaw-side\playwright\auth,E:\选品文件夹\amazon-selection-automation\playwright\auth,observed_baseline,local_sensitive_only,storage_state_and_replay_registry,never commit real auth state
+playwright_profiles_dir,E:\bzclaw-side\playwright\profiles,E:\选品文件夹\amazon-selection-automation\playwright\profiles,observed_baseline,local_sensitive_only,persistent_browser_profiles,local only not repo truth
+playwright_screenshots_dir,E:\bzclaw-side\playwright\screenshots,E:\选品文件夹\amazon-selection-automation\playwright\screenshots,observed_baseline,local_sensitive_only,smoke_and_debug_evidence,evidence helper not business proof
+playwright_traces_dir,E:\bzclaw-side\playwright\traces,E:\选品文件夹\amazon-selection-automation\playwright\traces,observed_baseline,local_sensitive_only,trace_zip_evidence,evidence helper not business proof
+skills_dir,E:\bzclaw-side\skills,E:\选品文件夹\amazon-selection-automation\skills,observed_extension,repo_visible,imported_legacy_code_docs,current repo has imported legacy skills here
+skills_runtime_dir,E:\bzclaw-side\skills_runtime,,prompt_alias_only,not_observed_in_current_repo,do_not_assume_present,use only after it is actually created
+bus_inputs_from_A,E:\bzclaw-side\bus_inputs\from_A,,recommended_alias_only,not_observed_in_current_repo,optional_cross_machine_handoff_inbox,recommended by prompt pack but not fixed in current repo
+bus_inputs_to_A,E:\bzclaw-side\bus_inputs\to_A,,recommended_alias_only,not_observed_in_current_repo,optional_cross_machine_handoff_outbox,recommended by prompt pack but not fixed in current repo
+run_archive_summary,E:\bzclaw-side\outputs\selection_runs\<batch_id>\00_run_summary.md,E:\选品文件夹\amazon-selection-automation\outputs\selection_runs\<batch_id>\00_run_summary.md,observed_convention,local_runtime_payload,full_run_archive_required,required for full run archive
+run_archive_inputs,E:\bzclaw-side\outputs\selection_runs\<batch_id>\01_consumed_inputs,E:\选品文件夹\amazon-selection-automation\outputs\selection_runs\<batch_id>\01_consumed_inputs,observed_convention,local_runtime_payload,full_run_archive_required,current inputs move or copy here
+run_archive_outputs,E:\bzclaw-side\outputs\selection_runs\<batch_id>\02_generated_outputs,E:\选品文件夹\amazon-selection-automation\outputs\selection_runs\<batch_id>\02_generated_outputs,observed_convention,local_runtime_payload,generated_business_outputs,standalone folder means partial package only
+run_archive_logs,E:\bzclaw-side\outputs\selection_runs\<batch_id>\03_logs,E:\选品文件夹\amazon-selection-automation\outputs\selection_runs\<batch_id>\03_logs,observed_convention,local_runtime_payload,full_run_archive_required,logs copied or moved here for formal archive
