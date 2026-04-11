@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import shutil
 import subprocess
@@ -9,12 +10,22 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
+from build_sif_enrichment_daytime_pack import FILE_53 as SIF_ENRICHMENT_53_FILE
+from build_sif_enrichment_daytime_pack import FILE_61 as SIF_ENRICHMENT_61_FILE
+from build_sif_enrichment_daytime_pack import FILE_61_MD as SIF_ENRICHMENT_61_MD_FILE
+from build_sif_enrichment_daytime_pack import FILE_SUMMARY_JSON as SIF_ENRICHMENT_SUMMARY_FILE
+from collect_sif_detail_surface import OUTPUT_FILE as SIF_DETAIL_OUTPUT_FILE
+from collect_sif_detail_surface import RAW_JSON_FILE as SIF_DETAIL_JSON_FILE
+from collect_sif_search_surface import OUTPUT_51 as SIF_SEARCH_51_FILE
+from collect_sif_search_surface import OUTPUT_52 as SIF_SEARCH_52_FILE
+from collect_sif_search_surface import RAW_JSON_FILE as SIF_SEARCH_JSON_FILE
 from output_envelope_common import (
     write_artifact_index,
     write_evidence_pack,
     write_run_manifest,
     write_shadow_run_receipt,
 )
+from sif_surface_common import load_field_order
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -112,6 +123,141 @@ def write_text(path: Path, content: str) -> None:
     path.write_text(content, encoding="utf-8")
 
 
+def write_header_only_csv(path: Path, file_name: str) -> None:
+    headers = load_field_order(file_name)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with path.open("w", encoding="utf-8-sig", newline="") as handle:
+        writer = csv.writer(handle)
+        writer.writerow(headers)
+
+
+def fallback_reason_code(candidate_summary: dict[str, Any], completed: subprocess.CompletedProcess[str]) -> str:
+    final_row_count = int(candidate_summary.get("final_row_count") or 0)
+    if final_row_count <= 0:
+        return str(candidate_summary.get("reason_code", "")).strip() or "NO_REAL_CANDIDATE_ROWS"
+    if completed.returncode != 0:
+        return f"PROBE_ARTIFACT_MISSING_AFTER_EXIT_{completed.returncode}"
+    return "PROBE_ARTIFACT_MISSING"
+
+
+def ensure_probe_outputs(
+    *,
+    module_name: str,
+    completed: subprocess.CompletedProcess[str],
+    generated_dir: Path,
+    summary_file_name: str,
+    output_file_names: list[str],
+    candidate_pool_path: Path,
+    candidate_summary_path: Path,
+    candidate_summary: dict[str, Any],
+    command: list[str],
+    local_log_path: Path,
+) -> tuple[Path, dict[str, Any]]:
+    summary_path = generated_dir / summary_file_name
+    csv_paths = [generated_dir / file_name for file_name in output_file_names]
+    if summary_path.exists() and all(path.exists() for path in csv_paths):
+        payload = json.loads(summary_path.read_text(encoding="utf-8"))
+        shutil.copy2(summary_path, local_log_path)
+        return summary_path, payload
+
+    reason_code = fallback_reason_code(candidate_summary, completed)
+    for csv_path, file_name in zip(csv_paths, output_file_names, strict=True):
+        if not csv_path.exists():
+            write_header_only_csv(csv_path, file_name)
+
+    payload = {
+        "timestamp": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "module": module_name,
+        "status": "HOLD",
+        "reason_code": reason_code,
+        "message": "Nightly acceptance synthesized blocked probe artifacts to preserve a complete run envelope.",
+        "candidate_pool_path": str(candidate_pool_path),
+        "candidate_pool_summary_path": str(candidate_summary_path),
+        "probe_command": " ".join(command),
+        "probe_exit_code": completed.returncode,
+        "probe_stdout_tail": completed.stdout[-800:],
+        "probe_stderr_tail": completed.stderr[-800:],
+        "fallback_created_by": "scripts/run_nightly_selection_acceptance.py",
+        "output_json_path": str(summary_path),
+        "output_csv_paths": [str(path) for path in csv_paths],
+    }
+    write_json(summary_path, payload)
+    shutil.copy2(summary_path, local_log_path)
+    return summary_path, payload
+
+
+def ensure_sif_enrichment_outputs(
+    *,
+    completed: subprocess.CompletedProcess[str],
+    generated_dir: Path,
+    logs_dir: Path,
+    candidate_pool_path: Path,
+    candidate_summary_path: Path,
+    candidate_summary: dict[str, Any],
+    detail_summary_path: Path,
+    search_summary_path: Path,
+    command: list[str],
+) -> tuple[Path, dict[str, Any]]:
+    summary_path = generated_dir / SIF_ENRICHMENT_SUMMARY_FILE
+    csv_paths = [
+        generated_dir / SIF_ENRICHMENT_53_FILE,
+        generated_dir / SIF_ENRICHMENT_61_FILE,
+    ]
+    markdown_path = generated_dir / SIF_ENRICHMENT_61_MD_FILE
+    local_log_path = logs_dir / "sif_enrichment" / "latest_run.json"
+    if summary_path.exists() and all(path.exists() for path in csv_paths):
+        payload = json.loads(summary_path.read_text(encoding="utf-8"))
+        shutil.copy2(summary_path, local_log_path)
+        if not markdown_path.exists():
+            write_text(markdown_path, "# Daytime Pack\n\n- status: `HOLD`\n- note: `Markdown placeholder recreated by nightly acceptance.`\n")
+        return summary_path, payload
+
+    reason_code = str(candidate_summary.get("reason_code", "")).strip() or "NO_REAL_CANDIDATE_ROWS"
+    if reason_code == "NO_REAL_CANDIDATE_ROWS":
+        reason_code = "BLOCKED_BY_SIF_OR_POOL_ALIGNMENT__NO_REAL_CANDIDATE_ROWS__SIF_DETAIL_SURFACE_NOT_COLLECTED__SIF_SEARCH_SURFACE_NOT_COLLECTED"
+    for csv_path, file_name in zip(csv_paths, [SIF_ENRICHMENT_53_FILE, SIF_ENRICHMENT_61_FILE], strict=True):
+        if not csv_path.exists():
+            write_header_only_csv(csv_path, file_name)
+    if not markdown_path.exists():
+        write_text(
+            markdown_path,
+            "\n".join(
+                [
+                    "# Daytime Pack",
+                    "",
+                    "- status: `HOLD`",
+                    f"- reason_code: `{reason_code}`",
+                    "- note: `Nightly acceptance synthesized a blocked daytime pack because no real candidate rows were available.`",
+                    "",
+                ]
+            ),
+        )
+
+    payload = {
+        "timestamp": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "module": "sif_enrichment_daytime_pack",
+        "status": "HOLD",
+        "reason_code": reason_code,
+        "message": "Nightly acceptance synthesized blocked SIF enrichment outputs to preserve a complete run envelope.",
+        "candidate_pool_path": str(candidate_pool_path),
+        "candidate_pool_summary_path": str(candidate_summary_path),
+        "detail_summary_path": str(detail_summary_path),
+        "search_summary_path": str(search_summary_path),
+        "build_command": " ".join(command),
+        "build_exit_code": completed.returncode,
+        "build_stdout_tail": completed.stdout[-800:],
+        "build_stderr_tail": completed.stderr[-800:],
+        "fallback_created_by": "scripts/run_nightly_selection_acceptance.py",
+        "output_53_path": str(csv_paths[0]),
+        "output_61_path": str(csv_paths[1]),
+        "output_61_md_path": str(markdown_path),
+        "daytime_row_count": 0,
+    }
+    write_json(summary_path, payload)
+    shutil.copy2(summary_path, local_log_path)
+    return summary_path, payload
+
+
 def summarize_step(step: dict[str, Any]) -> str:
     return "\n".join(
         [
@@ -185,6 +331,8 @@ def main() -> int:
     candidate_summary_path = required_file(generated_dir / "candidate_pool_summary.json", "candidate pool summary")
     candidate_summary = json.loads(candidate_summary_path.read_text(encoding="utf-8"))
     candidate_pool_path = required_file(latest_matching(generated_dir, "60_*.csv") or generated_dir / "60_missing.csv", "candidate pool csv")
+    local_sif_log_dir = ensure_within_repo(logs_dir / "sif_surfaces", "local_sif_log_dir")
+    local_sif_log_dir.mkdir(parents=True, exist_ok=True)
     steps.append(
         {
             "name": "candidate_pool",
@@ -206,8 +354,18 @@ def main() -> int:
         str(generated_dir),
     ]
     sif_detail_completed = run_python(sif_detail_command, timeout_seconds=900)
-    sif_detail_json = required_file(generated_dir / "sif_detail_surface_probe.json", "sif detail json")
-    sif_detail_summary = json.loads(sif_detail_json.read_text(encoding="utf-8"))
+    sif_detail_json, sif_detail_summary = ensure_probe_outputs(
+        module_name="sif_detail_surface",
+        completed=sif_detail_completed,
+        generated_dir=generated_dir,
+        summary_file_name=SIF_DETAIL_JSON_FILE,
+        output_file_names=[SIF_DETAIL_OUTPUT_FILE],
+        candidate_pool_path=candidate_pool_path,
+        candidate_summary_path=candidate_summary_path,
+        candidate_summary=candidate_summary,
+        command=sif_detail_command,
+        local_log_path=local_sif_log_dir / "latest_detail_run.json",
+    )
     steps.append(
         {
             "name": "sif_detail_probe",
@@ -229,8 +387,18 @@ def main() -> int:
         str(generated_dir),
     ]
     sif_search_completed = run_python(sif_search_command, timeout_seconds=900)
-    sif_search_json = required_file(generated_dir / "sif_search_surface_probe.json", "sif search json")
-    sif_search_summary = json.loads(sif_search_json.read_text(encoding="utf-8"))
+    sif_search_json, sif_search_summary = ensure_probe_outputs(
+        module_name="sif_search_surface",
+        completed=sif_search_completed,
+        generated_dir=generated_dir,
+        summary_file_name=SIF_SEARCH_JSON_FILE,
+        output_file_names=[SIF_SEARCH_51_FILE, SIF_SEARCH_52_FILE],
+        candidate_pool_path=candidate_pool_path,
+        candidate_summary_path=candidate_summary_path,
+        candidate_summary=candidate_summary,
+        command=sif_search_command,
+        local_log_path=local_sif_log_dir / "latest_search_run.json",
+    )
     steps.append(
         {
             "name": "sif_search_probe",
@@ -243,8 +411,7 @@ def main() -> int:
     )
 
     copy_file_if_exists(GLOBAL_KEYWORD_LOG, logs_dir / "keyword_chain")
-    for latest_name in ["latest_bootstrap_run.json", "latest_detail_run.json", "latest_search_run.json"]:
-        copy_file_if_exists(GLOBAL_SIF_LOG_DIR / latest_name, logs_dir / "sif_surfaces")
+    copy_file_if_exists(GLOBAL_SIF_LOG_DIR / "latest_bootstrap_run.json", local_sif_log_dir)
 
     sif_enrichment_command = [
         "scripts/build_sif_enrichment_daytime_pack.py",
@@ -272,8 +439,17 @@ def main() -> int:
         str(logs_dir / "sif_enrichment"),
     ]
     sif_enrichment_completed = run_python(sif_enrichment_command, timeout_seconds=900)
-    sif_enrichment_summary_path = required_file(generated_dir / "sif_enrichment_daytime_pack_summary.json", "sif enrichment summary")
-    sif_enrichment_summary = json.loads(sif_enrichment_summary_path.read_text(encoding="utf-8"))
+    sif_enrichment_summary_path, sif_enrichment_summary = ensure_sif_enrichment_outputs(
+        completed=sif_enrichment_completed,
+        generated_dir=generated_dir,
+        logs_dir=logs_dir,
+        candidate_pool_path=candidate_pool_path,
+        candidate_summary_path=candidate_summary_path,
+        candidate_summary=candidate_summary,
+        detail_summary_path=sif_detail_json,
+        search_summary_path=sif_search_json,
+        command=sif_enrichment_command,
+    )
     steps.append(
         {
             "name": "sif_enrichment",

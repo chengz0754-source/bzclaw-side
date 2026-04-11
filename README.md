@@ -376,11 +376,25 @@ Additional current STEP2 truth on `2026-04-09`:
 
 ## Toy 10 Terms Batch
 
-- Current repo truth on `2026-04-11`:
-  - the active MARKET_DISCOVERY batch input is no longer `claw machine`; it is the 10-term toy batch in `inputs/selection_run_current/01__SELECTION_INPUT__TOY_10_TERMS_BATCH__20260411.csv`
+- Current repo truth on `2026-04-12`:
+  - the active MARKET_DISCOVERY batch input is the 10-term toy batch in `inputs/selection_run_current/01__SELECTION_INPUT__TOY_10_TERMS_BATCH__20260411.csv`, not `claw machine`
   - the active T01 route binds `TOY / TOY_GENERAL / MARKET_DISCOVERY` onto `TOY_GENERAL__MARKET_DISCOVERY__V1`
   - the active toy general profile source for this batch is `templates/category_gate_profiles/02__CATEGORY_GATE_PROFILES__TOY_V1__20260411.csv`
-  - the latest T01 STEP3 rebuild from the provided support workbook produced a real gate layer with `PASS=33 / FAIL=0 / HOLD=167`
+  - the latest fresh T01 STEP3 rebuild from the provided pack workbook produced a real gate layer with `PASS=33 / FAIL=0 / HOLD=167`
   - the 10 exact batch terms were then projected from that gate layer into a shortlist result of `YES=2 / HOLD=8 / NO=0`
   - the current recommended next terms are `Squeeze Toys` and `Multi-Item Party Favor Packs`
   - current business truth still remains `SELLERSPRITE_NOT_CLOSED`
+
+## Shortlist Downstream Validation
+
+- Historical repo truth from the downstream-validation slice on `2026-04-11`:
+  - that slice used `inputs/selection_run_current/01__SHORTLIST_DOWNSTREAM_VALIDATION_INPUT__TOY_2_TERMS__20260411.csv`
+  - the only terms in that historical slice were `Squeeze Toys` and `Multi-Item Party Favor Packs`
+  - both terms were bound as `MARKET_DISCOVERY` rows with `step3_policy=REQUIRED` and consumed the existing shortlist-confirmed STEP3 PASS slices
+  - the downstream structural truth from that slice remains:
+    - STEP1 `Product Research` exporter is `BLOCKED / SELLERSPRITE_AUTH_REQUIRED`
+    - STEP4 `Benchmark / Competitor` exporter is `BLOCKED / SELLERSPRITE_AUTH_REQUIRED` on the export-log surface even when seeded from the STEP3 PASS market row
+    - STEP2 keyword-trend page collection is `PASS`, keyword-research workbook export is `BLOCKED`, and canonical `20/21/22` can still be built from trend rows only
+    - STEP7 candidate-pool projection is `HOLD / NO_REAL_CANDIDATE_ROWS` because neither STEP1 nor STEP4 formed a real sample source
+  - `Squeeze Toys` remains the stronger historical downstream candidate because its STEP2 gate layer is `HOLD=20 / FAIL=0`, while `Multi-Item Party Favor Packs` is `HOLD=17 / FAIL=3`
+  - this section is historical context; the active input for the current slice is the 10-term toy batch above

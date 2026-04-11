@@ -1,0 +1,15 @@
+scope,path,change_type,owner_repo,notes
+bside,scripts/git_sync_repo_main.ps1,created,bzclaw-side,universal push-first sync entrypoint
+bside,scripts/git_sync_repo_main.bat,created,bzclaw-side,universal batch launcher for the PowerShell entrypoint
+bside,scripts/git_sync_main.ps1,updated,bzclaw-side,deprecated compatibility wrapper to git_sync_repo_main.ps1
+bside,scripts/git_sync_main.bat,updated,bzclaw-side,deprecated compatibility wrapper to git_sync_repo_main.ps1
+bside,scripts/git_sync_bside_main.ps1,updated,bzclaw-side,deprecated compatibility wrapper to git_sync_repo_main.ps1
+bside,scripts/git_sync_bside_main.bat,updated,bzclaw-side,deprecated compatibility wrapper to git_sync_repo_main.ps1
+bside,reports/governance/20260412-b78-universal-git-sync/UNIVERSAL_GIT_SYNC_RULE.md,created,bzclaw-side,documents the single recommended command
+bside,reports/governance/20260412-b78-universal-git-sync/UNIVERSAL_GIT_SYNC_RETURN_CODES.md,created,bzclaw-side,documents stable statuses and exit codes
+bside,reports/governance/20260412-b78-universal-git-sync/UNIVERSAL_GIT_SYNC_FALLBACK_COMMANDS.md,created,bzclaw-side,documents manual recovery commands
+bside,reports/governance/20260412-b78-universal-git-sync/GIT_SYNC_UNIFICATION_CHANGESET.csv,created,bzclaw-side,records B7.8 scope
+selection,scripts/git_sync_repo_main.ps1,created,amazon-selection-automation,mirror of the universal PowerShell sync entrypoint
+selection,scripts/git_sync_repo_main.bat,created,amazon-selection-automation,mirror of the universal batch launcher
+selection,scripts/git_sync_selection_main.ps1,updated,amazon-selection-automation,deprecated compatibility wrapper to git_sync_repo_main.ps1
+selection,scripts/git_sync_selection_main.bat,updated,amazon-selection-automation,deprecated compatibility wrapper to git_sync_repo_main.ps1

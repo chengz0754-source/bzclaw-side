@@ -6,12 +6,6 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from output_envelope_common import (
-    write_artifact_index,
-    write_evidence_pack,
-    write_run_manifest,
-)
-
 
 PROTECTED_INPUT_NAMES = {"README.md", ".gitkeep"}
 
@@ -185,33 +179,6 @@ def main() -> int:
         f"run_dir={run_dir}",
     ]
     write_text(logs_dir / "archive_log.txt", "\n".join(archive_log_lines) + "\n")
-
-    artifact_index_path, _ = write_artifact_index(
-        run_dir,
-        producer_script="scripts/archive_selection_run_io.py",
-    )
-    evidence_paths = [run_dir / "00_run_summary.md", logs_dir / "archive_log.txt", *archived_generated, *archived_logs]
-    evidence_pack_path, _ = write_evidence_pack(
-        run_dir,
-        producer_script="scripts/archive_selection_run_io.py",
-        evidence_paths=evidence_paths,
-        status="PASS",
-        reason_code="ARCHIVE_CAPTURED",
-    )
-    write_run_manifest(
-        run_dir,
-        producer_script="scripts/archive_selection_run_io.py",
-        dispatch_mode="manual_local",
-        execution_class="formal",
-        status="PASS",
-        reason_code="ARCHIVE_CAPTURED",
-        artifact_index_path=artifact_index_path,
-        evidence_pack_path=evidence_pack_path,
-        notes=[
-            "Archive package created from current inputs plus selected generated outputs and logs.",
-            "No ShadowRunReceipt is emitted for this archive path unless a caller adds it explicitly.",
-        ],
-    )
 
     remaining = [
         path.name
