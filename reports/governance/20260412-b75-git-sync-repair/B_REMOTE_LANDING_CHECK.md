@@ -19,9 +19,9 @@ Corrected `origin`:
 
 - `https://github.com/chengz0754-source/bzclaw-side.git`
 
-Local HEAD after the repaired local commit:
+Current local HEAD:
 
-- `5e6408eac03841e35065c98bf6cc99dc3041ef8b`
+- `78cd34f9daffff590f9f14571c38535a3a6071ab`
 
 Current local-only residual item:
 
@@ -41,29 +41,29 @@ Ignore verification remained correct for:
 
 Status:
 
-- not successful
+- successful
 
-Reason:
+Final push evidence:
 
-- machine-level outbound access to `github.com:443` is currently blocked
+- `git push origin main`
+  - `1839bc5..78cd34f  main -> main`
 
-Observed evidence:
+Observed intermediate instability during repair:
 
-- `git pull --rebase origin main` failed after the local commit
-- `git ls-remote origin refs/heads/main` failed
-- `curl.exe -I https://github.com` failed
-- `Test-NetConnection github.com -Port 443` returned `TcpTestSucceeded=False`
+- earlier `git pull --rebase origin main` and `git ls-remote origin` attempts
+  hit transient GitHub connectivity failures before the final push window
 
-## Fallback Remote Landing Result
+## Remote Landing Result
 
-Because native shell push was blocked by network egress, the required B5/B6/B7
-files were landed on `origin/main` through the GitHub repo API.
+Because native shell push was unstable mid-repair, the required B5/B6/B7 files
+were first landed on `origin/main` through the GitHub repo API and were then
+absorbed into the final rebased branch push.
 
-Remote HEAD on `origin/main` after the fallback landings:
+Remote HEAD on `origin/main` after the final push:
 
-- `1839bc57d93303f449de54aa5acc19eb9a7b097d`
+- `78cd34f9daffff590f9f14571c38535a3a6071ab`
 
-Remote landing commits returned by GitHub:
+Remote landing commits first returned by GitHub:
 
 - `SELLERSPRITE_RESEARCH_EXEC_PACK.md`
   - `b1559d77360afdf78466f4a0352cd097ef76cf1c`
@@ -97,15 +97,16 @@ Required B5/B6/B7 files now landed on remote main:
 
 Judgment:
 
-- remote visibility for the required B5/B6/B7 deliverables is now `YES`
+- remote visibility for the required B5/B6/B7 deliverables is `YES`
 
 ## Alignment Answer
 
 ### Have B5 / B6 / B7 remotely landed?
 
 - `YES`
-- landing method: GitHub repo API fallback
-- landing method was **not** a successful native shell `git push`
+- landing started through the GitHub repo API fallback
+- final canonical branch alignment was completed through native
+  `git pull --rebase` plus `git push origin main`
 
 ### Can B line continue?
 
@@ -113,14 +114,14 @@ Judgment:
 
 The caveat is:
 
-- future native shell sync from this machine still depends on restoring outbound
-  HTTPS access to `github.com:443`, or repeating a controlled API-side fallback
+- outbound GitHub connectivity was unstable during repair, so the next sync
+  should still sanity-check `github.com:443` reachability if push or pull
+  stalls
 
 ### What is still not closed?
 
-- local HEAD and remote HEAD are not identical
-- local HEAD is ahead with the larger canonical repo sync commit
-- remote main currently confirms the required B5/B6/B7 file landing, but not the
-  full local `5e6408e` commit
+- local HEAD and remote HEAD are aligned
+- one root stray file `市场分析` remains untracked locally and should stay out of
+  future staged sets
 
 That is the exact remote-alignment truth after B7.5.

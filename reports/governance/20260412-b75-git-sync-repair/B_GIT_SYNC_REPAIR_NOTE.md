@@ -63,26 +63,32 @@ commit path.
 
 ## Commit Outcome
 
-Local commit created successfully:
+Local sync commit was created successfully:
 
-- `5e6408e sync canonical sidecar repo assets and governance docs`
+- initial local sync commit:
+  `5e6408e sync canonical sidecar repo assets and governance docs`
+- rebased final sync commit on top of remote B5/B6/B7 landing commits:
+  `d0ee013 sync canonical sidecar repo assets and governance docs`
+- final repair-report commit:
+  `78cd34f record B7.5 git sync repair diagnostics`
 
 That proves the repaired sync tool can create a correct local commit from the
 canonical repo without the earlier pathspec failure mode.
 
-## Network-Layer Limitation
+## Network-Layer Behavior During Repair
 
-Native GitHub network sync from shell is still blocked by this machine's current
-outbound HTTPS failure:
+During repair, native GitHub sync was intermittently blocked by outbound HTTPS
+connectivity:
 
 - `git pull --rebase origin main` failed after the local commit
 - `git ls-remote origin refs/heads/main` failed
 - `curl.exe -I https://github.com` failed
 - `Test-NetConnection github.com -Port 443` reported `TcpTestSucceeded=False`
 
-Because of that machine-level blocker, remote landing for the required B5/B6/B7
-files was completed through the GitHub repo API fallback instead of a normal
-shell `git push`.
+Because of that transient blocker, the required B5/B6/B7 files were first
+landed through the GitHub repo API fallback. After that, the local branch was
+rebased onto the remote landing commits and a native shell push completed
+successfully.
 
 ## Operator Usage
 
@@ -111,8 +117,9 @@ After this round:
 - sync invocation is fixed
 - canonical `origin` is fixed
 - local commit flow works
-- required B5/B6/B7 files have been landed on GitHub through fallback
-- native shell `git push` is still blocked by current machine egress to
-  `github.com:443`
+- required B5/B6/B7 files are landed on GitHub
+- native shell `git push origin main` succeeded after rebase
+- the observed 443 instability remains a residual network risk, not the final
+  push outcome
 
 That is the exact B7.5 repair position.

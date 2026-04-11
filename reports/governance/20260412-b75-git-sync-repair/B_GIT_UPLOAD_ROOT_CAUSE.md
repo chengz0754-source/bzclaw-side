@@ -25,7 +25,7 @@ Observed local Git state before repair:
 Observed repo state:
 
 - current worktree held a large staged set of repo-owned files
-- forbidden runtime payloads were **not** the main problem
+- forbidden runtime payloads were not the main problem
 - one stray untracked zero-byte root file `市场分析` was present and excluded from
   the staged set
 
@@ -34,7 +34,7 @@ Ignore-rule verification:
 - `playwright/auth/**`, `playwright/profiles/**`, `playwright/screenshots/**`,
   `playwright/traces/**`, `logs/**`, `outputs/**`, and `runs/**` were confirmed
   ignored by `.gitignore`
-- this means the current upload failure was **not** primarily caused by missing
+- this means the current upload failure was not primarily caused by missing
   ignore coverage for auth/profile/screenshots/traces/download outputs
 
 ## Root-Cause Classification
@@ -96,23 +96,24 @@ Judgment:
 - this was not an abnormal Git bug
 - the sync script needed to check and stop before rebase on a dirty worktree
 
-### 4. Network Egress Block To GitHub
+### 4. Network Egress Instability To GitHub
 
 Category:
 
-- machine network / transport blocker
+- machine network / transport instability
 
 Direct cause:
 
 - after `origin` was corrected to GitHub and a local commit was created, native
-  `git pull --rebase origin main` and `git ls-remote origin` both failed
+  `git pull --rebase origin main` and `git ls-remote origin` initially failed
 - `curl.exe -I https://github.com` failed
 - `Test-NetConnection github.com -Port 443` returned `TcpTestSucceeded: False`
 
 Judgment:
 
-- this is the current blocker for native shell-based `git pull` / `git push`
-- it is separate from the earlier pathspec/script misuse problem
+- this was the blocker for native shell-based sync in the middle of repair
+- it was separate from the earlier pathspec/script misuse problem
+- connectivity later recovered enough to complete a normal rebase and push
 
 ## Final Diagnosis
 
@@ -121,12 +122,11 @@ The upload problem was a compound issue, not a single bug:
 1. batch/script content was being invoked the wrong way
 2. canonical `origin` was mispointed to a local mirror path
 3. rebase safety would correctly stop on dirty files
-4. after those were repaired, machine-level outbound access to `github.com:443`
-   was still blocked
+4. outbound access to `github.com:443` was unstable during repair
 
 ## What It Was Not
 
-It was **not** primarily:
+It was not primarily:
 
 - a broken Git install
 - a broken commit engine
@@ -141,7 +141,16 @@ Current repair truth after this round:
 - command-path misuse has been addressed with a reusable sync script
 - `origin` has been corrected to the GitHub URL
 - local commit creation works
-- native GitHub network push from this machine is still blocked by outbound
-  HTTPS connectivity
+- the required B5/B6/B7 files were first landed through a GitHub repo API
+  fallback while shell sync was unstable
+- after rebasing the local sync commits onto those remote landing commits,
+  native `git push origin main` succeeded
+
+Remaining risk:
+
+- outbound connectivity to `github.com:443` was unstable during repair and may
+  need recheck if a future sync stalls again
+- one root stray file `市场分析` remains untracked locally and should stay out of
+  future staged sets
 
 That is the correct root-cause baseline for future B-line sync work.
