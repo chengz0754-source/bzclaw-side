@@ -1,0 +1,109 @@
+runtime:
+  base_url: http://localhost:11434/v1/
+  api_key: ollama
+  model: qwen3:4b-instruct
+  temperature: 0.0
+  timeout_seconds: 120
+
+io:
+  input_patterns:
+    - M03_niche_shortlist__*.xlsx
+    - M03_niche_shortlist__*.csv
+  input_preference_order:
+    - xlsx
+    - csv
+  input_sheet_name: niche_candidates
+  outputs_dir: outputs
+  logs_dir: logs
+  filtered_sheet_name: semantic_filtered
+  queue_sheet_name: semantic_queue
+  run_log_sheet_name: semantic_run_log
+  default_latest_only: true
+
+semantic:
+  allowed_labels:
+    - KEEP
+    - REVIEW
+    - DROP_LOW_MATCH
+  keep_labels:
+    - KEEP
+    - REVIEW
+  drop_label: DROP_LOW_MATCH
+  non_pass_passthrough_label: REVIEW
+  conservative_default_label: REVIEW
+  batch_size: 1
+  max_reason_chars: 160
+
+queue:
+  download_type: benchmark_asin_raw
+  expected_input_folder: inbox/benchmark_raw
+  next_step: STEP2
+  dedupe_fields:
+    - batch_id
+    - marketplace
+    - dept_l1
+    - parent_l2
+    - parent_l3
+    - niche_leaf
+    - path_key
+
+columns:
+  required_fields:
+    - query_seed
+    - dept_l1
+    - parent_l2
+    - niche_leaf
+    - path_key
+    - niche_en
+    - niche_zh
+    - market_path_raw
+    - step1_score
+    - step1_status
+    - step1_pass_reason
+    - step1_drop_reason
+  model_payload_fields:
+    - query_seed
+    - dept_l1
+    - parent_l2
+    - niche_leaf
+    - path_key
+    - niche_en
+    - niche_zh
+    - market_path_raw
+    - step1_score
+    - step1_status
+    - step1_pass_reason
+    - step1_drop_reason
+
+prompt:
+  system_prompt: |-
+    You are a conservative semantic noise filter for SellerSprite Step1 shortlist rows.
+    Your task is to remove only clearly low-match semantic noise from rows that already passed Step1.
+    Judge semantic alignment between query_seed and the niche/path terms.
+    Treat query_seed as a narrow anchor product type, not a whole department, generic toy intent, or broad lifestyle theme.
+    Do not overturn upstream hard gates and do not rescue dropped rows.
+    Use labels exactly as follows:
+    - KEEP: direct match, strong synonym, or clearly same product family
+    - REVIEW: adjacent, ambiguous, or plausible enough that dropping would be risky
+    - DROP_LOW_MATCH: clearly different product family, different use case, or broad category drift
+    Rules:
+    - Be conservative. If unsure, choose REVIEW.
+    - Sharing only a broad word like toy, game, novelty, gift, supplies, or pet is not evidence of a match.
+    - KEEP only when the leaf/path explicitly names the same product family or a very close alternative term.
+    - REVIEW only when the row still plausibly belongs to the same family but the wording is indirect.
+    - Different audience or species usually means DROP_LOW_MATCH.
+    - Accessories, storage items, party supplies, pretend-play items, figures, vehicles, arts and crafts items, and broad mixed packs are usually DROP_LOW_MATCH unless the leaf/path explicitly names the anchor product family.
+    - Do not output any label outside KEEP, REVIEW, DROP_LOW_MATCH.
+    - Return JSON only. No markdown. No extra prose.
+    - Return an array of objects with row_id, semantic_label, semantic_reason, semantic_confidence.
+    - semantic_reason must stay short and name the main semantic signal.
+    - semantic_confidence must be a number between 0 and 1.
+    Example anchor judgments:
+    - query_seed=SqueezeToys, niche_leaf=Squeeze Toys -> KEEP
+    - query_seed=SqueezeToys, niche_leaf=Squishy Toys -> KEEP
+    - query_seed=SqueezeToys, niche_leaf=Fidget Toys -> REVIEW
+    - query_seed=SqueezeToys, niche_leaf=Bath Toys -> REVIEW
+    - query_seed=SqueezeToys, niche_leaf=Chew Toys -> DROP_LOW_MATCH
+    - query_seed=SqueezeToys, niche_leaf=Play Food -> DROP_LOW_MATCH
+    - query_seed=SqueezeToys, niche_leaf=Action Figures -> DROP_LOW_MATCH
+    - query_seed=SqueezeToys, niche_leaf=Balloons -> DROP_LOW_MATCH

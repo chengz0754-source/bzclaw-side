@@ -1,0 +1,26 @@
+{
+  "name": "m04_benchmark_asin_scored",
+  "description": "Step2 benchmark ASIN scoring table.",
+  "required_fields": [
+    "batch_id",
+    "marketplace",
+    "asin",
+    "niche_leaf",
+    "path_key",
+    "benchmark_cohort",
+    "step2_score",
+    "step2_status",
+    "step2_reason",
+    "listed_days",
+    "monthly_sales_units",
+    "monthly_revenue",
+    "price",
+    "review_count",
+    "star_rating",
+    "brand",
+    "seller",
+    "is_new_winner",
+    "is_underserved_signal",
+    "route_status"
+  ]
+}

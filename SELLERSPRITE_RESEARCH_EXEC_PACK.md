@@ -38,7 +38,7 @@ Canonical repo root for prompts:
 
 Observed local runtime sample root still holding the real samples:
 
-- `E:\閫夊搧鏂囦欢澶筡amazon-selection-automation`
+- `E:\选品文件夹\amazon-selection-automation`
 
 Normative interpretation:
 
@@ -106,7 +106,7 @@ Required profile dimensions:
 
 Current materialization:
 
-- current input row in `inputs/selection_run_current/01_甯傚満鍏ュ彛涓庣瓫閫夊弬鏁?csv`
+- current input row in `inputs/selection_run_current/01_市场入口与筛选参数.csv`
 - CLI overrides
 - STEP4 `seed_context`
 
@@ -158,18 +158,18 @@ These are the first machine-usable object-like outputs.
 
 Current product outputs:
 
-- `10_浜у搧鏍锋湰鍘熷缁撴灉.csv`
-- `11_浜у搧鏍锋湰绉嶅瓙姹?csv`
-- `12_浜у搧鏍锋湰涓嬫帹缁撴灉.csv`
+- `10_产品样本原始结果.csv`
+- `11_产品样本种子池.csv`
+- `12_产品样本下推结果.csv`
 - `13_step1_market_handoff.jsonl`
 - `13a_step1_market_session_bundle.json`
 - `13b_step1_market_probe_summary.json`
 
 Current benchmark outputs:
 
-- `40_绔炲搧鍩哄噯缁撴灉.csv`
-- `41_鍊欓€変骇鍝佺瀛愭睜.csv`
-- `42_绔炲搧鍩哄噯涓嬫帹缁撴灉.csv`
+- `40_竞品基准结果.csv`
+- `41_候选产品种子池.csv`
+- `42_竞品基准下推结果.csv`
 - `benchmark_chain_output_index.csv`
 - `benchmark_chain_output_index.md`
 

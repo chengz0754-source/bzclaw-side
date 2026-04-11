@@ -83,9 +83,9 @@ Middle artifacts:
 
 Output object:
 
-- `20_鍏抽敭璇嶈瘉鎹瘝姹犲師濮嬬粨鏋?csv`
-- `21_鍏抽敭璇嶈瘉鎹瘝姹犳竻娲楃粨鏋?csv`
-- `22_鍏抽敭璇嶈瘉鎹瘝姹犱笅鎺ㄧ粨鏋?csv`
+- `20_关键词证据词池原始结果.csv`
+- `21_关键词证据词池清洗结果.csv`
+- `22_关键词证据词池下推结果.csv`
 - `keyword_chain_output_index.csv`
 - `keyword_chain_output_index.md`
 
@@ -136,7 +136,7 @@ Chain:
 
 Input object:
 
-- current market controls from `01_甯傚満鍏ュ彛涓庣瓫閫夊弬鏁?csv`
+- current market controls from `01_市场入口与筛选参数.csv`
 - optional STEP1 handoff URL or session bundle
 - optional explicit workbook override
 
@@ -149,9 +149,9 @@ Middle artifacts:
 
 Output object:
 
-- `30_甯傚満璋冪爺鍘熷绱㈠紩.csv`
-- `31_甯傚満璋冪爺娓呮礂缁撴灉.csv`
-- `32_甯傚満璋冪爺涓嬫帹缁撴灉.csv`
+- `30_市场调研原始索引.csv`
+- `31_市场调研清洗结果.csv`
+- `32_市场调研下推结果.csv`
 - `market_cleaned.csv`
 - `market_chain_output_index.csv`
 - `market_chain_output_index.md`
@@ -205,19 +205,19 @@ Input object:
 Middle artifacts:
 
 - upstream binding refs
-- `03_鍊欓€夊競鍦轰笌鍊欓€夊搧鍒濈瓫姹?csv`
+- `03_候选市场与候选品初筛池.csv`
 - `candidate_pool_summary.json`
 
 Output object:
 
-- `03_鍊欓€夊競鍦轰笌鍊欓€夊搧鍒濈瓫姹?csv`
-- `60_鍊欓€夋牱鍝佹睜.csv`
-- `60_鍊欓€夋牱鍝佹睜.md`
+- `03_候选市场与候选品初筛池.csv`
+- `60_候选样品池.csv`
+- `60_候选样品池.md`
 - `candidate_pool_summary.json`
 
 Reviewable summary:
 
-- `60_鍊欓€夋牱鍝佹睜.md`
+- `60_候选样品池.md`
 
 Evidence paths:
 
@@ -277,17 +277,17 @@ Middle artifacts:
 
 Output object:
 
-- `50_SIF娴侀噺缁撴瀯琛ュ己.csv`
-- `51_SIF鍏抽敭璇嶄环鍊艰ˉ寮?csv`
-- `52_SIF骞垮憡缁撴瀯琛ュ己.csv`
-- `53_SIF琛ュ己涓嬫帹缁撴灉.csv`
-- `61_寰呬緵搴旈摼鏍稿埄娓呭崟.csv`
-- `61_寰呬緵搴旈摼鏍稿埄娓呭崟.md`
+- `50_SIF流量结构补强.csv`
+- `51_SIF关键词价值补强.csv`
+- `52_SIF广告结构补强.csv`
+- `53_SIF补强下推结果.csv`
+- `61_待供应链核利清单.csv`
+- `61_待供应链核利清单.md`
 - `sif_enrichment_daytime_pack_summary.json`
 
 Reviewable summary:
 
-- `61_寰呬緵搴旈摼鏍稿埄娓呭崟.md`
+- `61_待供应链核利清单.md`
 - `sif_enrichment_daytime_pack_summary.json`
 
 Evidence paths:
@@ -302,7 +302,7 @@ Observed samples on `2026-04-11`:
 
 - `logs/sif_surfaces/latest_detail_run.json` records `status=HOLD`, `reason_code=SIF_AUTH_REQUIRED`, `route=reverse`, `execution_mode=persistent_profile`
 - `logs/sif_surfaces/latest_search_run.json` records `status=HOLD`, `reason_code=SIF_AUTH_REQUIRED`, `route=snapshot`, `execution_mode=persistent_profile`
-- those probe receipts point to `outputs/selection_runs/20260407_p10_acceptance/02_generated_outputs/50_SIF娴侀噺缁撴瀯琛ュ己.csv`, `51_SIF鍏抽敭璇嶄环鍊艰ˉ寮?csv`, `52_SIF骞垮憡缁撴瀯琛ュ己.csv`
+- those probe receipts point to `outputs/selection_runs/20260407_p10_acceptance/02_generated_outputs/50_SIF流量结构补强.csv`, `51_SIF关键词价值补强.csv`, `52_SIF广告结构补强.csv`
 - `outputs/selection_runs/20260407_p09_daytime_pack/02_generated_outputs/` contains aligned `50/51/52`, `53`, `61`, and `sif_enrichment_daytime_pack_summary.json`
 - observed row counts there are `50=20`, `51=20`, `52=20`, `53=20`, `61=0`
 - `logs/sif_enrichment/latest_run.json` records `status=HOLD`
@@ -402,8 +402,8 @@ Preferred files:
 - `keyword_chain_output_index.md`
 - `market_workbook_index.md`
 - `market_chain_output_index.md`
-- `60_鍊欓€夋牱鍝佹睜.md`
-- `61_寰呬緵搴旈摼鏍稿埄娓呭崟.md`
+- `60_候选样品池.md`
+- `61_待供应链核利清单.md`
 
 ### `MarketIntelligencePack`
 
@@ -431,8 +431,8 @@ Use these surfaces by audience:
 - GPT review
   - `keyword_chain_output_index.md`
   - `market_chain_output_index.md`
-  - `60_鍊欓€夋牱鍝佹睜.md`
-  - `61_寰呬緵搴旈摼鏍稿埄娓呭崟.md`
+  - `60_候选样品池.md`
+  - `61_待供应链核利清单.md`
 - owner look-sample
   - readable `60` and `61` markdown
   - selected workbook index summary
@@ -472,8 +472,8 @@ These summary files are review surfaces:
 
 - `keyword_chain_output_index.md`
 - `market_chain_output_index.md`
-- `60_鍊欓€夋牱鍝佹睜.md`
-- `61_寰呬緵搴旈摼鏍稿埄娓呭崟.md`
+- `60_候选样品池.md`
+- `61_待供应链核利清单.md`
 
 They are not:
 

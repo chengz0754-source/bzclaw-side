@@ -1,0 +1,5 @@
+任务ID,sif_entry_type,sif_entry_value,目标分析层,需要自然广告占比,需要广告架构拆解,需要listing差距识别,需要变体流量结构,输出级别,备注
+T01,KEYWORD,toy shortlist,TRAFFIC,YES,NO,NO,NO,LITE,T01 只在 shortlist market rows 下游 candidate rows 形成后再进入 SIF
+T02,ASIN,待 T02 shortlist 回填,TRAFFIC,YES,YES,YES,YES,STANDARD,T02 只在 candidate rows / shortlist 之后进入 SIF
+T03,ASIN,B07P44GKJR,COMPETITOR,YES,YES,YES,YES,STANDARD,T03 先 reverse mine，再在 shortlist 后进入 SIF
+T04,KEYWORD,toy novelty / arcade,LISTING,YES,YES,YES,NO,LITE,T04 只在 supplier backsolve 的 shortlist rows 形成后进入 SIF

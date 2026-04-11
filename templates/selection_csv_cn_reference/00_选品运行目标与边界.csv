@@ -1,0 +1,2 @@
+批次ID,运行名称,站点,primary_goal,默认履约方式,目标售价下限,目标售价上限,目标毛利率下限_pct,最大可接受广告依赖,危险品允许,审批类目允许,允许进入SIF,允许进入白天核利包,备注
+BATCH_US_SELECTION_20260410,US_Selection_20260410_Current,US,profit_first,FBA,0,99,25,MEDIUM,NO,NO,YES,YES,正式输入合同已切到 purpose-routed；SellerSprite 仍 first，SIF 只在 shortlist 后进入

@@ -1,0 +1,16 @@
+path_policy:
+  mode: advisory
+  whitelist:
+    dept_l1: []
+    parent_l2: []
+    dept_l1_parent_l2: []
+    full_path_prefix: []
+  blacklist:
+    dept_l1: []
+    parent_l2: []
+    dept_l1_parent_l2: []
+    full_path_prefix: []
+  normalization:
+    casefold: true
+    trim: true
+    collapse_spaces: true

@@ -1,0 +1,16 @@
+{
+  "name": "amazon-selection-automation",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Independent Machine B sidecar for selection-system verification and bootstrap.",
+  "scripts": {
+    "bootstrap:dirs": "python scripts/bootstrap_dirs.py",
+    "survey:system": "python scripts/survey_system.py",
+    "smoke:python": "python scripts/smoke_python.py",
+    "smoke:playwright": "python scripts/smoke_playwright.py"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}

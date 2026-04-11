@@ -1,0 +1,28 @@
+item_key,should_be_in_git,source_repo_visible,canonical_repo_visible,local_only,status,notes
+baseline_docs_root,yes,no,yes,no,PASS,B1 baseline docs already present in canonical repo base
+readme_md,yes,yes,yes,no,PASS,repo root README now visible at canonical path
+package_json,yes,yes,yes,no,PASS,repo root package manifest now visible
+requirements_txt,yes,yes,yes,no,PASS,repo root Python dependency baseline now visible
+gitignore_and_env_example,yes,yes,yes,no,PASS,canonical repo now carries ignore policy and env example
+configs_tree,yes,yes,yes,no,PASS,configs model and path wiring are repo-visible
+models_tree,yes,yes,yes,no,PASS,models README is repo-visible
+scripts_tree,yes,yes,yes,no,PASS,current execution scripts are repo-visible
+skills_tree_imported_legacy,yes,yes,yes,no,PASS,imported legacy sidecar code and docs are repo-visible
+inputs_readme_and_current_inputs,yes,yes,yes,no,PASS,current input contract is repo-visible
+templates_tree,yes,yes,yes,no,PASS,canonical standards and CSV templates are repo-visible
+reports_tree,yes,yes,yes,no,PASS,contracts and baseline reports are repo-visible
+logs_placeholder_paths,yes,yes,yes,no,PASS,only tracked placeholder docs are in git not runtime logs
+outputs_placeholder_paths,yes,yes,yes,no,PASS,only tracked placeholder docs are in git not runtime outputs
+runs_placeholder_paths,yes,yes,yes,no,PASS,only tracked placeholder files are in git not raw downloads
+playwright_placeholder_paths,yes,yes,yes,no,PASS,only gitkeeps are repo-visible for local-only runtime dirs
+skills_runtime_tree,no_not_observed,no,no,no,NOT_ASSUMED,current execution surface remains scripts plus skills
+dot_env_and_real_secrets,no,no,no,yes,PASS,must remain local only
+venv_and_node_modules,no,no,no,yes,PASS,must remain local only
+playwright_auth_real_state,no,no,no,yes,PASS,real storage state and replay payloads stay local only
+playwright_profiles_real_payload,no,no,no,yes,PASS,browser profile contents stay local only
+playwright_screenshots_real_payload,no,no,no,yes,PASS,screenshots are evidence not git truth
+playwright_traces_real_payload,no,no,no,yes,PASS,traces are evidence not git truth
+runtime_logs_payload,no,no,no,yes,PASS,execution logs remain local only outside tracked placeholders
+runtime_outputs_payload,no,no,no,yes,PASS,business outputs remain local only outside tracked placeholders
+runs_manual_raw_workbooks,no,no,no,yes,PASS,raw downloads and workbooks stay local only
+b2_b3_b4_required_must_read_paths,yes,yes,yes,no,READY,canonical repo now satisfies the required repo-visible readset for B2 B3 B4

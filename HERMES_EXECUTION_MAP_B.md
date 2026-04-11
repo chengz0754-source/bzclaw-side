@@ -15,7 +15,7 @@ It does **not** redefine B as:
 As of `2026-04-11`, no separate Hermes repo-visible runtime host was observed on
 this machine. Hermes source truth visible to this turn comes from:
 
-- `GPT5_V2_鏁存敼浠诲姟涔20260410.md`
+- `GPT5_V2_整改任务书_20260410.md`
 - the B prompt-pack governance materials
 - current repo-visible B-side runtime surfaces under `E:\bzclaw-side`
 
@@ -268,7 +268,7 @@ Boundary:
 Current B landing:
 
 - imported approved skill surfaces already exist under `skills/**`
-- prompt-pack target runtime landing zone is `E:\bzclaw-side\skills_runtime`
+- prompt-pack target runtime landing zone is `E:\bzclaw-side\skills_runtime\`
 - `skills_runtime/` is not yet present in the current repo
 - no repo-visible plugin host is present in the current repo
 

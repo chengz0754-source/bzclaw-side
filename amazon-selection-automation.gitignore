@@ -1,0 +1,121 @@
+# =========================
+# amazon-selection-automation
+# Safe baseline .gitignore
+# =========================
+
+# --- Secrets / local env ---
+.env
+.env.*
+!.env.example
+*.secret
+*.secrets
+*.key
+*.pem
+
+# --- Python ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- Node / JS ---
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# --- OS / editor noise ---
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.temp
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# --- Playwright auth / browser state ---
+# Playwright recommends storing authenticated state on disk
+# and ignoring it from Git.
+playwright/.auth/
+playwright/auth/
+playwright/profiles/
+playwright/profile/
+playwright/user-data/
+playwright/browser-data/
+playwright/storage/
+storage_state*.json
+*.storageState.json
+
+# --- Playwright generated artifacts ---
+playwright/screenshots/*
+!playwright/screenshots/.gitkeep
+playwright/traces/*
+!playwright/traces/.gitkeep
+playwright/videos/
+playwright/test-results/
+playwright/blob-report/
+playwright/playwright-report/
+
+# --- Runtime outputs ---
+logs/*
+!logs/README.md
+!logs/.gitkeep
+
+outputs/*
+!outputs/README.md
+!outputs/.gitkeep
+
+runs/*
+!runs/.gitkeep
+
+# --- Downloaded / exported business files ---
+inbox/
+downloads/
+exports/
+archive/
+*.zip
+*.7z
+*.rar
+*.csv
+*.xlsx
+*.xls
+*.parquet
+*.feather
+
+# Keep docs/reports in repo, but ignore accidental temp files
+reports/*.tmp
+reports/*.temp
+
+# --- Large binary / media leftovers ---
+*.trace.zip
+*.har
+*.webm
+*.mp4
+*.png
+*.jpg
+*.jpeg
+*.pdf
+
+# Allow committed design/docs if you deliberately need them
+!docs/**/*.png
+!docs/**/*.jpg
+!docs/**/*.jpeg
+!docs/**/*.pdf
+
+# --- Local model/runtime leftovers ---
+models/cache/
+models/checkpoints/
+models/tmp/
+
+# --- Git helper leftovers ---
+*.orig

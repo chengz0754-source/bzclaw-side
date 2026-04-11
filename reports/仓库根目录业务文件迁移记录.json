@@ -1,0 +1,42 @@
+[
+  {
+    "file": "E:\\选品文件夹\\amazon-selection-automation\\00_选品运行目标与边界.csv",
+    "name": "00_选品运行目标与边界.csv",
+    "action": "REMOVE_ROOT_DUPLICATE",
+    "reason": "根目录副本与模板目录完全一致，视为污染副本。",
+    "destination": "E:\\选品文件夹\\amazon-selection-automation\\templates\\selection_csv_cn_reference\\00_选品运行目标与边界.csv",
+    "status": "APPLIED"
+  },
+  {
+    "file": "E:\\选品文件夹\\amazon-selection-automation\\01_市场入口与筛选参数.csv",
+    "name": "01_市场入口与筛选参数.csv",
+    "action": "REMOVE_ROOT_DUPLICATE",
+    "reason": "根目录副本与模板目录完全一致，视为污染副本。",
+    "destination": "E:\\选品文件夹\\amazon-selection-automation\\templates\\selection_csv_cn_reference\\01_市场入口与筛选参数.csv",
+    "status": "APPLIED"
+  },
+  {
+    "file": "E:\\选品文件夹\\amazon-selection-automation\\02_账号与合规预检查.csv",
+    "name": "02_账号与合规预检查.csv",
+    "action": "REMOVE_ROOT_DUPLICATE",
+    "reason": "根目录副本与模板目录完全一致，视为污染副本。",
+    "destination": "E:\\选品文件夹\\amazon-selection-automation\\templates\\selection_csv_cn_reference\\02_账号与合规预检查.csv",
+    "status": "APPLIED"
+  },
+  {
+    "file": "E:\\选品文件夹\\amazon-selection-automation\\03_候选市场与候选品初筛池.csv",
+    "name": "03_候选市场与候选品初筛池.csv",
+    "action": "REMOVE_ROOT_DUPLICATE",
+    "reason": "根目录副本与模板目录完全一致，视为污染副本。",
+    "destination": "E:\\选品文件夹\\amazon-selection-automation\\templates\\selection_csv_cn_reference\\03_候选市场与候选品初筛池.csv",
+    "status": "APPLIED"
+  },
+  {
+    "file": "E:\\选品文件夹\\amazon-selection-automation\\04_供应链询价与利润核算.csv",
+    "name": "04_供应链询价与利润核算.csv",
+    "action": "REMOVE_ROOT_DUPLICATE",
+    "reason": "根目录副本与模板目录完全一致，视为污染副本。",
+    "destination": "E:\\选品文件夹\\amazon-selection-automation\\templates\\selection_csv_cn_reference\\04_供应链询价与利润核算.csv",
+    "status": "APPLIED"
+  }
+]

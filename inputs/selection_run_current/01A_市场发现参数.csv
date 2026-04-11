@@ -1,0 +1,5 @@
+任务ID,市场词,站点,月份范围,新品定义,样本数筛选,头部样本数,市场容量下限,新品占比下限,卖家集中度上限,退货率上限,价格带下限,价格带上限,细分市场白名单,备注
+T01,toy,US,最近30天,180天内上架,前100,前10,300000,15,80,15,8,30,Squeeze Toys|Balloons|Building Sets|Stickers|Multi-Item Party Favor Packs|Board Games|Squeak Toys|Stuffed Animals & Teddy Bears|Bubble Makers|Bath Toys,T01 当前 active batch 只允许使用输入 CSV 的 10 个词；正式 shortlist 结果以 STEP3 gate 投影为准
+T02,arcade table games,US,最近30天,180天内上架,前100,前10,30000,15,70,15,20,80,,仅作 T02 broad market remap 候选，不是前置硬门
+T03,arcade table games,US,最近30天,180天内上架,前100,前10,30000,15,70,15,20,80,,仅作 T03 broad market remap 候选
+T04,arcade table games,US,最近30天,180天内上架,前100,前10,30000,15,70,15,20,80,,仅作 T04 supplier family 回市场映射的候选约束

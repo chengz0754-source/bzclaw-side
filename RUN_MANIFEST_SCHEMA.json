@@ -1,0 +1,457 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://bzclaw.local/schemas/b-side/run-manifest.schema.json",
+  "title": "B-side Run Manifest",
+  "description": "Machine B sidecar run manifest used as the ArtifactReturnEnvelope carrier for A-side ingest.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "object_name",
+    "envelope_id",
+    "batch_id",
+    "dispatch_mode",
+    "execution_class",
+    "status",
+    "reason_code",
+    "state_token",
+    "repo_alias_root",
+    "observed_runtime_root",
+    "produced_at",
+    "producer",
+    "paths",
+    "object_refs",
+    "artifacts"
+  ],
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "const": "b-side-run-manifest.v1"
+    },
+    "object_name": {
+      "type": "string",
+      "const": "ArtifactReturnEnvelope"
+    },
+    "envelope_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "batch_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "dispatch_mode": {
+      "type": "string",
+      "enum": [
+        "approved",
+        "shadow",
+        "manual_local",
+        "unknown"
+      ]
+    },
+    "execution_class": {
+      "type": "string",
+      "enum": [
+        "formal",
+        "dry_run",
+        "smoke",
+        "manual_support",
+        "probe"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "PASS",
+        "HOLD",
+        "FAIL"
+      ]
+    },
+    "reason_code": {
+      "type": "string"
+    },
+    "state_token": {
+      "type": "string",
+      "enum": [
+        "MANIFEST_CAPTURED",
+        "INGEST_READY",
+        "BLOCKED"
+      ]
+    },
+    "repo_alias_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "observed_runtime_root": {
+      "type": "string",
+      "minLength": 1
+    },
+    "started_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "finished_at": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "format": "date-time"
+    },
+    "produced_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "producer": {
+      "$ref": "#/$defs/producer"
+    },
+    "paths": {
+      "$ref": "#/$defs/runPaths"
+    },
+    "object_refs": {
+      "$ref": "#/$defs/objectRefs"
+    },
+    "metadata_policy": {
+      "$ref": "#/$defs/metadataPolicy"
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/artifactEntry"
+      }
+    },
+    "notes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "$defs": {
+    "producer": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "repo_name",
+        "script_or_entrypoint",
+        "host_role"
+      ],
+      "properties": {
+        "repo_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "script_or_entrypoint": {
+          "type": "string",
+          "minLength": 1
+        },
+        "host_role": {
+          "type": "string",
+          "const": "b_sidecar"
+        },
+        "provider_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model_name": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "runPaths": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "run_dir",
+        "summary_md",
+        "manifest_json",
+        "consumed_inputs_dir",
+        "generated_outputs_dir",
+        "logs_dir",
+        "artifact_index_json"
+      ],
+      "properties": {
+        "run_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "summary_md": {
+          "type": "string",
+          "minLength": 1
+        },
+        "manifest_json": {
+          "type": "string",
+          "minLength": 1
+        },
+        "consumed_inputs_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "generated_outputs_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "logs_dir": {
+          "type": "string",
+          "minLength": 1
+        },
+        "artifact_index_json": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "objectRefs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "evidence_pack_ref",
+        "model_inference_receipt_refs",
+        "shadow_run_receipt_ref"
+      ],
+      "properties": {
+        "evidence_pack_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model_inference_receipt_refs": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "shadow_run_receipt_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "decision_draft_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "metadataPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "path_reference_policy": {
+          "type": "string",
+          "const": "repo_relative_first"
+        },
+        "sensitive_material_policy": {
+          "type": "string",
+          "const": "reference_only"
+        },
+        "absolute_path_policy": {
+          "type": "string",
+          "const": "debug_only_optional"
+        }
+      }
+    },
+    "verifyLinkage": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "artifact_return_envelope_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "evidence_pack_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "model_inference_receipt_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "shadow_run_receipt_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "decision_draft_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      }
+    },
+    "artifactEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_id",
+        "logical_name",
+        "object_mapping",
+        "relative_path",
+        "path_scope",
+        "content_role",
+        "category",
+        "sensitivity",
+        "status",
+        "reason_code",
+        "state_token",
+        "producer_script",
+        "captured_at"
+      ],
+      "properties": {
+        "artifact_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "logical_name": {
+          "type": "string",
+          "minLength": 1
+        },
+        "object_mapping": {
+          "type": "string",
+          "enum": [
+            "ArtifactReturnEnvelope",
+            "EvidencePack",
+            "ModelInferenceReceipt",
+            "ShadowRunReceipt",
+            "UNMAPPED_SUPPORTING_ASSET"
+          ]
+        },
+        "relative_path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "observed_absolute_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "path_scope": {
+          "type": "string",
+          "enum": [
+            "run_local",
+            "repo_local_ignored",
+            "repo_local_tracked",
+            "external_local"
+          ]
+        },
+        "content_role": {
+          "type": "string",
+          "enum": [
+            "raw",
+            "summarized",
+            "reviewable",
+            "ingest_ready"
+          ]
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "input_snapshot",
+            "generated_output",
+            "log",
+            "screenshot",
+            "trace",
+            "workbook",
+            "auth_state",
+            "receipt",
+            "manifest",
+            "index",
+            "page_snapshot",
+            "other"
+          ]
+        },
+        "sensitivity": {
+          "type": "string",
+          "enum": [
+            "tracked_safe",
+            "ignored_local_runtime",
+            "sensitive_auth",
+            "redacted_metadata_only"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "PASS",
+            "HOLD",
+            "FAIL",
+            "OBSERVED",
+            "NOT_EMITTED"
+          ]
+        },
+        "reason_code": {
+          "type": "string"
+        },
+        "state_token": {
+          "type": "string",
+          "enum": [
+            "CAPTURED_RAW",
+            "SUMMARIZED",
+            "REVIEWABLE",
+            "INGEST_READY",
+            "BLOCKED",
+            "SENSITIVE_LOCAL_ONLY",
+            "NOT_EMITTED"
+          ]
+        },
+        "producer_script": {
+          "type": "string",
+          "minLength": 1
+        },
+        "captured_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "size_bytes": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "sha256": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "pattern": "^[A-Fa-f0-9]{64}$"
+        },
+        "review_ready": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "ingest_ready": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "verify_linkage": {
+          "$ref": "#/$defs/verifyLinkage"
+        }
+      }
+    }
+  }
+}

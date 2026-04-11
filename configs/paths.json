@@ -1,0 +1,22 @@
+{
+  "project_root": "E:\\选品文件夹\\amazon-selection-automation",
+  "inputs_dir": "E:\\选品文件夹\\amazon-selection-automation\\inputs",
+  "outputs_dir": "E:\\选品文件夹\\amazon-selection-automation\\outputs",
+  "logs_dir": "E:\\选品文件夹\\amazon-selection-automation\\logs",
+  "reports_dir": "E:\\选品文件夹\\amazon-selection-automation\\reports",
+  "runs_dir": "E:\\选品文件夹\\amazon-selection-automation\\runs",
+  "playwright": {
+    "root_dir": "E:\\选品文件夹\\amazon-selection-automation\\playwright",
+    "profile_dir": "E:\\选品文件夹\\amazon-selection-automation\\playwright\\profiles\\chromium-user-data",
+    "auth_dir": "E:\\选品文件夹\\amazon-selection-automation\\playwright\\auth",
+    "storage_state_path": "E:\\选品文件夹\\amazon-selection-automation\\playwright\\auth\\storage_state.json",
+    "smoke_storage_state_path": "E:\\选品文件夹\\amazon-selection-automation\\playwright\\auth\\storage_state.smoke.json",
+    "screenshots_dir": "E:\\选品文件夹\\amazon-selection-automation\\playwright\\screenshots",
+    "traces_dir": "E:\\选品文件夹\\amazon-selection-automation\\playwright\\traces"
+  },
+  "models_dir": "E:\\选品文件夹\\amazon-selection-automation\\models",
+  "legacy_reuse_candidates": {
+    "selection_assets_root": "E:\\选品",
+    "verification_package_zip": "C:\\Users\\Administrator\\Downloads\\SELECTION_SYSTEM_VERIFICATION_PACKAGE__20260404 (1).zip"
+  }
+}

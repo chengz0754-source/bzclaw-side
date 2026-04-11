@@ -1,0 +1,162 @@
+{
+  "survey_date": "2026-04-04",
+  "mode_judgment": "VERIFY_AND_BOOTSTRAP",
+  "workspace": {
+    "target_root": "E:\\选品文件夹",
+    "project_root": "E:\\选品文件夹\\amazon-selection-automation",
+    "target_root_existed_before_bootstrap": false,
+    "project_root_existed_before_bootstrap": false,
+    "project_root_exists_now": true
+  },
+  "package_source": {
+    "zip_path": "C:\\Users\\Administrator\\Downloads\\SELECTION_SYSTEM_VERIFICATION_PACKAGE__20260404 (1).zip",
+    "zip_exists": true,
+    "zip_contents": [
+      "PROMPT__SELECTION_SYSTEM_VERIFICATION_AND_BOOTSTRAP__MACHINE_B__20260404.md",
+      "PACKAGE__SELECTION_SYSTEM_VERIFICATION__MACHINE_B__20260404.md",
+      "CONFIG__SELECTION_SYSTEM_PHASE1_CONSTRAINTS__20260404.json"
+    ]
+  },
+  "pre_bootstrap_inventory": {
+    "selection_workspace_under_target_root": false,
+    "recognizable_sidecar_project_under_target_root": false,
+    "node": {
+      "found": false,
+      "version": null
+    },
+    "npm": {
+      "found": false,
+      "version": null
+    },
+    "pnpm": {
+      "found": false,
+      "version": null
+    },
+    "python": {
+      "found": true,
+      "version": "3.12.10",
+      "path": "C:\\Users\\Administrator\\AppData\\Local\\Microsoft\\WindowsApps\\python.exe"
+    },
+    "git": {
+      "found": true,
+      "version": "2.53.0.windows.2",
+      "path": "D:\\Git\\cmd\\git.exe"
+    },
+    "playwright_cli_on_path": false,
+    "playwright_python_in_system_python": false,
+    "legacy_venv": {
+      "path": "E:\\选品\\.venv",
+      "exists": true,
+      "playwright_installed": false,
+      "openai_installed": true,
+      "openai_version": "2.30.0",
+      "pandas_installed": true,
+      "pandas_version": "3.0.2"
+    },
+    "browser_binaries": [
+      "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+      "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe"
+    ],
+    "playwright_browser_cache_present_before_bootstrap": false,
+    "local_model_entry": {
+      "ollama_cli_found": true,
+      "ollama_version": "0.19.0",
+      "ollama_process_running": true,
+      "installed_models": [
+        "qwen3:4b-instruct"
+      ]
+    },
+    "reusable_env_files": [],
+    "reusable_project_manifests": [],
+    "reusable_playwright_auth_or_state_files": [],
+    "seller_or_sif_assets": {
+      "legacy_selection_root": "E:\\选品",
+      "skills_found": [
+        "E:\\选品\\skill-market-root-orchestrator",
+        "E:\\选品\\skill-market-route-m01-to-m02",
+        "E:\\选品\\skill-market-route-step1-to-step3",
+        "E:\\选品\\skill-semantic-filter-local",
+        "E:\\选品\\skill-test-audit"
+      ],
+      "seller_scripts_found": [
+        "E:\\选品\\skill-market-route-m01-to-m02\\run_market_m01_to_m02.py",
+        "E:\\选品\\skill-market-root-orchestrator\\scripts\\run_market_root_orchestrator.py",
+        "E:\\选品\\skill-market-route-step1-to-step3\\scripts\\run_market_route_pipeline.py",
+        "E:\\选品\\skill-semantic-filter-local\\scripts\\run_semantic_filter.py"
+      ],
+      "seller_exports_found": [
+        "E:\\选品\\skill-market-route-m01-to-m02\\archive\\processed\\20260401_172206\\raw_inputs\\Market-research(200)SqueezeToys-US-Last-30-days.xlsx"
+      ],
+      "logs_or_outputs_dirs_found": [
+        "E:\\选品\\skill-market-root-orchestrator\\logs",
+        "E:\\选品\\skill-market-root-orchestrator\\outputs",
+        "E:\\选品\\skill-market-route-m01-to-m02\\logs",
+        "E:\\选品\\skill-market-route-m01-to-m02\\outputs",
+        "E:\\选品\\skill-market-route-step1-to-step3\\logs",
+        "E:\\选品\\skill-market-route-step1-to-step3\\outputs",
+        "E:\\选品\\skill-semantic-filter-local\\logs",
+        "E:\\选品\\skill-semantic-filter-local\\outputs"
+      ],
+      "dedicated_sif_files_found": []
+    }
+  },
+  "bootstrap_state_now": {
+    "project_structure_created": true,
+    "project_venv": {
+      "path": "E:\\选品文件夹\\amazon-selection-automation\\.venv",
+      "python_version": "3.12.10"
+    },
+    "python_packages_installed": {
+      "openai": "2.30.0",
+      "playwright": "1.58.0",
+      "python-dotenv": "1.2.2"
+    },
+    "playwright": {
+      "runtime": "Python Playwright",
+      "version": "1.58.0",
+      "browser_cache_root": "C:\\Users\\Administrator\\AppData\\Local\\ms-playwright",
+      "browser_cache_entries": [
+        "chromium-1208",
+        "chromium_headless_shell-1208",
+        "ffmpeg-1011",
+        "winldd-1007"
+      ],
+      "smoke_passed": true,
+      "persistent_profile_dir": "E:\\选品文件夹\\amazon-selection-automation\\playwright\\profiles\\chromium-user-data",
+      "smoke_storage_state_path": "E:\\选品文件夹\\amazon-selection-automation\\playwright\\auth\\storage_state.smoke.json",
+      "smoke_storage_state_contents": {
+        "cookies": [],
+        "origins": []
+      },
+      "login_state_verified_for_business_sites": false
+    },
+    "python_smoke_passed": true,
+    "model_entry": {
+      "provider": "ollama_local",
+      "base_url": "http://127.0.0.1:11434/v1",
+      "api_probe_passed": true,
+      "probe_model": "qwen3:4b-instruct"
+    },
+    "fixed_directories": [
+      "configs",
+      "inputs",
+      "outputs",
+      "logs",
+      "reports",
+      "runs",
+      "playwright/auth",
+      "playwright/profiles",
+      "playwright/screenshots",
+      "playwright/traces",
+      "scripts",
+      "models"
+    ]
+  },
+  "remaining_gaps": [
+    "Node.js, npm, and pnpm are still missing on PATH.",
+    "No live SellerSprite or Amazon login bootstrap has been completed in the sidecar profile.",
+    "No verified reusable authenticated storage state exists yet.",
+    "No dedicated SIF automation scripts or saved artifacts were found.",
+    "No live SellerSprite export download automation has been validated from this sidecar workspace."
+  ]
+}
