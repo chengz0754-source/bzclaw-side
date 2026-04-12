@@ -1,4 +1,0 @@
-interface:
-  display_name: "Market Route M01 To M02"
-  short_description: "Clean SellerSprite market exports into reusable M02 tables"
-  default_prompt: "Use this skill to convert local Market-research Excel exports into M02 market cleaned outputs without making final product judgments."

@@ -1,2 +1,0 @@
-运行名称,方向ID,方向词,来源关键词,站点,样品ID,样品ASIN,样品标题,品牌,市场路径,候选市场名称,样品价格,评分,评论数,去重组ID,近义合并组ID,样品来源阶段,样品来源批次号,来源记录,市场下推状态,竞品下推状态,关键词价值状态,广告依赖状态,当前池状态,备注
-US_SqueezeToys_20260406_示例,DIR_001,Squeeze Toys,Squeeze Toys,US,SMP_4D4D0F889D,B0FYXDYVRS,示例样品标题,Mantyplay,Toys & Games:Novelty & Gag Toys:Squeeze Toys,Squeeze Toys,14.99,4.6,2823,DEDUPE_A42784B441,MERGE_2C4A6CF4F1,STEP4_BENCHMARK,STEP4_GATE_20260407_074906,DIRECTION:Squeeze Toys; KEYWORD:Squeeze Toys; STEP3:MARKET_GATE_20260407_061745; STEP4:STEP4_GATE_20260407_074906,PASS,PASS,HOLD,HOLD,HOLD,

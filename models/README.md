@@ -1,13 +1,9 @@
-# Models
+# Models Boundary
 
-This folder reserves the model-call placement for Machine B.
+`bzclaw-side` keeps `models/` only as a minimal skeleton.
 
-Current baseline:
+Current rule:
 
-- Preferred provider: local Ollama
-- Default model: `qwen3:4b-instruct`
-- OpenAI-compatible base URL: `http://127.0.0.1:11434/v1`
-- Default API key value for local use: `ollama`
-
-Do not claim model availability beyond what has been verified in the reports.
-`configs/model.json` is the source of truth for provider wiring.
+- executable model assets and model-facing repo files are owned by the selection repo
+- model/provider governance remains documented in `B_MODEL_PROVIDER_BASELINE.md`
+- do not repopulate this directory with mirrored selection-owned model files

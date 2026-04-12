@@ -1,4 +1,0 @@
-任务ID,产品想法词,种子ASIN,品牌,卖家,供应链簇,目标市场簇,目标类目提示,是否先走STEP1,是否先走STEP4,是否需要关键词反查,是否需要关键词挖掘,seed来源说明,备注
-T02,claw machine,,,,toy novelty / arcade,Arcade & Table Games,Toys & Games,YES,YES,YES,YES,T02 直接使用当前方向词作为 exact product idea,T02 主问题继续沿用当前 repo
-T03,claw machine,B07P44GKJR,Bundaloo,,toy novelty / arcade,Arcade & Table Games,Toys & Games,NO,YES,YES,YES,T03 seed_asin 来自 T02 fresh 11/12 artifact 中的真实 ASIN,T03 不得凭空造 seed
-T04,claw machine,,,,toy novelty / arcade,Arcade & Table Games,Toys & Games,YES,YES,YES,YES,T04 后续候选只允许由真实 STEP1 / STEP4 / STEP3 结果回填,T04 当前只是合同与路由正式化

@@ -1,5 +1,0 @@
-运行名称,方向ID,方向词,类目提示,站点,时间范围_天,新品定义_天,样本数前N,头部商品前N,是否启用关键词趋势研究,是否启用市场调研,是否启用竞品基准研究,是否启用SIF补强,每个方向最大下推关键词数,每个方向最大候选样品数,备注
-US_T01_ToyMarketDiscovery_20260410,T01,toy,Toys & Games,US,30,180,100,10,是,是,否,否,20,10,T01 仅用于 broad market discovery；细分 shortlist 只允许使用当前 workbook 可见白名单市场词
-US_T02_ClawMachine_20260410,T02,claw machine,Toys & Games,US,30,180,100,10,是,是,是,否,20,10,T02 继续作为 PRODUCT_IDEA_VALIDATION 主问题；STEP3 仅作 optional enrichment
-US_T03_ReverseMine_B07P44GKJR_20260410,T03,B07P44GKJR,Toys & Games,US,30,180,100,10,是,否,是,否,20,10,T03 seed_asin 来自 T02 fresh artifact；当前运行词仅作 route/runtime 绑定
-US_T04_SupplierBacksolve_Arcade_20260410,T04,toy novelty / arcade,Toys & Games,US,30,180,100,10,是,否,是,否,20,10,T04 只先落 supplier family 输入；后续候选必须来自真实运行结果回填

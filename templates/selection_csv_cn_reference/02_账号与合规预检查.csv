@@ -1,2 +1,0 @@
-账号ID,SellerSprite权限状态,SIF权限状态,Brand Registry状态,高风险类目限制,专利商标黑名单,备注
-SELLERSPRITE_MAIN,OK,BLOCKED,,审批类目与危险品默认不放行,按方向词逐轮补充,本表只记录账号与权限边界，不记录利润或供应链字段

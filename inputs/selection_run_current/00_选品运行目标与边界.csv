@@ -1,2 +1,0 @@
-批次ID,运行名称,站点,primary_goal,默认履约方式,目标售价下限,目标售价上限,目标毛利率下限_pct,最大可接受广告依赖,危险品允许,审批类目允许,允许进入SIF,允许进入白天核利包,备注
-BATCH_US_TOY_10_TERMS_20260411,US_Toy_10_Terms_Batch_20260411,US,profit_first,FBA,0,99,25,MEDIUM,NO,NO,YES,YES,当前 active batch 输入已切到 10 个 toy 词 MARKET_DISCOVERY；SellerSprite 仍 first，SIF 仍只在 shortlist 后进入

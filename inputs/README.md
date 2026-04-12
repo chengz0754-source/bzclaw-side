@@ -1,8 +1,9 @@
-# Inputs
+# Inputs Boundary
 
-Put operator-supplied inputs, review sheets, and future Machine A handoff files
-here. Do not place downloaded browser profiles or secrets in this directory.
+`bzclaw-side` keeps `inputs/` only as a minimal skeleton.
 
-Canonical standards do not live here. When you need the repo source of truth
-for SOP, field definitions, or pushdown parameters, use
-`templates/selection_canonical_standards/` instead.
+Current rule:
+
+- selection execution inputs live in the selection repo
+- A-to-B delivery inputs live in shared exchange packets
+- do not restore `selection_run_current/**` mirrors into this repo
