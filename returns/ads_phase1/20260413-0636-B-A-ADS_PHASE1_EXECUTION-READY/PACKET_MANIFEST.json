@@ -1,0 +1,48 @@
+{
+  "packet_id": "20260413-0636-B-A-ADS_PHASE1_EXECUTION-READY",
+  "channel": "B_TO_A",
+  "source": "B",
+  "target": "A",
+  "topic": "ADS_PHASE1_EXECUTION",
+  "status": "READY",
+  "created_at": "2026-04-13T06:39:00.9718100+08:00",
+  "packet_role": "return_delivery",
+  "source_packet_id": "20260413-0304-A-B-ADS_PHASE1_EXECUTION-READY",
+  "supersedes_packet_id": "20260413-0319-B-A-ADS_PHASE1_EXECUTION-READY",
+  "main_return_root": "E:\\bzclaw-side\\returns\\ads_phase1\\20260413-0636-B-A-ADS_PHASE1_EXECUTION-READY",
+  "business_repo_root": "E:\\选品文件夹\\amazon-selection-automation",
+  "summary": "B corrected ADS Phase1 delivery routing so the main return package lives under E:\\bzclaw-side, while documenting that the current business repo does not contain the previously claimed ADS Phase1 repo assets.",
+  "contents": [
+    {
+      "path": "PACKET_MANIFEST.json",
+      "role": "control"
+    },
+    {
+      "path": "README.md",
+      "role": "control"
+    },
+    {
+      "path": "indexes/RETURN_OBJECT_INDEX.json",
+      "role": "index"
+    },
+    {
+      "path": "summaries/ADS_PHASE1_DELIVERY_SUMMARY.md",
+      "role": "summary"
+    },
+    {
+      "path": "refs/DELIVERY_INDEX_REF.json",
+      "role": "ref"
+    },
+    {
+      "path": "refs/WORKTREE_DIFF_REF.json",
+      "role": "ref"
+    }
+  ],
+  "delivery_result": "PARTIAL",
+  "notes": [
+    "This package replaces the misrouted main return package previously written to E:\\bzclaw-exchange\\02_B_TO_A_OUTBOX\\20260413-0319-B-A-ADS_PHASE1_EXECUTION-READY.",
+    "The exchange layer for this round now carries only a lightweight signal package.",
+    "The current business repo root for verification is E:\\选品文件夹\\amazon-selection-automation.",
+    "No ads_manual_adjustment or ADS_PHASE1 repo files were found under the current business repo root during this correction pass."
+  ]
+}

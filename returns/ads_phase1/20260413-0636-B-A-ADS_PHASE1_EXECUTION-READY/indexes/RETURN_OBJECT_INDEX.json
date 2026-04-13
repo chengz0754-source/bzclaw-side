@@ -1,0 +1,75 @@
+{
+  "packet_id": "20260413-0636-B-A-ADS_PHASE1_EXECUTION-READY",
+  "return_files": [
+    {
+      "path": "PACKET_MANIFEST.json",
+      "role": "control"
+    },
+    {
+      "path": "README.md",
+      "role": "control"
+    },
+    {
+      "path": "indexes/RETURN_OBJECT_INDEX.json",
+      "role": "index"
+    },
+    {
+      "path": "summaries/ADS_PHASE1_DELIVERY_SUMMARY.md",
+      "role": "summary"
+    },
+    {
+      "path": "refs/DELIVERY_INDEX_REF.json",
+      "role": "ref"
+    },
+    {
+      "path": "refs/WORKTREE_DIFF_REF.json",
+      "role": "ref"
+    }
+  ],
+  "business_repo_root": "E:\\选品文件夹\\amazon-selection-automation",
+  "repo_written_files_actual": [],
+  "repo_written_files_verification": {
+    "searched_patterns": [
+      "ads_manual_adjustment",
+      "ADS_PHASE1"
+    ],
+    "result": "no_matching_repo_files_found"
+  },
+  "legacy_claimed_repo_written_files": [
+    "docs/ads_manual_adjustment/ADS_PHASE1_DECISION_PLAYBOOK_CURRENT.md",
+    "docs/ads_manual_adjustment/ADS_PHASE1_DELIVERY_INDEX.md",
+    "docs/ads_manual_adjustment/ADS_PHASE1_DIAGNOSTIC_PLAYBOOK_CURRENT.md",
+    "docs/ads_manual_adjustment/ADS_PHASE1_EXECUTION_BOUNDARY_CURRENT.md",
+    "docs/ads_manual_adjustment/ADS_PHASE1_REPO_RENAME_PLAN_FUTURE.md",
+    "docs/ads_manual_adjustment/ADS_PHASE1_REPO_ROLE_NOTE_CURRENT.md",
+    "docs/ads_manual_adjustment/ADS_PHASE1_VERIFY_AND_ROLLBACK_PLAYBOOK_CURRENT.md",
+    "templates/ads_manual_adjustment/ads_bulk_template.csv",
+    "templates/ads_manual_adjustment/ads_decision_sheet.template.md",
+    "templates/ads_manual_adjustment/ads_problem_card.template.md",
+    "templates/ads_manual_adjustment/ads_solution_sheet.template.md",
+    "templates/ads_manual_adjustment/ads_upload_receipt.template.md",
+    "templates/ads_manual_adjustment/ads_verify_rollback.template.md",
+    "scripts/ads_manual_adjustment/build_ads_bulk_file.py",
+    "scripts/ads_manual_adjustment/build_ads_context_pack.py",
+    "scripts/ads_manual_adjustment/render_ads_decision_sheet.py",
+    "skills/ads_manual_adjustment_bulk_builder/README.md",
+    "skills/ads_manual_adjustment_bulk_builder/skill.yaml",
+    "skills/ads_manual_adjustment_bulk_builder/contracts/bulk_builder_contract.md",
+    "skills/ads_manual_adjustment_bulk_builder/examples/bulk_plan.example.json",
+    "skills/ads_manual_adjustment_materializer/README.md",
+    "skills/ads_manual_adjustment_materializer/skill.yaml",
+    "skills/ads_manual_adjustment_materializer/contracts/materializer_contract.md",
+    "skills/ads_manual_adjustment_materializer/examples/context_pack.example.json",
+    "skills/ads_manual_adjustment_materializer/examples/decision_payload.example.json",
+    "inputs/ads_manual_adjustment/README.md",
+    "outputs/ads_manual_adjustment/README.md",
+    "outputs/ads_manual_adjustment/bulk-example.csv",
+    "reports/ads_manual_adjustment/README.md",
+    "reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES.md",
+    "reports/ads_manual_adjustment/context-pack-example.manifest.json",
+    "reports/ads_manual_adjustment/context-pack-example.md",
+    "reports/ads_manual_adjustment/decision-sheet-example.md",
+    "runs/ads_manual_adjustment/README.md"
+  ],
+  "delivery_result": "PARTIAL"
+}

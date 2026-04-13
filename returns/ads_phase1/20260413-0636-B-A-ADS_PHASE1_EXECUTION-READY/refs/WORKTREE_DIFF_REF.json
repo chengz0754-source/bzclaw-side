@@ -1,0 +1,15 @@
+{
+  "ref_type": "worktree_state",
+  "business_repo_root": "E:\\选品文件夹\\amazon-selection-automation",
+  "observed_remote": "origin https://github.com/chengz0754-source/amazon-selection-automation.git",
+  "collection_method": [
+    "git remote -v",
+    "git status --short --ignored",
+    "rg --files <repo> | rg 'ads_manual_adjustment|ADS_PHASE1'"
+  ],
+  "observed_ads_phase1_paths": [],
+  "notes": [
+    "No tracked, untracked, or ignored paths matching ads_manual_adjustment or ADS_PHASE1 were found under the current business repo root.",
+    "Current git status is dominated by existing ignored runtime and log artifacts unrelated to this ADS Phase1 correction package."
+  ]
+}

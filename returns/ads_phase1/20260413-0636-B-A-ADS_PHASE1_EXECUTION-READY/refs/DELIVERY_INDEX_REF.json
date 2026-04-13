@@ -1,0 +1,12 @@
+{
+  "ref_type": "expected_repo_file_missing",
+  "business_repo_root": "E:\\选品文件夹\\amazon-selection-automation",
+  "expected_path": "docs/ads_manual_adjustment/ADS_PHASE1_DELIVERY_INDEX.md",
+  "expected_absolute_path": "E:\\选品文件夹\\amazon-selection-automation\\docs\\ads_manual_adjustment\\ADS_PHASE1_DELIVERY_INDEX.md",
+  "exists": false,
+  "description": "Expected ADS Phase1 delivery index under the current business repo root.",
+  "notes": [
+    "No ADS Phase1 delivery index file was found during this correction pass.",
+    "The superseded exchange packet referenced this path but it is absent in the current business repo."
+  ]
+}
