@@ -1,0 +1,25 @@
+# B Return Signal Fix Note
+
+- old exchange packet path: `E:\bzclaw-exchange\02_B_TO_A_OUTBOX\20260413-0319-B-A-ADS_PHASE1_EXECUTION-READY`
+- old exchange packet visible: `NO`
+- current incomplete exchange signal found: `E:\bzclaw-exchange\02_B_TO_A_OUTBOX\20260413-0636-B-A-ADS_PHASE1_SIGNAL`
+- new canonical main return path: `E:\bzclaw-side\returns\ads_phase1\20260413-210213-B-A-ADS_PHASE1_EXECUTION-READY`
+- new exchange signal path: `E:\bzclaw-exchange\02_B_TO_A_OUTBOX\20260413-210213-B-A-ADS_PHASE1_EXECUTION-READY-V2`
+- old packet reused objects:
+  - exact old exchange packet not visible
+  - reused source = `E:\bzclaw-side\returns\ads_phase1\20260413-0636-B-A-ADS_PHASE1_EXECUTION-READY`
+  - reused files = `PACKET_MANIFEST.json`, `README.md`, `summaries/ADS_PHASE1_DELIVERY_SUMMARY.md`, `indexes/RETURN_OBJECT_INDEX.json`
+- review subset objects:
+  - `REVIEW_SUBSET/PACKET_MANIFEST.json`
+  - `REVIEW_SUBSET/README.md`
+  - `REVIEW_SUBSET/summaries/ADS_PHASE1_DELIVERY_SUMMARY.md`
+  - `REVIEW_SUBSET/indexes/RETURN_OBJECT_INDEX.json`
+- non-claims:
+  - no runtime-active claim
+  - no project-complete claim
+  - no publish-truth ownership change
+- remaining risks:
+  - the earlier `20260413-0636-B-A-ADS_PHASE1_SIGNAL` folder remains present and is not review-subset complete
+  - ADS Phase1 business repo assets remain unresolved beyond this handoff-shape fix
+- next step:
+  - run the matching A-side intake fix against the new `-V2` exchange packet so mounted exchange plus `REVIEW_SUBSET/` becomes the only required intake surface

@@ -1,0 +1,52 @@
+{
+  "packet_id": "20260413-210213-B-A-ADS_PHASE1_EXECUTION-READY",
+  "contract_version": "B_TO_A_RETURN_V2",
+  "delivery_result": "PARTIAL",
+  "canonical_main_return_path": "E:\\bzclaw-side\\returns\\ads_phase1\\20260413-210213-B-A-ADS_PHASE1_EXECUTION-READY",
+  "exchange_signal_path": "E:\\bzclaw-exchange\\02_B_TO_A_OUTBOX\\20260413-210213-B-A-ADS_PHASE1_EXECUTION-READY-V2",
+  "canonical_files": [
+    {
+      "path": "PACKET_MANIFEST.json",
+      "role": "control"
+    },
+    {
+      "path": "README.md",
+      "role": "control"
+    },
+    {
+      "path": "summaries/ADS_PHASE1_DELIVERY_SUMMARY.md",
+      "role": "summary"
+    },
+    {
+      "path": "indexes/RETURN_OBJECT_INDEX.json",
+      "role": "index"
+    }
+  ],
+  "exchange_review_subset_files": [
+    {
+      "path": "REVIEW_SUBSET/PACKET_MANIFEST.json",
+      "role": "control_copy"
+    },
+    {
+      "path": "REVIEW_SUBSET/README.md",
+      "role": "control"
+    },
+    {
+      "path": "REVIEW_SUBSET/summaries/ADS_PHASE1_DELIVERY_SUMMARY.md",
+      "role": "summary_copy"
+    },
+    {
+      "path": "REVIEW_SUBSET/indexes/RETURN_OBJECT_INDEX.json",
+      "role": "index_copy"
+    }
+  ],
+  "intake_rule": {
+    "a_side_primary_surface": "mounted_exchange_review_subset",
+    "direct_b_disk_required_for_a": false,
+    "main_return_path_usage": "audit_reference_only"
+  },
+  "source_of_inherited_partial_result": {
+    "visible_prior_canonical_packet": "E:\\bzclaw-side\\returns\\ads_phase1\\20260413-0636-B-A-ADS_PHASE1_EXECUTION-READY",
+    "note": "This fix preserves the previously recorded unresolved ADS Phase1 repo-asset gap."
+  }
+}
