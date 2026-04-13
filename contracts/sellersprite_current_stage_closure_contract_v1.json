@@ -1,0 +1,92 @@
+{
+  "contract_id": "sellersprite_current_stage_closure_contract_v1",
+  "version": 1,
+  "effective_date": "2026-04-13",
+  "scope": "SellerSprite current-stage closure",
+  "no_runtime_rerun_performed": true,
+  "current_stage_closure": {
+    "status": "FLOW_CLOSED",
+    "canonical_statement": "SellerSprite current-stage closure = FLOW_CLOSED",
+    "gated_by_business_promotion": false,
+    "required_conditions": [
+      "repo_visible_sellersprite_flow_landed_through_candidate_pool_boundary",
+      "artifact_depth_reconciled_for_canonical_t01_reference_pair",
+      "no_remaining_current_stage_flow_blocker"
+    ],
+    "non_blocking_items": [
+      "business_promotion_not_landed",
+      "owner_side_manual_writeback_fields_blank_or_pending",
+      "p0_non_blocking_hardening_debt",
+      "t02_post_stage_open_debt",
+      "t03_post_stage_open_debt",
+      "t04_post_stage_open_debt"
+    ]
+  },
+  "business_promotion": {
+    "status_field": "BUSINESS_PROMOTED",
+    "current_repo_status": "BUSINESS_NOT_PROMOTED",
+    "layer": "next-stage owner/business flow",
+    "gates_current_stage_closure": false
+  },
+  "owner_side_manual_writeback": {
+    "layer": "next-stage owner/business flow",
+    "gates_current_stage_closure": false,
+    "fields": [
+      "compliance_review",
+      "improvement_notes",
+      "final_explanation",
+      "profit_pricing"
+    ]
+  },
+  "shared_foundation": {
+    "phase_id": "P0",
+    "classification": "NON_BLOCKING_HARDENING_DEBT",
+    "gates_current_stage_closure": false
+  },
+  "post_stage_open_debt": {
+    "gates_current_stage_closure": false,
+    "tracked_lines": [
+      "T02",
+      "T03",
+      "T04"
+    ]
+  },
+  "current_stage_blocker": {
+    "status": "NONE",
+    "superseded_blocker": "T01_PURE_BUSINESS_HOLD__PROMOTION_NOT_LANDED",
+    "reason": "Business promotion moved to next-stage owner/business flow."
+  },
+  "line_statuses": {
+    "T01": {
+      "current_stage_closure_status": "FLOW_CLOSED",
+      "business_promotion_status": "BUSINESS_NOT_PROMOTED",
+      "current_stage_blocker": "NONE",
+      "next_stage_note": "Owner/business promotion remains pending after current-stage closure."
+    },
+    "T02": {
+      "current_stage_closure_status": "FLOW_CLOSED",
+      "business_promotion_status": "BUSINESS_NOT_PROMOTED",
+      "post_stage_debt_class": "POST_STAGE_OPEN_DEBT",
+      "current_stage_blocker": "NONE"
+    },
+    "T03": {
+      "current_stage_closure_status": "FLOW_CLOSED",
+      "business_promotion_status": "BUSINESS_NOT_PROMOTED",
+      "post_stage_debt_class": "POST_STAGE_OPEN_DEBT",
+      "current_stage_blocker": "NONE"
+    },
+    "T04": {
+      "current_stage_closure_status": "FLOW_CLOSED",
+      "business_promotion_status": "BUSINESS_NOT_PROMOTED",
+      "post_stage_debt_class": "POST_STAGE_OPEN_DEBT",
+      "current_stage_blocker": "NONE"
+    }
+  },
+  "authoritative_files": [
+    "README.md",
+    "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
+    "reports/CODEX_REWRITE_STAGE_CLOSURE_CONTRACT_TO_FLOW_ONLY_SUMMARY_20260413.md",
+    "skills/skill_sellersprite_t01_market_discovery.md",
+    "skills/skill_sellersprite_four_line_runtime_registry.md"
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "generated_at_utc": "2026-04-13T15:43:02+00:00",
+  "stage_status_path": "reports/latest_sellersprite_stage_status.json",
+  "candidate_pool_csv_path": null,
+  "candidate_source_mode": "stage_truth_fallback",
+  "current_stage_closed": true,
+  "next_stage_required": true,
+  "why_next_stage_starts": [
+    "SellerSprite current stage is already FLOW_CLOSED by deterministic evaluator output.",
+    "Business promotion remains pending and belongs to the next-stage owner/business flow.",
+    "T02/T03/T04 remain tracked as post-stage open debt and do not block the current-stage closure.",
+    "Owner-side manual writeback fields were externalized from the current-stage closure gate."
+  ],
+  "eligible_candidate_paths": [
+    {
+      "candidate_id": "T11__CURRENT_HOLD_CANDIDATE_PATH",
+      "direction_id": "T11",
+      "keyword": "Squeeze Toys",
+      "site": "US",
+      "candidate_source_mode": "stage_truth_fallback",
+      "candidate_path_id": "T11::CURRENT_HOLD_CANDIDATE_PATH",
+      "eligible_candidate_count": 10,
+      "sample_id": "",
+      "sample_asin": "",
+      "sample_title": "",
+      "candidate_market_name": "Squeeze Toys",
+      "current_pool_status": "HOLD",
+      "owner_review_status": "PENDING",
+      "compliance": "",
+      "improvement_points": "",
+      "final_explanation": "",
+      "profit_pricing": "",
+      "decision": "",
+      "notes": "fallback packet synthesized from current stage truth because direct 60 csv is not visible in repo"
+    },
+    {
+      "candidate_id": "T12__CURRENT_HOLD_CANDIDATE_PATH",
+      "direction_id": "T12",
+      "keyword": "Multi-Item Party Favor Packs",
+      "site": "US",
+      "candidate_source_mode": "stage_truth_fallback",
+      "candidate_path_id": "T12::CURRENT_HOLD_CANDIDATE_PATH",
+      "eligible_candidate_count": 5,
+      "sample_id": "",
+      "sample_asin": "",
+      "sample_title": "",
+      "candidate_market_name": "Multi-Item Party Favor Packs",
+      "current_pool_status": "HOLD",
+      "owner_review_status": "PENDING",
+      "compliance": "",
+      "improvement_points": "",
+      "final_explanation": "",
+      "profit_pricing": "",
+      "decision": "",
+      "notes": "fallback packet synthesized from current stage truth because direct 60 csv is not visible in repo"
+    }
+  ],
+  "next_stage_candidate_list": [
+    {
+      "candidate_id": "T11__CURRENT_HOLD_CANDIDATE_PATH",
+      "direction_id": "T11",
+      "keyword": "Squeeze Toys",
+      "site": "US",
+      "candidate_source_mode": "stage_truth_fallback",
+      "candidate_path_id": "T11::CURRENT_HOLD_CANDIDATE_PATH",
+      "eligible_candidate_count": 10,
+      "sample_id": "",
+      "sample_asin": "",
+      "sample_title": "",
+      "candidate_market_name": "Squeeze Toys",
+      "current_pool_status": "HOLD",
+      "owner_review_status": "PENDING",
+      "compliance": "",
+      "improvement_points": "",
+      "final_explanation": "",
+      "profit_pricing": "",
+      "decision": "",
+      "notes": "fallback packet synthesized from current stage truth because direct 60 csv is not visible in repo"
+    },
+    {
+      "candidate_id": "T12__CURRENT_HOLD_CANDIDATE_PATH",
+      "direction_id": "T12",
+      "keyword": "Multi-Item Party Favor Packs",
+      "site": "US",
+      "candidate_source_mode": "stage_truth_fallback",
+      "candidate_path_id": "T12::CURRENT_HOLD_CANDIDATE_PATH",
+      "eligible_candidate_count": 5,
+      "sample_id": "",
+      "sample_asin": "",
+      "sample_title": "",
+      "candidate_market_name": "Multi-Item Party Favor Packs",
+      "current_pool_status": "HOLD",
+      "owner_review_status": "PENDING",
+      "compliance": "",
+      "improvement_points": "",
+      "final_explanation": "",
+      "profit_pricing": "",
+      "decision": "",
+      "notes": "fallback packet synthesized from current stage truth because direct 60 csv is not visible in repo"
+    }
+  ],
+  "required_owner_side_fields": [
+    {
+      "field_id": "owner_review_status",
+      "csv_column": "owner_review_status",
+      "required": true,
+      "description": "Track owner-side packet progress with PENDING / IN_PROGRESS / DONE."
+    },
+    {
+      "field_id": "compliance_review",
+      "csv_column": "compliance",
+      "required": true,
+      "description": "Owner-side compliance judgment for the candidate path."
+    },
+    {
+      "field_id": "improvement_points",
+      "csv_column": "improvement_points",
+      "required": true,
+      "description": "Owner-side improvement plan before promotion or sourcing."
+    },
+    {
+      "field_id": "final_explanation",
+      "csv_column": "final_explanation",
+      "required": true,
+      "description": "Owner-side final business explanation for why the path should continue or stop."
+    },
+    {
+      "field_id": "profit_pricing",
+      "csv_column": "profit_pricing",
+      "required": true,
+      "description": "Owner-side profit and pricing check for the next-stage decision."
+    },
+    {
+      "field_id": "decision",
+      "csv_column": "decision",
+      "required": true,
+      "description": "Owner-side next-stage decision such as HOLD / GO / NO_GO."
+    },
+    {
+      "field_id": "notes",
+      "csv_column": "notes",
+      "required": false,
+      "description": "Optional owner/business annotations for the packet."
+    }
+  ],
+  "post_stage_open_debts_snapshot": [
+    {
+      "debt_id": "D02",
+      "line_id": "T02",
+      "debt_class": "POST_STAGE_OPEN_DEBT",
+      "current_state": "OPEN",
+      "exact_debt": "PRODUCT_FEASIBLE__MARKET_ABSTRACTION_PENDING__BUSINESS_PROMOTION_NOT_LANDED",
+      "is_current_stage_blocker": "NO",
+      "note": "reusable exact-product line; not part of the current T11/T12 stage blocker stack"
+    },
+    {
+      "debt_id": "D03",
+      "line_id": "T03",
+      "debt_class": "POST_STAGE_OPEN_DEBT",
+      "current_state": "OPEN",
+      "exact_debt": "PRODUCT_FEASIBLE__MARKET_ABSTRACTION_PENDING__BUSINESS_PROMOTION_NOT_LANDED",
+      "is_current_stage_blocker": "NO",
+      "note": "reusable reverse-mining line; not part of the current T11/T12 stage blocker stack"
+    },
+    {
+      "debt_id": "D04",
+      "line_id": "T04",
+      "debt_class": "POST_STAGE_OPEN_DEBT",
+      "current_state": "OPEN",
+      "exact_debt": "PRODUCT_FEASIBLE__MARKET_ABSTRACTION_PENDING__BUSINESS_PROMOTION_NOT_LANDED",
+      "is_current_stage_blocker": "NO",
+      "note": "reusable supply-chain backsolve line; not part of the current T11/T12 stage blocker stack"
+    }
+  ],
+  "owner_writeback_packet_path": "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
+  "warnings": [
+    "No direct repo-local 60 candidate-pool CSV was discovered; owner handoff was synthesized from deterministic stage truth."
+  ]
+}
