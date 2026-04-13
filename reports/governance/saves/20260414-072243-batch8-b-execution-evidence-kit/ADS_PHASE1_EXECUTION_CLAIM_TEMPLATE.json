@@ -1,0 +1,40 @@
+{
+  "execution_claim_id": "<fill: ads-phase1-execution-YYYYMMDD-HHMMSS>",
+  "current_blocker": "NO_FRESH_CANONICAL_EXECUTION_EVIDENCE__EXACT_BLOCKER_VISIBLE",
+  "packet_id": "20260413-210213-B-A-ADS_PHASE1_EXECUTION-READY",
+  "mounted_signal_packet_id": "20260413-210213-B-A-ADS_PHASE1_EXECUTION-READY-V2",
+  "execution_mode": "<fill: manual_platform_execution | fresh_canonical_rerun | both>",
+  "actor": "<fill>",
+  "executed_at": "<fill: ISO8601>",
+  "executed_on_host": "<fill>",
+  "marketplace": "<fill>",
+  "scope": "<fill: exact campaign/ad_group/entity rows>",
+  "canonical_evidence_root": "E:/bzclaw-side/runs/ads_manual_adjustment/<execution_claim_id>",
+  "run_note_path": "E:/bzclaw-side/runs/ads_manual_adjustment/<execution_claim_id>/EXECUTION_RUN_NOTE.md",
+  "claim_json_path": "E:/bzclaw-side/runs/ads_manual_adjustment/<execution_claim_id>/ADS_PHASE1_EXECUTION_CLAIM.json",
+  "report_refs": [
+    "E:/bzclaw-side/reports/ads_manual_adjustment/ADS_PHASE1_EXECUTION_RESULT_SUMMARY__<execution_claim_id>.md",
+    "E:/bzclaw-side/reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES__<execution_claim_id>.md"
+  ],
+  "output_refs": [
+    "E:/bzclaw-side/outputs/ads_manual_adjustment/<execution_claim_id>/<fill>"
+  ],
+  "receipt_refs": [
+    {
+      "path": "<fill repo-visible path>",
+      "type": "<fill: platform_receipt | upload_confirmation | export | screenshot>",
+      "provenance": "<fill>"
+    }
+  ],
+  "result_summary": "<fill>",
+  "blocker_effect": "<fill: narrowed | cleared | unchanged>",
+  "non_claims": [
+    "no project completion claim",
+    "no runtime-active claim",
+    "no formal-publish claim",
+    "no review-ready claim unless later justified from repo-visible evidence",
+    "no cutover-ready claim unless later justified from repo-visible evidence",
+    "no ADS complete claim unless later justified from repo-visible evidence"
+  ],
+  "evidence_basis_note": "Do not reuse old temp-root PASS evidence as if it were fresh execution."
+}
