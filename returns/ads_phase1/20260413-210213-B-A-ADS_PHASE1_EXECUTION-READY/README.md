@@ -18,6 +18,7 @@
 - Exchange now carries only a lightweight notification packet plus `REVIEW_SUBSET/`.
 - A-side intake should use the mounted exchange packet and review subset for review.
 - `MAIN_RETURN_PATH.txt` remains an audit/reference string and is not an intake prerequisite for direct B-disk access.
+- A lawful ADS asset landing slice is now visible under the canonical root for `skills`, `templates`, `scripts`, `inputs`, `outputs`, `reports`, and `runs`.
 
 ## Included Canonical Objects
 - `PACKET_MANIFEST.json`
@@ -27,5 +28,6 @@
 
 ## Current Interpretation
 - This packet preserves the prior visible `delivery_result = PARTIAL`.
-- The unresolved ADS Phase1 repo-asset gap is inherited from the visible `20260413-0636-B-A-ADS_PHASE1_EXECUTION-READY` packet.
-- This fix changes cross-host return shape only and does not declare project completion, runtime active, or formal publish.
+- The packet basis was refreshed after `B-B5-01` landed a lawful ADS asset slice under the canonical root.
+- The remaining exact blocker is narrower now: `docs/ads_manual_adjustment/` is still not landed and `reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES.md` was intentionally not copied because it is temp-root anchored.
+- This packet refresh does not declare project completion, runtime active, formal publish, or ADS complete closure.

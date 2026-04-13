@@ -1,0 +1,33 @@
+{
+  "decision_sheet_id": "ads-phase1-decision-example",
+  "linked_problem_card_id": "ads-phase1-problem-example",
+  "decision_owner": "B",
+  "approval_owner": "Pending Human Approval",
+  "approval_status": "PENDING",
+  "decision_date": "2026-04-13",
+  "objective": "Reduce wasted spend without reducing the converting exact target's traffic.",
+  "diagnosis": [
+    "Broad traffic is spending above tolerance with weak conversion.",
+    "One exact target remains profitable and should be protected."
+  ],
+  "chosen_actions": [
+    {
+      "action_type": "LOWER_BID",
+      "scope": "broad target: squeeze toys sensory bin",
+      "expected_effect": "Reduce CPC on low-efficiency traffic.",
+      "guardrail": "Keep the bid above the floor needed to maintain test traffic."
+    },
+    {
+      "action_type": "ADD_NEGATIVE",
+      "scope": "phrase negative: dog chew toy",
+      "expected_effect": "Block irrelevant traffic leakage.",
+      "guardrail": "Apply only at the ad group where waste was observed."
+    }
+  ],
+  "verification_window": {
+    "same_session": "Check row acceptance and the exact entity scope.",
+    "plus_24h": "Review spend pacing and wasted query share.",
+    "plus_72h": "Check ACOS trend and confirm the converting exact target kept volume."
+  },
+  "rollback_trigger": "Rollback if spend drops on the converting exact target or if the negative blocks relevant traffic."
+}

@@ -1,0 +1,16 @@
+{
+  "context_pack_id": "ads-phase1-context-example",
+  "input_path": "inputs\\ads_manual_adjustment\\context_pack_request.example.json",
+  "output_markdown_path": "reports\\ads_manual_adjustment\\context-pack-example.md",
+  "output_manifest_path": "reports\\ads_manual_adjustment\\context-pack-example.manifest.json",
+  "marketplace": "US",
+  "campaign_name": "SP | Squeeze Toys | Core",
+  "ad_group_name": "Exact Winners",
+  "observation_count": 3,
+  "guardrail_count": 3,
+  "proposed_action_count": 3,
+  "supporting_only": true,
+  "runtime_open_claim": false,
+  "auto_upload": false,
+  "requires_approval": true
+}

@@ -1,0 +1,11 @@
+name: ads_manual_adjustment_bulk_builder
+description: Build a review-only CSV draft from an approved Ads Phase1 adjustment plan.
+supporting_only: true
+runtime_open_claim: false
+auto_upload: false
+requires_approval: true
+entrypoint: scripts/ads_manual_adjustment/build_ads_bulk_file.py
+inputs:
+  - inputs/ads_manual_adjustment/bulk_plan.example.json
+outputs:
+  - outputs/ads_manual_adjustment/bulk-example.csv

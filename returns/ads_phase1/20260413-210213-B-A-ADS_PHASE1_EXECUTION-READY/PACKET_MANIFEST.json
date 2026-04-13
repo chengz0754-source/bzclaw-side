@@ -7,6 +7,7 @@
   "topic": "ADS_PHASE1_EXECUTION",
   "status": "READY",
   "created_at": "2026-04-13T21:02:13+08:00",
+  "refreshed_at": "2026-04-14T02:16:24+08:00",
   "packet_role": "canonical_main_return",
   "source_packet_id": "20260413-0304-A-B-ADS_PHASE1_EXECUTION-READY",
   "supersedes": [
@@ -49,11 +50,28 @@
       "indexes/RETURN_OBJECT_INDEX.json"
     ]
   },
+  "asset_landing_ref": "E:\\bzclaw-side\\reports\\governance\\saves\\20260414-020945-batch5-b-ads-asset-landing\\B_ADS_ASSET_LANDING_NOTE.md",
+  "packet_refresh_ref": "E:\\bzclaw-side\\reports\\governance\\saves\\20260414-021624-batch5-b-packet-refresh\\B_ADS_PACKET_REFRESH_NOTE.md",
+  "landed_ads_families": [
+    "skills/ads_manual_adjustment_bulk_builder",
+    "skills/ads_manual_adjustment_materializer",
+    "templates/ads_manual_adjustment",
+    "scripts/ads_manual_adjustment",
+    "inputs/ads_manual_adjustment",
+    "outputs/ads_manual_adjustment",
+    "reports/ads_manual_adjustment",
+    "runs/ads_manual_adjustment"
+  ],
+  "remaining_partial_blocker": {
+    "docs_family": "docs/ads_manual_adjustment remains not landed under the canonical root in this slice",
+    "verification_note": "reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES.md was not copied because it is anchored to the temp reference root and would become misleading unchanged"
+  },
   "delivery_result": "PARTIAL",
   "notes": [
     "This V2 packet keeps the canonical main return under E:\\bzclaw-side\\returns\\ads_phase1\\<timestamp> only.",
     "Exchange carries a lightweight signal package plus review subset, not the full canonical return package.",
     "MAIN_RETURN_PATH.txt is retained for audit and follow-up reference only.",
-    "The unresolved ADS Phase1 repo-asset gap is inherited from the visible 20260413-0636 canonical packet; this fix changes delivery shape, not project-level truth."
+    "After B-B5-01, a lawful ADS asset slice is now landed under the canonical root for skills, templates, scripts, inputs, outputs, reports, and runs.",
+    "delivery_result remains PARTIAL because the docs family is still not landed and the temp-root-anchored verification note was intentionally excluded from the landing slice."
   ]
 }

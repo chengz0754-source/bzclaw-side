@@ -14,20 +14,27 @@
 - `REVIEW_SUBSET/` carries review copies of the manifest, summary, and index so A can intake from mounted exchange.
 - `MAIN_RETURN_PATH.txt` is retained for audit/reference follow-up only and does not require direct B-disk access for A-side intake.
 
-## Reused Visible Objects
-- Source canonical packet reused: `E:\bzclaw-side\returns\ads_phase1\20260413-0636-B-A-ADS_PHASE1_EXECUTION-READY`
-- Reused files:
-  - `PACKET_MANIFEST.json`
-  - `README.md`
-  - `summaries/ADS_PHASE1_DELIVERY_SUMMARY.md`
-  - `indexes/RETURN_OBJECT_INDEX.json`
-- Old exchange packet path `E:\bzclaw-exchange\02_B_TO_A_OUTBOX\20260413-0319-B-A-ADS_PHASE1_EXECUTION-READY` was not visible during this fix pass.
+## Packet Basis Refresh
+- `B-B5-01` landed a lawful ADS asset slice under the canonical root from the visible temp reference root.
+- Landed families now visible under `E:\bzclaw-side`:
+  - `skills/ads_manual_adjustment_bulk_builder`
+  - `skills/ads_manual_adjustment_materializer`
+  - `templates/ads_manual_adjustment`
+  - `scripts/ads_manual_adjustment`
+  - `inputs/ads_manual_adjustment`
+  - `outputs/ads_manual_adjustment`
+  - `reports/ads_manual_adjustment`
+  - `runs/ads_manual_adjustment`
+- The active packet id and exchange packet id were kept unchanged because the truthful change was inside the packet basis, not the cross-host contract shape.
 
 ## Current Interpretation
 - The delivery result remains `PARTIAL`.
-- This fix does not re-run ADS Phase1 business repo materialization; it preserves the unresolved repo-asset gap recorded by the visible prior canonical packet.
-- This fix corrects the cross-host handoff shape only and does not declare runtime active, project complete, or formal publish.
+- The earlier reading of "no live ADS business asset families under the canonical root" is no longer current after the Batch5 landing slice.
+- The remaining exact blocker is now:
+  - `docs/ads_manual_adjustment/` is still not landed under the canonical root
+  - `reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES.md` was intentionally excluded because it is anchored to the temp reference root
+- This refresh does not declare runtime active, project complete, formal publish, or ADS complete closure.
 
 ## Risks
-- A must use the new `-V2` exchange signal packet rather than the earlier incomplete signal folder.
-- The ADS Phase1 business repo assets remain unresolved beyond this return-shape correction.
+- A must continue to use the active `-V2` exchange signal packet rather than older demoted folders.
+- The active packet is still `PARTIAL`, so downstream review logic must not treat the landed asset slice as business closeout completion.

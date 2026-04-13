@@ -1,0 +1,14 @@
+name: ads_manual_adjustment_materializer
+description: Render an operator-facing context pack and decision sheet for Ads Phase1.
+supporting_only: true
+runtime_open_claim: false
+auto_upload: false
+requires_approval: true
+entrypoint: scripts/ads_manual_adjustment/build_ads_context_pack.py
+inputs:
+  - inputs/ads_manual_adjustment/context_pack_request.example.json
+  - inputs/ads_manual_adjustment/decision_payload.example.json
+outputs:
+  - reports/ads_manual_adjustment/context-pack-example.md
+  - reports/ads_manual_adjustment/context-pack-example.manifest.json
+  - reports/ads_manual_adjustment/decision-sheet-example.md

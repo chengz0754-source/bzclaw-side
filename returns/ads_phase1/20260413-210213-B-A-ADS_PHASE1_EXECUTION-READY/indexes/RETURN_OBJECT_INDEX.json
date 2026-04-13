@@ -45,8 +45,46 @@
     "direct_b_disk_required_for_a": false,
     "main_return_path_usage": "audit_reference_only"
   },
-  "source_of_inherited_partial_result": {
-    "visible_prior_canonical_packet": "E:\\bzclaw-side\\returns\\ads_phase1\\20260413-0636-B-A-ADS_PHASE1_EXECUTION-READY",
-    "note": "This fix preserves the previously recorded unresolved ADS Phase1 repo-asset gap."
+  "landed_ads_families": [
+    {
+      "path": "skills/ads_manual_adjustment_bulk_builder",
+      "status": "LANDED"
+    },
+    {
+      "path": "skills/ads_manual_adjustment_materializer",
+      "status": "LANDED"
+    },
+    {
+      "path": "templates/ads_manual_adjustment",
+      "status": "LANDED"
+    },
+    {
+      "path": "scripts/ads_manual_adjustment",
+      "status": "LANDED"
+    },
+    {
+      "path": "inputs/ads_manual_adjustment",
+      "status": "LANDED"
+    },
+    {
+      "path": "outputs/ads_manual_adjustment",
+      "status": "LANDED"
+    },
+    {
+      "path": "reports/ads_manual_adjustment",
+      "status": "LANDED_PARTIAL"
+    },
+    {
+      "path": "runs/ads_manual_adjustment",
+      "status": "LANDED"
+    }
+  ],
+  "remaining_partial_blocker": {
+    "docs_family": "docs/ads_manual_adjustment is still not landed under the canonical root",
+    "excluded_report": "reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES.md was intentionally excluded because it is temp-root anchored"
+  },
+  "packet_refresh_basis": {
+    "asset_landing_ref": "E:\\bzclaw-side\\reports\\governance\\saves\\20260414-020945-batch5-b-ads-asset-landing\\B_ADS_ASSET_LANDING_NOTE.md",
+    "reason": "B-B5-01 changed the truthful packet basis because live ADS business asset families now exist under the canonical root."
   }
 }

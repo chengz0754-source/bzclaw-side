@@ -1,0 +1,36 @@
+{
+  "plan_id": "ads-phase1-bulk-example",
+  "generated_for": "manual review only",
+  "rows": [
+    {
+      "record_id": "row-001",
+      "campaign_name": "SP | Squeeze Toys | Core",
+      "ad_group_name": "Broad Tests",
+      "entity_type": "keyword",
+      "target_expression": "squeeze toys sensory bin",
+      "match_type": "broad",
+      "action": "LOWER_BID",
+      "new_bid": 0.68,
+      "negative_type": "",
+      "status": "draft",
+      "placement": "",
+      "placement_modifier": "",
+      "note": "Lower bid by 15 percent after waste review."
+    },
+    {
+      "record_id": "row-002",
+      "campaign_name": "SP | Squeeze Toys | Core",
+      "ad_group_name": "Broad Tests",
+      "entity_type": "negative_keyword",
+      "target_expression": "dog chew toy",
+      "match_type": "phrase",
+      "action": "ADD_NEGATIVE",
+      "new_bid": "",
+      "negative_type": "phrase",
+      "status": "draft",
+      "placement": "",
+      "placement_modifier": "",
+      "note": "Exclude irrelevant pet-intent traffic."
+    }
+  ]
+}
