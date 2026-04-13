@@ -15,6 +15,13 @@ This note does not rewrite B as:
 - formal publish host
 - mature worker platform
 
+## Current Root-Unify Read Rule
+
+- canonical B-side root = `E:\bzclaw-side`
+- current business inventory should now be read from the canonical root first
+- external `E:\选品文件夹\amazon-selection-automation`, if still visible, is temporary migration/reference only
+- external reference paths may still appear as historical runtime examples, but they are not a second permanent canonical business root
+
 ## Current Cut
 
 Current default B-side business plane is script-first and purpose-routed:

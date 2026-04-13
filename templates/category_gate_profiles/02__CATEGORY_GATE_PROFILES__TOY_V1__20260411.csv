@@ -1,0 +1,11 @@
+﻿profile_id,category_l1,category_l2,purpose_type,parameter_name,operator,threshold_value,severity,enabled,unit,note
+TOY_GENERAL__MARKET_DISCOVERY__V1,TOY,TOY_GENERAL,MARKET_DISCOVERY,avg_price_min,>=,15,soft,true,USD,玩具默认价格下限，避免明显低利润市场
+TOY_GENERAL__MARKET_DISCOVERY__V1,TOY,TOY_GENERAL,MARKET_DISCOVERY,avg_price_max,<=,70,soft,true,USD,玩具默认价格上限，保留中高客单机会
+TOY_GENERAL__MARKET_DISCOVERY__V1,TOY,TOY_GENERAL,MARKET_DISCOVERY,monthly_sales_min,>=,1500,soft,true,units,玩具通用市场发现规模门槛
+TOY_GENERAL__MARKET_DISCOVERY__V1,TOY,TOY_GENERAL,MARKET_DISCOVERY,new_product_ratio_min,>=,5,hold,true,pct,新品占比偏低先hold，不直接fail
+TOY_GENERAL__MARKET_DISCOVERY__V1,TOY,TOY_GENERAL,MARKET_DISCOVERY,commodity_concentration_max,<=,0.60,hold,true,ratio,玩具类默认商品集中度上限
+TOY_GENERAL__MARKET_DISCOVERY__V1,TOY,TOY_GENERAL,MARKET_DISCOVERY,brand_concentration_max,<=,0.65,hold,true,ratio,玩具类默认品牌集中度上限
+TOY_GENERAL__MARKET_DISCOVERY__V1,TOY,TOY_GENERAL,MARKET_DISCOVERY,seller_concentration_max,<=,0.60,hold,true,ratio,玩具类默认卖家集中度上限
+TOY_GENERAL__MARKET_DISCOVERY__V1,TOY,TOY_GENERAL,MARKET_DISCOVERY,avg_rating_min,>=,3.7,hold,true,score,评分偏低作为风险提醒
+TOY_GENERAL__MARKET_DISCOVERY__V1,TOY,TOY_GENERAL,MARKET_DISCOVERY,ip_risk_redline,==,True,hard,true,bool,玩具类IP/形象侵权做硬红线
+TOY_GENERAL__MARKET_DISCOVERY__V1,TOY,TOY_GENERAL,MARKET_DISCOVERY,toy_compliance_required,==,True,hard,true,bool,玩具类合规检查做硬红线

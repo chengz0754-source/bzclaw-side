@@ -1,0 +1,27 @@
+{
+  "name": "m03_niche_shortlist",
+  "description": "Step1 shortlist table derived from M02 market cleaned data.",
+  "required_fields": [
+    "batch_id",
+    "marketplace",
+    "path_key",
+    "dept_l1",
+    "parent_l2",
+    "parent_l3",
+    "niche_leaf",
+    "step1_score",
+    "step1_status",
+    "step1_drop_reason",
+    "step1_pass_reason",
+    "path_fit_flag",
+    "window_hits",
+    "window_misses",
+    "next_action",
+    "next_queue_required",
+    "route_status"
+  ],
+  "types": {
+    "step1_score": "number",
+    "next_queue_required": "boolean"
+  }
+}

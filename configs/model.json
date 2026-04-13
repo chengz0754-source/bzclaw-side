@@ -1,0 +1,24 @@
+{
+  "default_provider": "ollama_local",
+  "providers": {
+    "ollama_local": {
+      "enabled": true,
+      "protocol": "openai_compatible",
+      "base_url": "http://127.0.0.1:11434/v1",
+      "api_key_env": "OLLAMA_API_KEY",
+      "default_model": "qwen3:4b-instruct",
+      "verified_entry_point": "ollama list"
+    },
+    "openai_cloud": {
+      "enabled": false,
+      "base_url_env": "OPENAI_BASE_URL",
+      "api_key_env": "OPENAI_API_KEY",
+      "model_env": "OPENAI_MODEL"
+    }
+  },
+  "selection_phase_policy": {
+    "local_model_preferred": true,
+    "provider_swap_allowed": true,
+    "business_completion_claim_allowed": false
+  }
+}

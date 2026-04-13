@@ -1,0 +1,29 @@
+{
+  "benchmark_asin_download_queue": {
+    "required_fields": [
+      "batch_id",
+      "marketplace",
+      "dept_l1",
+      "parent_l2",
+      "parent_l3",
+      "niche_leaf",
+      "path_key",
+      "download_type",
+      "expected_input_folder",
+      "next_step"
+    ]
+  },
+  "reverse_keyword_download_queue": {
+    "required_fields": [
+      "batch_id",
+      "marketplace",
+      "asin",
+      "benchmark_cohort",
+      "niche_leaf",
+      "path_key",
+      "download_type",
+      "expected_input_folder",
+      "next_step"
+    ]
+  }
+}

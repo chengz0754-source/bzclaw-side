@@ -1,0 +1,12 @@
+{
+  "name": "k02_keyword_shortlist",
+  "description": "Shortlisted keywords that are ready to hand off to the next stage.",
+  "required_fields": [
+    "batch_id",
+    "keyword_normalized",
+    "step3_score",
+    "step3_status",
+    "step3_reason",
+    "route_status"
+  ]
+}

@@ -19,6 +19,12 @@ copies of:
 - `SCOREBOOK_SURFACE_V1.md`
 - `PROOF_MEASUREMENT_LAYER_V1.md`
 
+Single-root read rule for this spec:
+
+- canonical B-side root = `E:\bzclaw-side`
+- any external `amazon-selection-automation` checkout is temporary migration/reference only
+- external reference visibility does not create a second permanent canonical B-side root
+
 ## 2. Fixed Position
 
 Machine B may execute an approved skill only when all of the following are true:

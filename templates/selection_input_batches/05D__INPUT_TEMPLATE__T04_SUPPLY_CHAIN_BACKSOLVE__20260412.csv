@@ -1,0 +1,2 @@
+任务ID,任务名称,purpose_type,input_type,supplier_family,site,类目大类,类目子类,业务目的,step3_policy,sif_policy,note
+T04A,T04 Supply Chain Backsolve Pilot,SUPPLY_CHAIN_BACKSOLVE,SUPPLIER_FAMILY,toy novelty / arcade,US,TOY,TOY_GENERAL,SUPPLY_CHAIN_BACKSOLVE,OPTIONAL,SHORTLIST_ONLY,真实 supplier family 来自 01B_产品与竞品种子输入.csv；后续 product/market/benchmark/keyword 证据只允许回填 repo 已有真实 empirical artifact

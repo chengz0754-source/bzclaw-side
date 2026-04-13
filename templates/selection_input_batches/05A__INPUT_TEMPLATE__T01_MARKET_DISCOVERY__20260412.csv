@@ -1,0 +1,2 @@
+任务ID,任务名称,purpose_type,input_type,input_value,site,类目大类,类目子类,业务目的,参数模板ID,step3_policy,sif_policy,note
+T01A,T01 Market Discovery Pilot,MARKET_DISCOVERY,KEYWORD,Squeeze Toys,US,TOY,TOY_GENERAL,MARKET_DISCOVERY,TOY_GENERAL__MARKET_DISCOVERY__V1,REQUIRED,SHORTLIST_ONLY,先用 Squeeze Toys 打通第一条真实业务线

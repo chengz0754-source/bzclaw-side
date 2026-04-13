@@ -1,0 +1,2 @@
+﻿row_id,site,root_keyword,shortlist_market_term,类目大类,类目子类,业务目的,参数模板ID,参数版本,参数来源,flow_mode,process_goal,enabled,priority,note
+001,US,toy,Squeeze Toys,TOY,TOY_GENERAL,MARKET_DISCOVERY,TOY_GENERAL__MARKET_DISCOVERY__V1,V1,current_shortlist,SELLERSPRITE_SHORTLIST_DOWNSTREAM_VALIDATION,通过真实业务沉淀SellerSprite下游验证流程，不以本轮业务决策闭环为目标,true,1,当前两词里最干净、最适合做流程沉淀主探针

@@ -1,0 +1,2 @@
+任务ID,任务名称,purpose_type,input_type,seed_asin,seed_brand,seed_seller,site,类目大类,类目子类,业务目的,step3_policy,sif_policy,note
+T03A,T03 Competitor Reverse Mining Pilot,COMPETITOR_REVERSE_MINING,ASIN,B07P44GKJR,Bundaloo,,US,TOY,TOY_NOVELTY_ARCADE,COMPETITOR_REVERSE_MINING,OPTIONAL,SHORTLIST_ONLY,真实 seed 来自 T02 11_产品样本种子池.csv；不得脑补

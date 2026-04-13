@@ -1,0 +1,195 @@
+pipeline:
+  dropzone_root: .
+  upstream:
+    m02_skill_dir: skill-market-route-m01-to-m02
+    m02_outputs_dir: outputs
+    scan_archive: false
+  outputs_dir: outputs
+  logs_dir: logs
+  archive_dir: archive
+  inbox:
+    benchmark_raw: inbox/benchmark_raw
+    keyword_raw: inbox/keyword_raw
+  default_mode: balanced
+  resume_policy: latest
+  review_buffer_enabled: true
+  quantile_mode:
+    enabled: true
+    batch_quantiles: [0.25, 0.5, 0.75]
+    path_scope_group_fields: [dept_l1, parent_l2]
+    path_scope_quantiles: [0.25, 0.5, 0.75]
+  statuses:
+    ready_for_step1: READY_FOR_STEP1
+    pass_to_step2: PASS_TO_STEP2
+    review_buffer: REVIEW_BUFFER
+    drop: DROP
+    wait_benchmark_raw: WAIT_BENCHMARK_RAW
+    ready_for_step2_processing: READY_FOR_STEP2_PROCESSING
+    pass_to_step3: PASS_TO_STEP3
+    wait_keyword_raw: WAIT_KEYWORD_RAW
+    ready_for_step3_processing: READY_FOR_STEP3_PROCESSING
+    pass_ready_for_sif: PASS_READY_FOR_SIF
+
+step1:
+  required_fields:
+    - batch_id
+    - source_file
+    - marketplace
+    - dept_l1
+    - parent_l2
+    - niche_leaf
+    - path_key
+    - monthly_sales_units
+    - avg_price_usd
+    - product_concentration
+    - new_product_share
+    - avg_gross_margin
+    - return_rate
+    - total_products_in_market
+  ratio_fields:
+    - fba_share
+    - amz_share
+    - fbm_share
+    - product_concentration
+    - brand_concentration
+    - seller_concentration
+    - new_product_share
+    - avg_gross_margin
+    - aplus_share
+    - return_rate
+    - peer_return_rate
+    - primary_seller_country_share
+  path_scope_group_fields: [dept_l1, parent_l2]
+  hard_gate:
+    monthly_sales_units:
+      hard_min: 30000
+    avg_price_usd:
+      hard_min: 8
+      hard_max: 80
+    product_concentration:
+      hard_max: 0.75
+    new_product_share:
+      hard_min: 0.02
+    avg_gross_margin:
+      hard_min: 0.40
+    return_rate:
+      hard_max: 0.10
+    total_products_in_market:
+      hard_min: 100
+  preferred_window:
+    monthly_sales_units:
+      preferred_min: 50000
+      preferred_max: 250000
+      batch_quantile_mode: q25_floor
+    avg_price_usd:
+      preferred_min: 12
+      preferred_max: 35
+    product_concentration:
+      preferred_min: 0.25
+      preferred_max: 0.55
+      path_scope_quantile_mode: q75_ceiling
+    brand_concentration:
+      preferred_min: 0.40
+      preferred_max: 0.75
+    seller_concentration:
+      preferred_min: 0.45
+      preferred_max: 0.75
+    new_product_share:
+      preferred_min: 0.05
+      preferred_max: 0.25
+      batch_quantile_mode: q25_floor
+    avg_review_count:
+      preferred_max: 2000
+    avg_gross_margin:
+      preferred_min: 0.48
+    return_rate:
+      preferred_max: 0.05
+  score_thresholds:
+    pass_to_step2: 0.62
+    review_buffer: 0.45
+  queue:
+    download_type: benchmark_asin_raw
+    expected_input_folder: inbox/benchmark_raw
+    next_step: STEP2
+
+step2:
+  required_step1_statuses:
+    - PASS_TO_STEP2
+  queue:
+    download_type: reverse_asin_keyword_raw
+    expected_input_folder: inbox/keyword_raw
+    next_step: STEP3
+  incumbent:
+    monthly_sales_units:
+      hard_min: 300
+    review_count:
+      hard_min: 100
+    rank_quantile: 0.25
+  new_winner:
+    listed_within_days:
+      hard_max: 180
+    monthly_sales_units:
+      hard_min: 300
+    review_count:
+      hard_max: 300
+  underserved_signal:
+    monthly_sales_units:
+      hard_min: 300
+    star_rating:
+      hard_max: 3.7
+  coverage_requirement:
+    incumbent_min: 2
+    new_winner_min: 1
+    underserved_min: 1
+
+step3:
+  required_step2_statuses:
+    - PASS_TO_STEP3
+  shortlist_rules:
+    supporting_asin_count_min: 2
+    require_incumbent_new_winner_mix: true
+    search_volume_floor: 500
+  exclude:
+    min_keyword_length: 2
+    drop_if_brand_risk: true
+
+modes:
+  balanced:
+    step1:
+      preferred_window_overrides: {}
+      score_threshold_overrides: {}
+  new_seller:
+    step1:
+      preferred_window_overrides:
+        product_concentration:
+          preferred_max: 0.45
+        avg_price_usd:
+          preferred_min: 10
+          preferred_max: 28
+        avg_review_count:
+          preferred_max: 1200
+      score_threshold_overrides:
+        pass_to_step2: 0.6
+  low_competition:
+    step1:
+      preferred_window_overrides:
+        product_concentration:
+          preferred_max: 0.42
+        brand_concentration:
+          preferred_max: 0.65
+        seller_concentration:
+          preferred_max: 0.65
+  opportunity:
+    step1:
+      preferred_window_overrides:
+        new_product_share:
+          preferred_min: 0.08
+        avg_gross_margin:
+          preferred_min: 0.5
+      score_threshold_overrides:
+        review_buffer: 0.4
+  manual_review_heavy:
+    step1:
+      score_threshold_overrides:
+        pass_to_step2: 0.58
+        review_buffer: 0.35

@@ -1,0 +1,2 @@
+任务ID,任务名称,purpose_type,input_type,product_idea_term,site,类目大类,类目子类,业务目的,参数模板ID,step3_policy,sif_policy,note
+T02A,T02 Product Idea Validation Pilot,PRODUCT_IDEA_VALIDATION,KEYWORD,claw machine,US,TOY,TOY_NOVELTY_ARCADE,PRODUCT_IDEA_VALIDATION,TOY_NOVELTY_ARCADE__IDEA_VALIDATION__V1,OPTIONAL,SHORTLIST_ONLY,复用 repo 里最深 existing truth 收口 product-idea line

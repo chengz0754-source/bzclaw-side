@@ -1,0 +1,5 @@
+debt_id,line_id,debt_class,current_state,exact_debt,is_current_stage_blocker,note
+D01,P0,SHARED_HARDENING_DEBT,OPEN,STEP1/STEP4/STEP2 continuity hardening residuals,NO,"shared continuity remains open as hardening debt only"
+D02,T02,POST_STAGE_OPEN_DEBT,OPEN,PRODUCT_FEASIBLE__MARKET_ABSTRACTION_PENDING__BUSINESS_PROMOTION_NOT_LANDED,NO,"reusable exact-product line; not part of the current T11/T12 stage blocker stack"
+D03,T03,POST_STAGE_OPEN_DEBT,OPEN,PRODUCT_FEASIBLE__MARKET_ABSTRACTION_PENDING__BUSINESS_PROMOTION_NOT_LANDED,NO,"reusable reverse-mining line; not part of the current T11/T12 stage blocker stack"
+D04,T04,POST_STAGE_OPEN_DEBT,OPEN,PRODUCT_FEASIBLE__MARKET_ABSTRACTION_PENDING__BUSINESS_PROMOTION_NOT_LANDED,NO,"reusable supply-chain backsolve line; not part of the current T11/T12 stage blocker stack"

@@ -3,10 +3,11 @@
 ## Scope
 
 - Date: `2026-04-12`
-- Governance repo: `E:\bzclaw-side`
-- Business execution owner repo: `E:\选品文件夹\amazon-selection-automation`
+- Governance repo / canonical B-side root: `E:\bzclaw-side`
+- Temporary external business reference repo: `E:\选品文件夹\amazon-selection-automation`
 - Source set:
   - B1 through B8 outputs in `E:\bzclaw-side`
+  - migrated business families now visible in `E:\bzclaw-side\configs`, `E:\bzclaw-side\skills`, `E:\bzclaw-side\templates`, and `E:\bzclaw-side\reports\selection`
   - fallback A-side docs from the prompt pack because repo-visible A5/A9 return objects were not present on this machine
 
 ## Current Truth Boundary
@@ -14,8 +15,9 @@
 - `DATA` and `B02` execution hosts were not observed in repo-visible local state on `2026-04-12`.
 - `E:\bzclaw` and the package-referenced host scripts were absent.
 - Therefore this round treats `DATA` and `B02` as contract-intake surfaces only, not as locally executed hostlines.
-- The only real integrated execution completed in this round is the B-side shadow nightly bundle at:
+- The current B9 integrated bundle remains a historical runtime reference at:
   - `E:\选品文件夹\amazon-selection-automation\outputs\selection_runs\20260412_b9_integrated_row1_v3`
+- Under the current root-unify rule, that external path is reference-only for this protocol note and does not reopen dual-root canonical semantics.
 
 ## A To B Dispatch Contract
 

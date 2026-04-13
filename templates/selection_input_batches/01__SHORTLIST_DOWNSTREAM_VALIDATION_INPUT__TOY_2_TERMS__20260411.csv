@@ -1,0 +1,3 @@
+row_id,site,root_keyword,shortlist_market_term,类目大类,类目子类,业务目的,参数模板ID,参数版本,参数来源,next_flow,enabled,priority,note
+001,US,toy,Squeeze Toys,TOY,TOY_GENERAL,MARKET_DISCOVERY,TOY_GENERAL__MARKET_DISCOVERY__V1,V1,shortlist_0433,选产品->查竞品->关键词反查->查流量来源->CandidatePool,true,1,0433 shortlist YES term
+002,US,toy,Multi-Item Party Favor Packs,TOY,TOY_GENERAL,MARKET_DISCOVERY,TOY_GENERAL__MARKET_DISCOVERY__V1,V1,shortlist_0433,选产品->查竞品->关键词反查->查流量来源->CandidatePool,true,2,0433 shortlist YES term

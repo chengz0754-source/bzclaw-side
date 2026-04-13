@@ -1,0 +1,139 @@
+{
+  "batch_id": "B-B2-01",
+  "canonical_root": "E:/bzclaw-side",
+  "temp_reference_root": {
+    "path": "E:/选品文件夹/amazon-selection-automation",
+    "visible": true,
+    "role": "temporary_migration_reference_only"
+  },
+  "target_business_subtree": {
+    "strategy": "root_level_business_families_plus_reports_selection",
+    "configs": "E:/bzclaw-side/configs",
+    "skills": "E:/bzclaw-side/skills",
+    "templates": "E:/bzclaw-side/templates",
+    "reports_selection": "E:/bzclaw-side/reports/selection"
+  },
+  "policy": {
+    "copy_or_move": "copy_then_verify",
+    "destructive_delete_performed": false,
+    "verification_mode": "file_count_and_hash_spot_checks",
+    "post_copy_rewrite": [
+      {
+        "file": "E:/bzclaw-side/configs/paths.json",
+        "reason": "rewrite canonical root paths from temp external root to E:/bzclaw-side"
+      }
+    ]
+  },
+  "families": [
+    {
+      "family": "configs",
+      "source_root": "E:/选品文件夹/amazon-selection-automation/configs",
+      "target_root": "E:/bzclaw-side/configs",
+      "action": "copied_all_files_then_rewrote_paths_json_to_canonical_root",
+      "source_file_count": 3,
+      "target_file_count": 3
+    },
+    {
+      "family": "skills",
+      "source_root": "E:/选品文件夹/amazon-selection-automation/skills",
+      "target_root": "E:/bzclaw-side/skills",
+      "action": "copied_full_family",
+      "source_file_count": 50,
+      "target_file_count": 50
+    },
+    {
+      "family": "templates",
+      "source_root": "E:/选品文件夹/amazon-selection-automation/templates",
+      "target_root": "E:/bzclaw-side/templates",
+      "action": "copied_full_family",
+      "source_file_count": 27,
+      "target_file_count": 27
+    },
+    {
+      "family": "business_reports",
+      "source_root": "E:/选品文件夹/amazon-selection-automation/reports",
+      "target_root": "E:/bzclaw-side/reports/selection",
+      "action": "copied_selected_stable_current_reference_reports",
+      "source_file_count": 8,
+      "target_file_count": 8
+    }
+  ],
+  "selected_reports": [
+    {
+      "source": "E:/选品文件夹/amazon-selection-automation/reports/MASTER_PROGRESS_BOARD__20260412.csv",
+      "target": "E:/bzclaw-side/reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
+      "role": "current_progress_board"
+    },
+    {
+      "source": "E:/选品文件夹/amazon-selection-automation/reports/CODEX_CLOSURE_SEMANTICS_SPLIT_SUMMARY_20260412.md",
+      "target": "E:/bzclaw-side/reports/selection/CODEX_CLOSURE_SEMANTICS_SPLIT_SUMMARY_20260412.md",
+      "role": "foundational_closure_semantics"
+    },
+    {
+      "source": "E:/选品文件夹/amazon-selection-automation/reports/CODEX_REPO_TRUTH_REVALIDATION_AFTER_0118_SUMMARY_20260413.md",
+      "target": "E:/bzclaw-side/reports/selection/CODEX_REPO_TRUTH_REVALIDATION_AFTER_0118_SUMMARY_20260413.md",
+      "role": "current_repo_truth_revalidation"
+    },
+    {
+      "source": "E:/选品文件夹/amazon-selection-automation/reports/CODEX_P0_CONTINUITY_HARDENING_FINAL_PASS_SUMMARY_20260413.md",
+      "target": "E:/bzclaw-side/reports/selection/CODEX_P0_CONTINUITY_HARDENING_FINAL_PASS_SUMMARY_20260413.md",
+      "role": "p0_non_blocking_hardening_reference"
+    },
+    {
+      "source": "E:/选品文件夹/amazon-selection-automation/reports/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+      "target": "E:/bzclaw-side/reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+      "role": "canonical_t11_t12_stage_reference"
+    },
+    {
+      "source": "E:/选品文件夹/amazon-selection-automation/reports/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md",
+      "target": "E:/bzclaw-side/reports/selection/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md",
+      "role": "post_stage_open_debt_reference"
+    },
+    {
+      "source": "E:/选品文件夹/amazon-selection-automation/reports/CODEX_REMOVE_OWNER_MANUAL_FIELDS_FROM_STAGE_BLOCKER_SUMMARY_20260413.md",
+      "target": "E:/bzclaw-side/reports/selection/CODEX_REMOVE_OWNER_MANUAL_FIELDS_FROM_STAGE_BLOCKER_SUMMARY_20260413.md",
+      "role": "owner_manual_writeback_boundary_reference"
+    },
+    {
+      "source": "E:/选品文件夹/amazon-selection-automation/reports/SELLERSPRITE_POST_STAGE_OPEN_DEBT_REGISTER__20260413.csv",
+      "target": "E:/bzclaw-side/reports/selection/SELLERSPRITE_POST_STAGE_OPEN_DEBT_REGISTER__20260413.csv",
+      "role": "open_debt_register"
+    }
+  ],
+  "excluded_families": [
+    "logs",
+    "outputs",
+    "runs",
+    "models",
+    "playwright",
+    "raw_generated_evidence",
+    "credentials_or_secrets",
+    "local_only_downloads",
+    "ephemeral_caches"
+  ],
+  "verification": {
+    "target_paths_exist": true,
+    "remaining_exact_external_root_references_in_copied_families": false,
+    "hash_spot_checks": [
+      {
+        "target": "E:/bzclaw-side/skills/skill_sellersprite_four_line_runtime_registry.md",
+        "source_match": true
+      },
+      {
+        "target": "E:/bzclaw-side/templates/selection_canonical_standards/90_下推参数表.csv",
+        "source_match": true
+      },
+      {
+        "target": "E:/bzclaw-side/reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+        "source_match": true
+      }
+    ],
+    "canonical_paths_json_project_root": "E:\\bzclaw-side",
+    "canonical_root_inventory_updated": [
+      "E:/bzclaw-side/configs",
+      "E:/bzclaw-side/skills",
+      "E:/bzclaw-side/templates",
+      "E:/bzclaw-side/reports/selection"
+    ]
+  }
+}

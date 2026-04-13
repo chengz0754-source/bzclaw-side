@@ -1,0 +1,3 @@
+任务ID,任务名称,purpose_type,input_type,input_value,site,类目大类,类目子类,业务目的,参数模板ID,step3_policy,sif_policy,note
+T11,T11 Squeeze Toys Stability Check,MARKET_DISCOVERY,KEYWORD,Squeeze Toys,US,TOY,TOY_GENERAL,MARKET_DISCOVERY,TOY_GENERAL__MARKET_DISCOVERY__V1,REQUIRED,SHORTLIST_ONLY,先用 T11 做同模式复跑
+T12,T12 Multi-Item Party Favor Packs Stability Check,MARKET_DISCOVERY,KEYWORD,Multi-Item Party Favor Packs,US,TOY,TOY_GENERAL,MARKET_DISCOVERY,TOY_GENERAL__MARKET_DISCOVERY__V1,REQUIRED,SHORTLIST_ONLY,再用 T12 验证 T01 流程是否具稳定性

@@ -1,0 +1,22 @@
+{
+  "project_root": "E:\\bzclaw-side",
+  "inputs_dir": "E:\\bzclaw-side\\inputs",
+  "outputs_dir": "E:\\bzclaw-side\\outputs",
+  "logs_dir": "E:\\bzclaw-side\\logs",
+  "reports_dir": "E:\\bzclaw-side\\reports",
+  "runs_dir": "E:\\bzclaw-side\\runs",
+  "playwright": {
+    "root_dir": "E:\\bzclaw-side\\playwright",
+    "profile_dir": "E:\\bzclaw-side\\playwright\\profiles\\chromium-user-data",
+    "auth_dir": "E:\\bzclaw-side\\playwright\\auth",
+    "storage_state_path": "E:\\bzclaw-side\\playwright\\auth\\storage_state.json",
+    "smoke_storage_state_path": "E:\\bzclaw-side\\playwright\\auth\\storage_state.smoke.json",
+    "screenshots_dir": "E:\\bzclaw-side\\playwright\\screenshots",
+    "traces_dir": "E:\\bzclaw-side\\playwright\\traces"
+  },
+  "models_dir": "E:\\bzclaw-side\\models",
+  "legacy_reuse_candidates": {
+    "selection_assets_root": "E:\\选品",
+    "verification_package_zip": "C:\\Users\\Administrator\\Downloads\\SELECTION_SYSTEM_VERIFICATION_PACKAGE__20260404 (1).zip"
+  }
+}
