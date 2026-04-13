@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-13T15:42:59+00:00",
+  "generated_at_utc": "2026-04-13T17:23:13+00:00",
   "pipeline": [
     "evaluate_sellersprite_stage_status",
     "reconcile_sellersprite_truth_hosts",
@@ -7,25 +7,29 @@
     "evaluate_sellersprite_stage_status(post_write_verification)"
   ],
   "evaluation_before_write": {
-    "generated_at_utc": "2026-04-13T15:42:59+00:00",
+    "generated_at_utc": "2026-04-13T17:23:13+00:00",
     "repo_root": "E:/bzclaw-side",
     "paths": {
       "readme": "README.md",
       "registry": "skills/skill_sellersprite_four_line_runtime_registry.md",
       "contract": "contracts/sellersprite_current_stage_closure_contract_v1.json",
+      "owner_handoff_contract": "contracts/sellersprite_owner_handoff_contract_v1.json",
+      "truth_pack": "reports/sellersprite_truth_pack_current.json",
       "board": "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
       "debt_register": "reports/selection/SELLERSPRITE_POST_STAGE_OPEN_DEBT_REGISTER__20260413.csv",
-      "artifact_reconciliation_summary": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
-      "repo_truth_revalidation_summary": "reports/selection/CODEX_REPO_TRUTH_REVALIDATION_AFTER_0118_SUMMARY_20260413.md",
-      "rewrite_summary": "reports/CODEX_REWRITE_STAGE_CLOSURE_CONTRACT_TO_FLOW_ONLY_SUMMARY_20260413.md",
+      "owner_packet": "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
       "latest_status": "reports/latest_sellersprite_stage_status.json",
-      "implementation_summary": "reports/CODEX_IMPLEMENT_DETERMINISTIC_PY_STAGE_EVALUATOR_SUMMARY_20260413.md"
+      "latest_owner_handoff": "reports/latest_sellersprite_owner_handoff.json",
+      "implementation_summary": "reports/CODEX_IMPLEMENT_DETERMINISTIC_PY_STAGE_EVALUATOR_SUMMARY_20260413.md",
+      "truth_pack_implementation_summary": "reports/CODEX_IMPLEMENT_MACHINE_READABLE_TRUTH_PACK_AND_REMOVE_SUMMARY_PARSING_SUMMARY_20260413.md"
     },
     "truth_priority": [
-      "direct repo-local parseable artifact CSV/JSON",
-      "machine-readable contract/board/debt CSV or JSON hosts",
-      "regex-parseable repo summaries when direct artifacts are absent",
-      "supporting prose only as non-authoritative context"
+      "sellersprite_truth_pack_current.json",
+      "contracts/sellersprite_current_stage_closure_contract_v1.json",
+      "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
+      "reports/selection/SELLERSPRITE_POST_STAGE_OPEN_DEBT_REGISTER__20260413.csv",
+      "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
+      "derived README and runtime registry hosts"
     ],
     "signals": {
       "flow_closed": true,
@@ -40,115 +44,146 @@
       "superseded_blocker": "T01_PURE_BUSINESS_HOLD__PROMOTION_NOT_LANDED",
       "reason": "Business promotion moved to next-stage owner/business flow."
     },
+    "current_legal_wording": {
+      "current_stage_statement": "SellerSprite current-stage closure = FLOW_CLOSED",
+      "current_stage_closure_status": "FLOW_CLOSED",
+      "overall_repo_wording": "SELLERSPRITE_FLOW_CLOSED__BUSINESS_NOT_PROMOTED",
+      "seller_sprite_closed_allowed": false,
+      "blocked_wordings": [
+        "SELLERSPRITE_CLOSED"
+      ]
+    },
+    "reason_enums": {
+      "catalog": {
+        "FLOW_CLOSED_CONFIRMED": "SellerSprite current stage is already FLOW_CLOSED by deterministic evaluator output.",
+        "ARTIFACT_DEPTH_RECONCILED": "Canonical T11/T12 artifact depth is reconciled in the structured truth pack.",
+        "NO_CURRENT_STAGE_BLOCKER": "No remaining current-stage blocker exists in the active closure contract.",
+        "P0_NON_BLOCKING_HARDENING_DEBT": "P0 remains non-blocking hardening debt and does not reopen the current-stage gate.",
+        "NEXT_STAGE_OWNER_BUSINESS_PROMOTION_PENDING": "Business promotion remains pending and belongs to the next-stage owner/business flow.",
+        "POST_STAGE_OPEN_DEBT_TRACKED": "T02/T03/T04 remain tracked as post-stage open debt and do not block the current-stage closure.",
+        "OWNER_MANUAL_WRITEBACK_EXTERNALIZED": "Owner-side manual writeback fields were externalized from the current-stage closure gate."
+      },
+      "current_stage_closed": [
+        "FLOW_CLOSED_CONFIRMED",
+        "ARTIFACT_DEPTH_RECONCILED",
+        "NO_CURRENT_STAGE_BLOCKER",
+        "P0_NON_BLOCKING_HARDENING_DEBT"
+      ],
+      "next_stage_required": [
+        "NEXT_STAGE_OWNER_BUSINESS_PROMOTION_PENDING",
+        "POST_STAGE_OPEN_DEBT_TRACKED",
+        "OWNER_MANUAL_WRITEBACK_EXTERNALIZED"
+      ]
+    },
     "artifacts": {
       "records": {
         "T11": {
           "12": {
             "line_id": "T11",
             "artifact_code": "12",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 10,
             "status_counts": {
               "PASS": 10
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           },
           "22": {
             "line_id": "T11",
             "artifact_code": "22",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 20,
             "status_counts": {
               "HOLD": 20
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           },
           "42": {
             "line_id": "T11",
             "artifact_code": "42",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 10,
             "status_counts": {
               "PASS": 10
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           },
           "60": {
             "line_id": "T11",
             "artifact_code": "60",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 10,
             "status_counts": {
               "HOLD": 10
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           }
         },
         "T12": {
           "12": {
             "line_id": "T12",
             "artifact_code": "12",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 10,
             "status_counts": {
               "PASS": 10
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           },
           "22": {
             "line_id": "T12",
             "artifact_code": "22",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 20,
             "status_counts": {
-              "FAIL": 3,
-              "HOLD": 17
-            }
+              "HOLD": 17,
+              "FAIL": 3
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           },
           "42": {
             "line_id": "T12",
             "artifact_code": "42",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 5,
             "status_counts": {
               "HOLD": 5
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           },
           "60": {
             "line_id": "T12",
             "artifact_code": "60",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 5,
             "status_counts": {
               "HOLD": 5
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           }
         }
       },
@@ -167,18 +202,51 @@
         }
       },
       "coverage_complete": true,
-      "source_mode": "summary_extract",
+      "source_mode": "truth_pack",
+      "artifact_evidence_mode": "truth_pack",
       "actual_csv_records_found": 0,
-      "summary_records_used": 16,
-      "summary_sources_checked": [
-        "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
-        "reports/selection/CODEX_REPO_TRUTH_REVALIDATION_AFTER_0118_SUMMARY_20260413.md"
-      ]
+      "summary_records_used": 0,
+      "summary_sources_checked": [],
+      "truth_pack_path": "reports/sellersprite_truth_pack_current.json",
+      "truth_pack_version": 1,
+      "raw_csv_visibility": {
+        "actual_csv_records_found": 0,
+        "raw_12_22_42_60_csv_visible_in_repo": false,
+        "raw_60_candidate_pool_csv_visible_in_repo": false,
+        "canonical_source_note": "Current deterministic artifact and candidate truth is carried by this pack so active scripts do not need markdown summary parsing."
+      }
     },
     "contract": {
       "current_stage_closure_status": "FLOW_CLOSED",
       "gated_by_business_promotion": false,
       "business_promotion_layer": "next-stage owner/business flow"
+    },
+    "owner_handoff_contract": {
+      "version": 1,
+      "packet_columns": [
+        "candidate_id",
+        "direction_id",
+        "keyword",
+        "site",
+        "candidate_source_mode",
+        "candidate_path_id",
+        "eligible_candidate_count",
+        "sample_id",
+        "sample_asin",
+        "sample_title",
+        "candidate_market_name",
+        "current_pool_status",
+        "owner_review_status",
+        "compliance",
+        "improvement_points",
+        "final_explanation",
+        "profit_pricing",
+        "decision",
+        "notes"
+      ],
+      "candidate_source_modes": [
+        "deterministic_truth_pack"
+      ]
     },
     "board": {
       "path": "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
@@ -195,7 +263,7 @@
           "next_exact_slice": "keep the checkpoint-resume state machine landed, treat the residual shared continuity items as non-blocking hardening debt, and only reopen P0 if current-stage source/evidence formation regresses again",
           "skill_file": "skills/skill_sellersprite_shared_foundation.md",
           "runner_py": "scripts/run_sellersprite_shared_foundation.py",
-          "summary_file": "reports/CODEX_P0_CONTINUITY_HARDENING_FINAL_PASS_SUMMARY_20260413.md"
+          "summary_file": "reports/selection/CODEX_P0_CONTINUITY_HARDENING_FINAL_PASS_SUMMARY_20260413.md"
         },
         {
           "phase_id": "P1",
@@ -223,7 +291,7 @@
           "next_exact_slice": "keep T02 in the post-stage open-debt register, preserve its reusable FLOW_CLOSED line status, and only open a narrow next-stage owner/business slice if future product-idea promotion semantics need to change",
           "skill_file": "skills/skill_sellersprite_t02_product_idea_validation.md",
           "runner_py": "scripts/run_t02_product_idea_validation.py",
-          "summary_file": "reports/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
+          "summary_file": "reports/selection/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
         },
         {
           "phase_id": "P3",
@@ -237,7 +305,7 @@
           "next_exact_slice": "keep T03 in the post-stage open-debt register, preserve its reusable FLOW_CLOSED line status, and only open a narrow next-stage owner/business slice if future reverse-seed promotion semantics need to change",
           "skill_file": "skills/skill_sellersprite_t03_competitor_reverse_mining.md",
           "runner_py": "scripts/run_t03_competitor_reverse_mining.py",
-          "summary_file": "reports/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
+          "summary_file": "reports/selection/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
         },
         {
           "phase_id": "P4",
@@ -251,7 +319,7 @@
           "next_exact_slice": "keep T04 in the post-stage open-debt register, preserve its reusable FLOW_CLOSED line status, and only open a narrow next-stage owner/business slice if future supplier-family promotion semantics need to change",
           "skill_file": "skills/skill_sellersprite_t04_supply_chain_backsolve.md",
           "runner_py": "scripts/run_t04_supply_chain_backsolve.py",
-          "summary_file": "reports/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
+          "summary_file": "reports/selection/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
         }
       ]
     },
@@ -260,24 +328,45 @@
       "registry_aligned": true,
       "board_aligned": true,
       "contract_aligned": true,
+      "truth_pack_aligned": true,
+      "owner_handoff_contract_aligned": true,
+      "owner_template_aligned": true,
       "all_required_hosts_aligned": true
     },
-    "warnings": [
-      "No direct repo-local 12/22/42/60 CSV artifacts were discovered; evaluator used regex-parsed repo summaries plus contract/board hosts."
+    "warnings": [],
+    "current_stage_reason_codes": [
+      "FLOW_CLOSED_CONFIRMED",
+      "ARTIFACT_DEPTH_RECONCILED",
+      "NO_CURRENT_STAGE_BLOCKER",
+      "P0_NON_BLOCKING_HARDENING_DEBT"
+    ],
+    "current_stage_reason": [
+      "SellerSprite current stage is already FLOW_CLOSED by deterministic evaluator output.",
+      "Canonical T11/T12 artifact depth is reconciled in the structured truth pack.",
+      "No remaining current-stage blocker exists in the active closure contract.",
+      "P0 remains non-blocking hardening debt and does not reopen the current-stage gate."
+    ],
+    "next_stage_reason_codes": [
+      "NEXT_STAGE_OWNER_BUSINESS_PROMOTION_PENDING",
+      "POST_STAGE_OPEN_DEBT_TRACKED",
+      "OWNER_MANUAL_WRITEBACK_EXTERNALIZED"
     ],
     "next_stage_reason": [
-      "Business promotion remains next-stage owner/business work.",
-      "T02/T03/T04 remain tracked as post-stage open debt."
+      "Business promotion remains pending and belongs to the next-stage owner/business flow.",
+      "T02/T03/T04 remain tracked as post-stage open debt and do not block the current-stage closure.",
+      "Owner-side manual writeback fields were externalized from the current-stage closure gate."
     ]
   },
   "reconciliation": {
-    "generated_at_utc": "2026-04-13T15:42:59+00:00",
+    "generated_at_utc": "2026-04-13T17:23:13+00:00",
     "repo_root": "E:/bzclaw-side",
     "truth_priority_applied": [
-      "direct repo-local parseable artifact CSV/JSON",
-      "machine-readable contract/board/debt CSV or JSON hosts",
-      "regex-parseable repo summaries when direct artifacts are absent",
-      "supporting prose only as non-authoritative context"
+      "sellersprite_truth_pack_current.json",
+      "contracts/sellersprite_current_stage_closure_contract_v1.json",
+      "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
+      "reports/selection/SELLERSPRITE_POST_STAGE_OPEN_DEBT_REGISTER__20260413.csv",
+      "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
+      "derived README and runtime registry hosts"
     ],
     "canonical_board_rows": [
       {
@@ -292,7 +381,7 @@
         "next_exact_slice": "keep the checkpoint-resume state machine landed, treat the residual shared continuity items as non-blocking hardening debt, and only reopen P0 if current-stage source/evidence formation regresses again",
         "skill_file": "skills/skill_sellersprite_shared_foundation.md",
         "runner_py": "scripts/run_sellersprite_shared_foundation.py",
-        "summary_file": "reports/CODEX_P0_CONTINUITY_HARDENING_FINAL_PASS_SUMMARY_20260413.md"
+        "summary_file": "reports/selection/CODEX_P0_CONTINUITY_HARDENING_FINAL_PASS_SUMMARY_20260413.md"
       },
       {
         "phase_id": "P1",
@@ -320,7 +409,7 @@
         "next_exact_slice": "keep T02 in the post-stage open-debt register, preserve its reusable FLOW_CLOSED line status, and only open a narrow next-stage owner/business slice if future product-idea promotion semantics need to change",
         "skill_file": "skills/skill_sellersprite_t02_product_idea_validation.md",
         "runner_py": "scripts/run_t02_product_idea_validation.py",
-        "summary_file": "reports/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
+        "summary_file": "reports/selection/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
       },
       {
         "phase_id": "P3",
@@ -334,7 +423,7 @@
         "next_exact_slice": "keep T03 in the post-stage open-debt register, preserve its reusable FLOW_CLOSED line status, and only open a narrow next-stage owner/business slice if future reverse-seed promotion semantics need to change",
         "skill_file": "skills/skill_sellersprite_t03_competitor_reverse_mining.md",
         "runner_py": "scripts/run_t03_competitor_reverse_mining.py",
-        "summary_file": "reports/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
+        "summary_file": "reports/selection/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
       },
       {
         "phase_id": "P4",
@@ -348,15 +437,15 @@
         "next_exact_slice": "keep T04 in the post-stage open-debt register, preserve its reusable FLOW_CLOSED line status, and only open a narrow next-stage owner/business slice if future supplier-family promotion semantics need to change",
         "skill_file": "skills/skill_sellersprite_t04_supply_chain_backsolve.md",
         "runner_py": "scripts/run_t04_supply_chain_backsolve.py",
-        "summary_file": "reports/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
+        "summary_file": "reports/selection/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
       }
     ],
     "host_payload": {
       "readme_path": "README.md",
       "board_path": "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
       "registry_path": "skills/skill_sellersprite_four_line_runtime_registry.md",
-      "readme_content": "# SellerSprite Current-Stage Closure Contract\n\nThis file is a deterministic current-state host rendered by `scripts/write_sellersprite_current_state.py`.\n\n## Current Verdict\n\n- SellerSprite current-stage closure = `FLOW_CLOSED`.\n- `flow_closed = true`\n- `artifact_depth_reconciled = true`\n- `hardening_debt_blocking = false`\n- `post_stage_open_debt_present = true`\n- `current_stage_closed = true`\n- `next_stage_required = true`\n\n## Current Git Truth\n\n- `P0` shared continuity remains `NON_BLOCKING_HARDENING_DEBT`.\n- `T11 / T12` artifact-depth is reconciled and remains the canonical file-backed T01 reference pair.\n- `T01`, `T02`, `T03`, and `T04` are SellerSprite line-level `FLOW_CLOSED` lines.\n- `T02 / T03 / T04` remain `POST_STAGE_OPEN_DEBT`, but that debt does not reopen current-stage closure.\n- Owner-side manual writeback fields remain outside the current-stage closure gate.\n\n## Machine Status Host\n\n- latest machine-readable status: `reports/latest_sellersprite_stage_status.json`\n- artifact evidence mode for the latest evaluation: `summary_extract`\n- physical progress-board host in this workspace: `reports/selection/MASTER_PROGRESS_BOARD__20260412.csv`\n\n## Current Board Snapshot\n\n- `P1` = `CURRENT_STAGE_FLOW_CLOSED__STABILITY_CONFIRMED__NEXT_STAGE_OWNER_PROMOTION_PENDING`\n- `P2` = `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- `P3` = `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- `P4` = `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n\n## Next-Stage Boundary\n\n- `BUSINESS_PROMOTED` belongs to the next-stage owner/business flow.\n- Owner-side manual writeback starts after current-stage flow closure.\n- If promotion work is needed, move forward from current `HOLD` candidate rows without reopening current-stage SellerSprite continuity.\n",
-      "registry_content": "# skill_sellersprite_four_line_runtime_registry\n\nThis registry is a deterministic current-state host rendered by `scripts/write_sellersprite_current_state.py`.\n\n## Current Git Truth\n\n- SellerSprite current-stage closure contract is flow-only:\n  - `current_stage_closure_status = FLOW_CLOSED`\n  - `current_stage_closed = true`\n  - `artifact_depth_reconciled = true`\n- `business_promotion_status` belongs to the next-stage owner/business flow and does not reopen current-stage closure.\n- `P0` remains non-blocking hardening debt:\n  - `hardening_debt_blocking = false`\n- `T02 / T03 / T04` remain `POST_STAGE_OPEN_DEBT`, not current-stage blockers.\n- latest machine-readable status host: `reports/latest_sellersprite_stage_status.json`\n\n## Runtime Registry\n\n### T01 / MARKET_DISCOVERY\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__STABILITY_CONFIRMED__NEXT_STAGE_OWNER_PROMOTION_PENDING`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n\n### T02 / PRODUCT_IDEA_VALIDATION\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n\n### T03 / COMPETITOR_REVERSE_MINING\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n\n### T04 / SUPPLY_CHAIN_BACKSOLVE\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n"
+      "readme_content": "# SellerSprite Current-Stage Closure Contract\n\nThis file is a deterministic current-state host rendered by `scripts/write_sellersprite_current_state.py`.\n\n## Current Verdict\n\n- SellerSprite current-stage closure = `FLOW_CLOSED`.\n- `flow_closed = true`\n- `artifact_depth_reconciled = true`\n- `hardening_debt_blocking = false`\n- `post_stage_open_debt_present = true`\n- `current_stage_closed = true`\n- `next_stage_required = true`\n- overall legal wording = `SELLERSPRITE_FLOW_CLOSED__BUSINESS_NOT_PROMOTED`\n\n## Current Git Truth\n\n- `P0` shared continuity remains `NON_BLOCKING_HARDENING_DEBT`.\n- `T11 / T12` artifact-depth is reconciled and remains the canonical file-backed T01 reference pair.\n- `T01`, `T02`, `T03`, and `T04` are SellerSprite line-level `FLOW_CLOSED` lines.\n- `T02 / T03 / T04` remain `POST_STAGE_OPEN_DEBT`, but that debt does not reopen current-stage closure.\n- Owner-side manual writeback fields remain outside the current-stage closure gate.\n\n## Machine Status Host\n\n- latest machine-readable status: `reports/latest_sellersprite_stage_status.json`\n- latest machine-readable truth pack: `reports/sellersprite_truth_pack_current.json`\n- artifact evidence mode for the latest evaluation: `truth_pack`\n- physical progress-board host in this workspace: `reports/selection/MASTER_PROGRESS_BOARD__20260412.csv`\n\n## Current Board Snapshot\n\n- `P1` = `CURRENT_STAGE_FLOW_CLOSED__STABILITY_CONFIRMED__NEXT_STAGE_OWNER_PROMOTION_PENDING`\n- `P2` = `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- `P3` = `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- `P4` = `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n\n## Next-Stage Boundary\n\n- `BUSINESS_PROMOTED` belongs to the next-stage owner/business flow.\n- Owner-side manual writeback starts after current-stage flow closure.\n- If promotion work is needed, move forward from current `HOLD` candidate rows without reopening current-stage SellerSprite continuity.\n",
+      "registry_content": "# skill_sellersprite_four_line_runtime_registry\n\nThis registry is a deterministic current-state host rendered by `scripts/write_sellersprite_current_state.py`.\n\n## Current Git Truth\n\n- SellerSprite current-stage closure contract is flow-only:\n  - `current_stage_closure_status = FLOW_CLOSED`\n  - `current_stage_closed = true`\n  - `artifact_depth_reconciled = true`\n- `business_promotion_status` belongs to the next-stage owner/business flow and does not reopen current-stage closure.\n- `P0` remains non-blocking hardening debt:\n  - `hardening_debt_blocking = false`\n- `T02 / T03 / T04` remain `POST_STAGE_OPEN_DEBT`, not current-stage blockers.\n- latest machine-readable status host: `reports/latest_sellersprite_stage_status.json`\n- latest machine-readable truth pack: `reports/sellersprite_truth_pack_current.json`\n\n## Runtime Registry\n\n### T01 / MARKET_DISCOVERY\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__STABILITY_CONFIRMED__NEXT_STAGE_OWNER_PROMOTION_PENDING`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n\n### T02 / PRODUCT_IDEA_VALIDATION\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n\n### T03 / COMPETITOR_REVERSE_MINING\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n\n### T04 / SUPPLY_CHAIN_BACKSOLVE\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n"
     }
   },
   "written_files": [
@@ -365,25 +454,29 @@
     "skills/skill_sellersprite_four_line_runtime_registry.md"
   ],
   "evaluation_after_write": {
-    "generated_at_utc": "2026-04-13T15:42:59+00:00",
+    "generated_at_utc": "2026-04-13T17:23:13+00:00",
     "repo_root": "E:/bzclaw-side",
     "paths": {
       "readme": "README.md",
       "registry": "skills/skill_sellersprite_four_line_runtime_registry.md",
       "contract": "contracts/sellersprite_current_stage_closure_contract_v1.json",
+      "owner_handoff_contract": "contracts/sellersprite_owner_handoff_contract_v1.json",
+      "truth_pack": "reports/sellersprite_truth_pack_current.json",
       "board": "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
       "debt_register": "reports/selection/SELLERSPRITE_POST_STAGE_OPEN_DEBT_REGISTER__20260413.csv",
-      "artifact_reconciliation_summary": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
-      "repo_truth_revalidation_summary": "reports/selection/CODEX_REPO_TRUTH_REVALIDATION_AFTER_0118_SUMMARY_20260413.md",
-      "rewrite_summary": "reports/CODEX_REWRITE_STAGE_CLOSURE_CONTRACT_TO_FLOW_ONLY_SUMMARY_20260413.md",
+      "owner_packet": "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
       "latest_status": "reports/latest_sellersprite_stage_status.json",
-      "implementation_summary": "reports/CODEX_IMPLEMENT_DETERMINISTIC_PY_STAGE_EVALUATOR_SUMMARY_20260413.md"
+      "latest_owner_handoff": "reports/latest_sellersprite_owner_handoff.json",
+      "implementation_summary": "reports/CODEX_IMPLEMENT_DETERMINISTIC_PY_STAGE_EVALUATOR_SUMMARY_20260413.md",
+      "truth_pack_implementation_summary": "reports/CODEX_IMPLEMENT_MACHINE_READABLE_TRUTH_PACK_AND_REMOVE_SUMMARY_PARSING_SUMMARY_20260413.md"
     },
     "truth_priority": [
-      "direct repo-local parseable artifact CSV/JSON",
-      "machine-readable contract/board/debt CSV or JSON hosts",
-      "regex-parseable repo summaries when direct artifacts are absent",
-      "supporting prose only as non-authoritative context"
+      "sellersprite_truth_pack_current.json",
+      "contracts/sellersprite_current_stage_closure_contract_v1.json",
+      "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
+      "reports/selection/SELLERSPRITE_POST_STAGE_OPEN_DEBT_REGISTER__20260413.csv",
+      "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
+      "derived README and runtime registry hosts"
     ],
     "signals": {
       "flow_closed": true,
@@ -398,115 +491,146 @@
       "superseded_blocker": "T01_PURE_BUSINESS_HOLD__PROMOTION_NOT_LANDED",
       "reason": "Business promotion moved to next-stage owner/business flow."
     },
+    "current_legal_wording": {
+      "current_stage_statement": "SellerSprite current-stage closure = FLOW_CLOSED",
+      "current_stage_closure_status": "FLOW_CLOSED",
+      "overall_repo_wording": "SELLERSPRITE_FLOW_CLOSED__BUSINESS_NOT_PROMOTED",
+      "seller_sprite_closed_allowed": false,
+      "blocked_wordings": [
+        "SELLERSPRITE_CLOSED"
+      ]
+    },
+    "reason_enums": {
+      "catalog": {
+        "FLOW_CLOSED_CONFIRMED": "SellerSprite current stage is already FLOW_CLOSED by deterministic evaluator output.",
+        "ARTIFACT_DEPTH_RECONCILED": "Canonical T11/T12 artifact depth is reconciled in the structured truth pack.",
+        "NO_CURRENT_STAGE_BLOCKER": "No remaining current-stage blocker exists in the active closure contract.",
+        "P0_NON_BLOCKING_HARDENING_DEBT": "P0 remains non-blocking hardening debt and does not reopen the current-stage gate.",
+        "NEXT_STAGE_OWNER_BUSINESS_PROMOTION_PENDING": "Business promotion remains pending and belongs to the next-stage owner/business flow.",
+        "POST_STAGE_OPEN_DEBT_TRACKED": "T02/T03/T04 remain tracked as post-stage open debt and do not block the current-stage closure.",
+        "OWNER_MANUAL_WRITEBACK_EXTERNALIZED": "Owner-side manual writeback fields were externalized from the current-stage closure gate."
+      },
+      "current_stage_closed": [
+        "FLOW_CLOSED_CONFIRMED",
+        "ARTIFACT_DEPTH_RECONCILED",
+        "NO_CURRENT_STAGE_BLOCKER",
+        "P0_NON_BLOCKING_HARDENING_DEBT"
+      ],
+      "next_stage_required": [
+        "NEXT_STAGE_OWNER_BUSINESS_PROMOTION_PENDING",
+        "POST_STAGE_OPEN_DEBT_TRACKED",
+        "OWNER_MANUAL_WRITEBACK_EXTERNALIZED"
+      ]
+    },
     "artifacts": {
       "records": {
         "T11": {
           "12": {
             "line_id": "T11",
             "artifact_code": "12",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 10,
             "status_counts": {
               "PASS": 10
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           },
           "22": {
             "line_id": "T11",
             "artifact_code": "22",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 20,
             "status_counts": {
               "HOLD": 20
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           },
           "42": {
             "line_id": "T11",
             "artifact_code": "42",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 10,
             "status_counts": {
               "PASS": 10
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           },
           "60": {
             "line_id": "T11",
             "artifact_code": "60",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 10,
             "status_counts": {
               "HOLD": 10
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           }
         },
         "T12": {
           "12": {
             "line_id": "T12",
             "artifact_code": "12",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 10,
             "status_counts": {
               "PASS": 10
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           },
           "22": {
             "line_id": "T12",
             "artifact_code": "22",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 20,
             "status_counts": {
-              "FAIL": 3,
-              "HOLD": 17
-            }
+              "HOLD": 17,
+              "FAIL": 3
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           },
           "42": {
             "line_id": "T12",
             "artifact_code": "42",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 5,
             "status_counts": {
               "HOLD": 5
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           },
           "60": {
             "line_id": "T12",
             "artifact_code": "60",
-            "source_kind": "summary_extract",
-            "source_rank": 30,
-            "source_path": "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
+            "source_kind": "truth_pack",
+            "source_rank": 90,
             "exists": true,
             "parses": true,
             "row_count": 5,
             "status_counts": {
               "HOLD": 5
-            }
+            },
+            "source_path": "reports/sellersprite_truth_pack_current.json"
           }
         }
       },
@@ -525,18 +649,51 @@
         }
       },
       "coverage_complete": true,
-      "source_mode": "summary_extract",
+      "source_mode": "truth_pack",
+      "artifact_evidence_mode": "truth_pack",
       "actual_csv_records_found": 0,
-      "summary_records_used": 16,
-      "summary_sources_checked": [
-        "reports/selection/CODEX_T11_T12_ARTIFACT_DEPTH_RECONCILIATION_SUMMARY_20260413.md",
-        "reports/selection/CODEX_REPO_TRUTH_REVALIDATION_AFTER_0118_SUMMARY_20260413.md"
-      ]
+      "summary_records_used": 0,
+      "summary_sources_checked": [],
+      "truth_pack_path": "reports/sellersprite_truth_pack_current.json",
+      "truth_pack_version": 1,
+      "raw_csv_visibility": {
+        "actual_csv_records_found": 0,
+        "raw_12_22_42_60_csv_visible_in_repo": false,
+        "raw_60_candidate_pool_csv_visible_in_repo": false,
+        "canonical_source_note": "Current deterministic artifact and candidate truth is carried by this pack so active scripts do not need markdown summary parsing."
+      }
     },
     "contract": {
       "current_stage_closure_status": "FLOW_CLOSED",
       "gated_by_business_promotion": false,
       "business_promotion_layer": "next-stage owner/business flow"
+    },
+    "owner_handoff_contract": {
+      "version": 1,
+      "packet_columns": [
+        "candidate_id",
+        "direction_id",
+        "keyword",
+        "site",
+        "candidate_source_mode",
+        "candidate_path_id",
+        "eligible_candidate_count",
+        "sample_id",
+        "sample_asin",
+        "sample_title",
+        "candidate_market_name",
+        "current_pool_status",
+        "owner_review_status",
+        "compliance",
+        "improvement_points",
+        "final_explanation",
+        "profit_pricing",
+        "decision",
+        "notes"
+      ],
+      "candidate_source_modes": [
+        "deterministic_truth_pack"
+      ]
     },
     "board": {
       "path": "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
@@ -553,7 +710,7 @@
           "next_exact_slice": "keep the checkpoint-resume state machine landed, treat the residual shared continuity items as non-blocking hardening debt, and only reopen P0 if current-stage source/evidence formation regresses again",
           "skill_file": "skills/skill_sellersprite_shared_foundation.md",
           "runner_py": "scripts/run_sellersprite_shared_foundation.py",
-          "summary_file": "reports/CODEX_P0_CONTINUITY_HARDENING_FINAL_PASS_SUMMARY_20260413.md"
+          "summary_file": "reports/selection/CODEX_P0_CONTINUITY_HARDENING_FINAL_PASS_SUMMARY_20260413.md"
         },
         {
           "phase_id": "P1",
@@ -581,7 +738,7 @@
           "next_exact_slice": "keep T02 in the post-stage open-debt register, preserve its reusable FLOW_CLOSED line status, and only open a narrow next-stage owner/business slice if future product-idea promotion semantics need to change",
           "skill_file": "skills/skill_sellersprite_t02_product_idea_validation.md",
           "runner_py": "scripts/run_t02_product_idea_validation.py",
-          "summary_file": "reports/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
+          "summary_file": "reports/selection/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
         },
         {
           "phase_id": "P3",
@@ -595,7 +752,7 @@
           "next_exact_slice": "keep T03 in the post-stage open-debt register, preserve its reusable FLOW_CLOSED line status, and only open a narrow next-stage owner/business slice if future reverse-seed promotion semantics need to change",
           "skill_file": "skills/skill_sellersprite_t03_competitor_reverse_mining.md",
           "runner_py": "scripts/run_t03_competitor_reverse_mining.py",
-          "summary_file": "reports/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
+          "summary_file": "reports/selection/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
         },
         {
           "phase_id": "P4",
@@ -609,7 +766,7 @@
           "next_exact_slice": "keep T04 in the post-stage open-debt register, preserve its reusable FLOW_CLOSED line status, and only open a narrow next-stage owner/business slice if future supplier-family promotion semantics need to change",
           "skill_file": "skills/skill_sellersprite_t04_supply_chain_backsolve.md",
           "runner_py": "scripts/run_t04_supply_chain_backsolve.py",
-          "summary_file": "reports/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
+          "summary_file": "reports/selection/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
         }
       ]
     },
@@ -618,14 +775,33 @@
       "registry_aligned": true,
       "board_aligned": true,
       "contract_aligned": true,
+      "truth_pack_aligned": true,
+      "owner_handoff_contract_aligned": true,
+      "owner_template_aligned": true,
       "all_required_hosts_aligned": true
     },
-    "warnings": [
-      "No direct repo-local 12/22/42/60 CSV artifacts were discovered; evaluator used regex-parsed repo summaries plus contract/board hosts."
+    "warnings": [],
+    "current_stage_reason_codes": [
+      "FLOW_CLOSED_CONFIRMED",
+      "ARTIFACT_DEPTH_RECONCILED",
+      "NO_CURRENT_STAGE_BLOCKER",
+      "P0_NON_BLOCKING_HARDENING_DEBT"
+    ],
+    "current_stage_reason": [
+      "SellerSprite current stage is already FLOW_CLOSED by deterministic evaluator output.",
+      "Canonical T11/T12 artifact depth is reconciled in the structured truth pack.",
+      "No remaining current-stage blocker exists in the active closure contract.",
+      "P0 remains non-blocking hardening debt and does not reopen the current-stage gate."
+    ],
+    "next_stage_reason_codes": [
+      "NEXT_STAGE_OWNER_BUSINESS_PROMOTION_PENDING",
+      "POST_STAGE_OPEN_DEBT_TRACKED",
+      "OWNER_MANUAL_WRITEBACK_EXTERNALIZED"
     ],
     "next_stage_reason": [
-      "Business promotion remains next-stage owner/business work.",
-      "T02/T03/T04 remain tracked as post-stage open debt."
+      "Business promotion remains pending and belongs to the next-stage owner/business flow.",
+      "T02/T03/T04 remain tracked as post-stage open debt and do not block the current-stage closure.",
+      "Owner-side manual writeback fields were externalized from the current-stage closure gate."
     ]
   }
 }

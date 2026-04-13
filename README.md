@@ -11,6 +11,7 @@ This file is a deterministic current-state host rendered by `scripts/write_selle
 - `post_stage_open_debt_present = true`
 - `current_stage_closed = true`
 - `next_stage_required = true`
+- overall legal wording = `SELLERSPRITE_FLOW_CLOSED__BUSINESS_NOT_PROMOTED`
 
 ## Current Git Truth
 
@@ -23,7 +24,8 @@ This file is a deterministic current-state host rendered by `scripts/write_selle
 ## Machine Status Host
 
 - latest machine-readable status: `reports/latest_sellersprite_stage_status.json`
-- artifact evidence mode for the latest evaluation: `summary_extract`
+- latest machine-readable truth pack: `reports/sellersprite_truth_pack_current.json`
+- artifact evidence mode for the latest evaluation: `truth_pack`
 - physical progress-board host in this workspace: `reports/selection/MASTER_PROGRESS_BOARD__20260412.csv`
 
 ## Current Board Snapshot

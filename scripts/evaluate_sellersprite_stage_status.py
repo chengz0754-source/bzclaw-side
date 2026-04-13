@@ -8,7 +8,7 @@ from sellersprite_stage_closure_lib import evaluate_stage_status, find_repo_root
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Evaluate the current SellerSprite stage status from repo-visible truth hosts.")
+    parser = argparse.ArgumentParser(description="Evaluate the current SellerSprite stage status from structured truth-pack and contract hosts.")
     parser.add_argument("--repo-root", type=Path, default=None, help="Optional repo root override.")
     parser.add_argument("--output", type=Path, default=None, help="Optional JSON output path.")
     args = parser.parse_args()

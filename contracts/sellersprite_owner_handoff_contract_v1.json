@@ -1,0 +1,89 @@
+{
+  "contract_id": "sellersprite_owner_handoff_contract_v1",
+  "version": 1,
+  "effective_date": "2026-04-13",
+  "scope": "SellerSprite next-stage owner/business handoff",
+  "input_hosts": [
+    "reports/latest_sellersprite_stage_status.json",
+    "reports/sellersprite_truth_pack_current.json",
+    "contracts/sellersprite_owner_handoff_contract_v1.json"
+  ],
+  "candidate_source_modes": [
+    "deterministic_truth_pack"
+  ],
+  "default_owner_review_status": "PENDING",
+  "packet_columns": [
+    "candidate_id",
+    "direction_id",
+    "keyword",
+    "site",
+    "candidate_source_mode",
+    "candidate_path_id",
+    "eligible_candidate_count",
+    "sample_id",
+    "sample_asin",
+    "sample_title",
+    "candidate_market_name",
+    "current_pool_status",
+    "owner_review_status",
+    "compliance",
+    "improvement_points",
+    "final_explanation",
+    "profit_pricing",
+    "decision",
+    "notes"
+  ],
+  "required_owner_side_fields": [
+    {
+      "field_id": "owner_review_status",
+      "csv_column": "owner_review_status",
+      "required": true,
+      "description": "Track owner-side packet progress with PENDING / IN_PROGRESS / DONE."
+    },
+    {
+      "field_id": "compliance_review",
+      "csv_column": "compliance",
+      "required": true,
+      "description": "Owner-side compliance judgment for the candidate path."
+    },
+    {
+      "field_id": "improvement_points",
+      "csv_column": "improvement_points",
+      "required": true,
+      "description": "Owner-side improvement plan before promotion or sourcing."
+    },
+    {
+      "field_id": "final_explanation",
+      "csv_column": "final_explanation",
+      "required": true,
+      "description": "Owner-side final business explanation for why the path should continue or stop."
+    },
+    {
+      "field_id": "profit_pricing",
+      "csv_column": "profit_pricing",
+      "required": true,
+      "description": "Owner-side profit and pricing check for the next-stage decision."
+    },
+    {
+      "field_id": "decision",
+      "csv_column": "decision",
+      "required": true,
+      "description": "Owner-side next-stage decision such as HOLD / GO / NO_GO."
+    },
+    {
+      "field_id": "notes",
+      "csv_column": "notes",
+      "required": false,
+      "description": "Optional owner/business annotations for the packet."
+    }
+  ],
+  "eligibility_rules": [
+    "truth_pack.candidate_path_truth[].eligible_for_owner_review must be true",
+    "truth_pack.candidate_path_truth[].current_pool_status must be HOLD or PASS",
+    "stage_status.signals.next_stage_required must be true before owner/business progression begins"
+  ],
+  "output_hosts": {
+    "owner_writeback_packet_csv": "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
+    "owner_handoff_json": "reports/latest_sellersprite_owner_handoff.json"
+  }
+}

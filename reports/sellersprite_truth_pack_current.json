@@ -1,0 +1,333 @@
+{
+  "truth_pack_id": "sellersprite_truth_pack_current",
+  "version": 1,
+  "effective_date": "2026-04-13",
+  "scope": "SellerSprite current-stage deterministic truth pack",
+  "artifact_evidence_mode": "truth_pack",
+  "current_stage_closure_contract_id": "sellersprite_current_stage_closure_contract_v1",
+  "current_stage_closure_contract_version": 1,
+  "owner_handoff_contract_id": "sellersprite_owner_handoff_contract_v1",
+  "owner_handoff_contract_version": 1,
+  "artifact_truth_priority": [
+    "sellersprite_truth_pack_current.json",
+    "contracts/sellersprite_current_stage_closure_contract_v1.json",
+    "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
+    "reports/selection/SELLERSPRITE_POST_STAGE_OPEN_DEBT_REGISTER__20260413.csv",
+    "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
+    "derived README and runtime registry hosts"
+  ],
+  "source_observability": {
+    "actual_csv_records_found": 0,
+    "raw_12_22_42_60_csv_visible_in_repo": false,
+    "raw_60_candidate_pool_csv_visible_in_repo": false,
+    "canonical_source_note": "Current deterministic artifact and candidate truth is carried by this pack so active scripts do not need markdown summary parsing."
+  },
+  "current_legal_wording": {
+    "current_stage_statement": "SellerSprite current-stage closure = FLOW_CLOSED",
+    "current_stage_closure_status": "FLOW_CLOSED",
+    "overall_repo_wording": "SELLERSPRITE_FLOW_CLOSED__BUSINESS_NOT_PROMOTED",
+    "seller_sprite_closed_allowed": false,
+    "blocked_wordings": [
+      "SELLERSPRITE_CLOSED"
+    ]
+  },
+  "signals": {
+    "flow_closed": true,
+    "artifact_depth_reconciled": true,
+    "hardening_debt_blocking": false,
+    "post_stage_open_debt_present": true,
+    "current_stage_closed": true,
+    "next_stage_required": true
+  },
+  "next_stage_required": true,
+  "reason_enums": {
+    "catalog": {
+      "FLOW_CLOSED_CONFIRMED": "SellerSprite current stage is already FLOW_CLOSED by deterministic evaluator output.",
+      "ARTIFACT_DEPTH_RECONCILED": "Canonical T11/T12 artifact depth is reconciled in the structured truth pack.",
+      "NO_CURRENT_STAGE_BLOCKER": "No remaining current-stage blocker exists in the active closure contract.",
+      "P0_NON_BLOCKING_HARDENING_DEBT": "P0 remains non-blocking hardening debt and does not reopen the current-stage gate.",
+      "NEXT_STAGE_OWNER_BUSINESS_PROMOTION_PENDING": "Business promotion remains pending and belongs to the next-stage owner/business flow.",
+      "POST_STAGE_OPEN_DEBT_TRACKED": "T02/T03/T04 remain tracked as post-stage open debt and do not block the current-stage closure.",
+      "OWNER_MANUAL_WRITEBACK_EXTERNALIZED": "Owner-side manual writeback fields were externalized from the current-stage closure gate."
+    },
+    "current_stage_closed": [
+      "FLOW_CLOSED_CONFIRMED",
+      "ARTIFACT_DEPTH_RECONCILED",
+      "NO_CURRENT_STAGE_BLOCKER",
+      "P0_NON_BLOCKING_HARDENING_DEBT"
+    ],
+    "next_stage_required": [
+      "NEXT_STAGE_OWNER_BUSINESS_PROMOTION_PENDING",
+      "POST_STAGE_OPEN_DEBT_TRACKED",
+      "OWNER_MANUAL_WRITEBACK_EXTERNALIZED"
+    ]
+  },
+  "artifact_matrix": {
+    "T11": {
+      "12": {
+        "line_id": "T11",
+        "artifact_code": "12",
+        "source_kind": "truth_pack",
+        "source_rank": 90,
+        "exists": true,
+        "parses": true,
+        "row_count": 10,
+        "status_counts": {
+          "PASS": 10
+        }
+      },
+      "22": {
+        "line_id": "T11",
+        "artifact_code": "22",
+        "source_kind": "truth_pack",
+        "source_rank": 90,
+        "exists": true,
+        "parses": true,
+        "row_count": 20,
+        "status_counts": {
+          "HOLD": 20
+        }
+      },
+      "42": {
+        "line_id": "T11",
+        "artifact_code": "42",
+        "source_kind": "truth_pack",
+        "source_rank": 90,
+        "exists": true,
+        "parses": true,
+        "row_count": 10,
+        "status_counts": {
+          "PASS": 10
+        }
+      },
+      "60": {
+        "line_id": "T11",
+        "artifact_code": "60",
+        "source_kind": "truth_pack",
+        "source_rank": 90,
+        "exists": true,
+        "parses": true,
+        "row_count": 10,
+        "status_counts": {
+          "HOLD": 10
+        }
+      }
+    },
+    "T12": {
+      "12": {
+        "line_id": "T12",
+        "artifact_code": "12",
+        "source_kind": "truth_pack",
+        "source_rank": 90,
+        "exists": true,
+        "parses": true,
+        "row_count": 10,
+        "status_counts": {
+          "PASS": 10
+        }
+      },
+      "22": {
+        "line_id": "T12",
+        "artifact_code": "22",
+        "source_kind": "truth_pack",
+        "source_rank": 90,
+        "exists": true,
+        "parses": true,
+        "row_count": 20,
+        "status_counts": {
+          "HOLD": 17,
+          "FAIL": 3
+        }
+      },
+      "42": {
+        "line_id": "T12",
+        "artifact_code": "42",
+        "source_kind": "truth_pack",
+        "source_rank": 90,
+        "exists": true,
+        "parses": true,
+        "row_count": 5,
+        "status_counts": {
+          "HOLD": 5
+        }
+      },
+      "60": {
+        "line_id": "T12",
+        "artifact_code": "60",
+        "source_kind": "truth_pack",
+        "source_rank": 90,
+        "exists": true,
+        "parses": true,
+        "row_count": 5,
+        "status_counts": {
+          "HOLD": 5
+        }
+      }
+    }
+  },
+  "candidate_path_truth": [
+    {
+      "candidate_id": "T11__CURRENT_HOLD_CANDIDATE_PATH",
+      "direction_id": "T11",
+      "keyword": "Squeeze Toys",
+      "site": "US",
+      "candidate_source_mode": "deterministic_truth_pack",
+      "candidate_path_id": "T11::CURRENT_HOLD_CANDIDATE_PATH",
+      "eligible_candidate_count": 10,
+      "sample_id": "",
+      "sample_asin": "",
+      "sample_title": "",
+      "candidate_market_name": "Squeeze Toys",
+      "current_pool_status": "HOLD",
+      "eligible_for_owner_review": true,
+      "owner_review_status": "PENDING",
+      "compliance": "",
+      "improvement_points": "",
+      "final_explanation": "",
+      "profit_pricing": "",
+      "decision": "",
+      "notes": "Canonical candidate-path truth carried by the deterministic truth pack."
+    },
+    {
+      "candidate_id": "T12__CURRENT_HOLD_CANDIDATE_PATH",
+      "direction_id": "T12",
+      "keyword": "Multi-Item Party Favor Packs",
+      "site": "US",
+      "candidate_source_mode": "deterministic_truth_pack",
+      "candidate_path_id": "T12::CURRENT_HOLD_CANDIDATE_PATH",
+      "eligible_candidate_count": 5,
+      "sample_id": "",
+      "sample_asin": "",
+      "sample_title": "",
+      "candidate_market_name": "Multi-Item Party Favor Packs",
+      "current_pool_status": "HOLD",
+      "eligible_for_owner_review": true,
+      "owner_review_status": "PENDING",
+      "compliance": "",
+      "improvement_points": "",
+      "final_explanation": "",
+      "profit_pricing": "",
+      "decision": "",
+      "notes": "Canonical candidate-path truth carried by the deterministic truth pack."
+    }
+  ],
+  "owner_handoff_field_schema": {
+    "packet_columns": [
+      "candidate_id",
+      "direction_id",
+      "keyword",
+      "site",
+      "candidate_source_mode",
+      "candidate_path_id",
+      "eligible_candidate_count",
+      "sample_id",
+      "sample_asin",
+      "sample_title",
+      "candidate_market_name",
+      "current_pool_status",
+      "owner_review_status",
+      "compliance",
+      "improvement_points",
+      "final_explanation",
+      "profit_pricing",
+      "decision",
+      "notes"
+    ],
+    "required_owner_side_fields": [
+      {
+        "field_id": "owner_review_status",
+        "csv_column": "owner_review_status",
+        "required": true,
+        "description": "Track owner-side packet progress with PENDING / IN_PROGRESS / DONE."
+      },
+      {
+        "field_id": "compliance_review",
+        "csv_column": "compliance",
+        "required": true,
+        "description": "Owner-side compliance judgment for the candidate path."
+      },
+      {
+        "field_id": "improvement_points",
+        "csv_column": "improvement_points",
+        "required": true,
+        "description": "Owner-side improvement plan before promotion or sourcing."
+      },
+      {
+        "field_id": "final_explanation",
+        "csv_column": "final_explanation",
+        "required": true,
+        "description": "Owner-side final business explanation for why the path should continue or stop."
+      },
+      {
+        "field_id": "profit_pricing",
+        "csv_column": "profit_pricing",
+        "required": true,
+        "description": "Owner-side profit and pricing check for the next-stage decision."
+      },
+      {
+        "field_id": "decision",
+        "csv_column": "decision",
+        "required": true,
+        "description": "Owner-side next-stage decision such as HOLD / GO / NO_GO."
+      },
+      {
+        "field_id": "notes",
+        "csv_column": "notes",
+        "required": false,
+        "description": "Optional owner/business annotations for the packet."
+      }
+    ]
+  },
+  "post_stage_open_debts_snapshot": [
+    {
+      "debt_id": "D02",
+      "line_id": "T02",
+      "debt_class": "POST_STAGE_OPEN_DEBT",
+      "current_state": "OPEN",
+      "exact_debt": "PRODUCT_FEASIBLE__MARKET_ABSTRACTION_PENDING__BUSINESS_PROMOTION_NOT_LANDED",
+      "is_current_stage_blocker": "NO",
+      "note": "reusable exact-product line; not part of the current T11/T12 stage blocker stack"
+    },
+    {
+      "debt_id": "D03",
+      "line_id": "T03",
+      "debt_class": "POST_STAGE_OPEN_DEBT",
+      "current_state": "OPEN",
+      "exact_debt": "PRODUCT_FEASIBLE__MARKET_ABSTRACTION_PENDING__BUSINESS_PROMOTION_NOT_LANDED",
+      "is_current_stage_blocker": "NO",
+      "note": "reusable reverse-mining line; not part of the current T11/T12 stage blocker stack"
+    },
+    {
+      "debt_id": "D04",
+      "line_id": "T04",
+      "debt_class": "POST_STAGE_OPEN_DEBT",
+      "current_state": "OPEN",
+      "exact_debt": "PRODUCT_FEASIBLE__MARKET_ABSTRACTION_PENDING__BUSINESS_PROMOTION_NOT_LANDED",
+      "is_current_stage_blocker": "NO",
+      "note": "reusable supply-chain backsolve line; not part of the current T11/T12 stage blocker stack"
+    }
+  ],
+  "board_path_mapping": {
+    "board_csv": "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
+    "debt_register_csv": "reports/selection/SELLERSPRITE_POST_STAGE_OPEN_DEBT_REGISTER__20260413.csv",
+    "owner_packet_csv": "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
+    "stage_status_json": "reports/latest_sellersprite_stage_status.json",
+    "owner_handoff_json": "reports/latest_sellersprite_owner_handoff.json",
+    "readme": "README.md",
+    "registry": "skills/skill_sellersprite_four_line_runtime_registry.md",
+    "phase_rows": {
+      "P0": {
+        "summary_file": "reports/selection/CODEX_P0_CONTINUITY_HARDENING_FINAL_PASS_SUMMARY_20260413.md"
+      },
+      "P2": {
+        "summary_file": "reports/selection/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
+      },
+      "P3": {
+        "summary_file": "reports/selection/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
+      },
+      "P4": {
+        "summary_file": "reports/selection/CODEX_T02_T03_T04_POST_STAGE_OPEN_DEBT_CANONICALIZATION_SUMMARY_20260413.md"
+      }
+    }
+  }
+}

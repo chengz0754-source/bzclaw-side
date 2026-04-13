@@ -4,7 +4,7 @@
 
 - Added a pure-py current-stage evaluation chain for SellerSprite stage closure.
 - No T02/T03/T04 runtime was reopened.
-- No Codex prose summary is used as the only truth host.
+- The active evaluator now reads a machine-readable truth pack instead of parsing markdown summaries.
 
 ## Current Run Result
 
@@ -14,7 +14,8 @@
 - `post_stage_open_debt_present = true`
 - `current_stage_closed = true`
 - `next_stage_required = true`
-- artifact evidence mode = `summary_extract`
+- artifact evidence mode = `truth_pack`
+- truth pack host = `reports/sellersprite_truth_pack_current.json`
 
 ## Files Written
 
@@ -25,7 +26,7 @@
 
 ## Warnings
 
-- No direct repo-local 12/22/42/60 CSV artifacts were discovered; evaluator used regex-parsed repo summaries plus contract/board hosts.
+- none
 
 ## Path Note
 

@@ -13,6 +13,7 @@ This registry is a deterministic current-state host rendered by `scripts/write_s
   - `hardening_debt_blocking = false`
 - `T02 / T03 / T04` remain `POST_STAGE_OPEN_DEBT`, not current-stage blockers.
 - latest machine-readable status host: `reports/latest_sellersprite_stage_status.json`
+- latest machine-readable truth pack: `reports/sellersprite_truth_pack_current.json`
 
 ## Runtime Registry
 

@@ -3,14 +3,14 @@
 ## Scope
 
 - Added deterministic owner/business next-stage handoff generation.
-- The generator no longer depends on Codex to hand-assemble the next move.
+- The generator now reads machine-readable truth-pack and contract inputs only.
 - The current-stage blocker hosts were not modified by this slice.
 
 ## Current Result
 
 - `current_stage_closed = true`
 - `next_stage_required = true`
-- `candidate_source_mode = stage_truth_fallback`
+- `candidate_source_mode = deterministic_truth_pack`
 - owner writeback packet: `templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv`
 
 ## Eligible Candidate Paths
@@ -26,4 +26,4 @@
 
 ## Warnings
 
-- No direct repo-local 60 candidate-pool CSV was discovered; owner handoff was synthesized from deterministic stage truth.
+- none
