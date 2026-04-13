@@ -18,7 +18,7 @@
 - Exchange now carries only a lightweight notification packet plus `REVIEW_SUBSET/`.
 - A-side intake should use the mounted exchange packet and review subset for review.
 - `MAIN_RETURN_PATH.txt` remains an audit/reference string and is not an intake prerequisite for direct B-disk access.
-- A lawful ADS asset landing slice is now visible under the canonical root for `skills`, `templates`, `scripts`, `inputs`, `outputs`, `reports`, and `runs`.
+- A lawful ADS asset/docs/evidence slice is now visible under the canonical root for `skills`, `templates`, `scripts`, `inputs`, `outputs`, `reports`, `runs`, and `docs`.
 
 ## Included Canonical Objects
 - `PACKET_MANIFEST.json`
@@ -28,6 +28,7 @@
 
 ## Current Interpretation
 - This packet preserves the prior visible `delivery_result = PARTIAL`.
-- The packet basis was refreshed after `B-B5-01` landed a lawful ADS asset slice under the canonical root.
-- The remaining exact blocker is narrower now: `docs/ads_manual_adjustment/` is still not landed and `reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES.md` was intentionally not copied because it is temp-root anchored.
-- This packet refresh does not declare project completion, runtime active, formal publish, or ADS complete closure.
+- The packet basis was refreshed again after `B-B6-01` landed the canonical `docs/ads_manual_adjustment/` subtree and a provenance-safe canonical verification note under `reports/ads_manual_adjustment/`.
+- The earlier docs/evidence gap is no longer current: `docs/ads_manual_adjustment/` and `reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES.md` are now visible under `E:\bzclaw-side`.
+- `delivery_result` remains `PARTIAL` because the verification note is a canonicalized provenance note sourced from visible temp-root PASS evidence, not a fresh canonical-root rerun, and this packet still does not claim manual platform execution.
+- This packet refresh does not declare review-ready, project completion, runtime active, formal publish, or ADS complete closure.

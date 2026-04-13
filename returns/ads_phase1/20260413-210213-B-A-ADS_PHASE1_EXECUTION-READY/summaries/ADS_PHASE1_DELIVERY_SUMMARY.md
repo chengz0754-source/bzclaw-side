@@ -25,15 +25,17 @@
   - `outputs/ads_manual_adjustment`
   - `reports/ads_manual_adjustment`
   - `runs/ads_manual_adjustment`
+- `B-B6-01` then landed the previously missing canonical docs subtree plus a provenance-safe canonical verification note:
+  - `docs/ads_manual_adjustment`
+  - `reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES.md`
 - The active packet id and exchange packet id were kept unchanged because the truthful change was inside the packet basis, not the cross-host contract shape.
 
 ## Current Interpretation
 - The delivery result remains `PARTIAL`.
 - The earlier reading of "no live ADS business asset families under the canonical root" is no longer current after the Batch5 landing slice.
-- The remaining exact blocker is now:
-  - `docs/ads_manual_adjustment/` is still not landed under the canonical root
-  - `reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES.md` was intentionally excluded because it is anchored to the temp reference root
-- This refresh does not declare runtime active, project complete, formal publish, or ADS complete closure.
+- The earlier docs/evidence blocker is no longer current after the Batch6 landing slice.
+- The packet still stays below review-ready promotion in this batch because the canonical verification note is a provenance-safe normalization of a visible temp-root PASS record, not a fresh canonical-root rerun, and no manual platform execution is claimed.
+- This refresh does not declare runtime active, project complete, formal publish, review-ready, or ADS complete closure.
 
 ## Risks
 - A must continue to use the active `-V2` exchange signal packet rather than older demoted folders.

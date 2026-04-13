@@ -7,7 +7,7 @@
   "topic": "ADS_PHASE1_EXECUTION",
   "status": "READY",
   "created_at": "2026-04-13T21:02:13+08:00",
-  "refreshed_at": "2026-04-14T02:16:24+08:00",
+  "refreshed_at": "2026-04-14T03:44:18+08:00",
   "packet_role": "canonical_main_return",
   "source_packet_id": "20260413-0304-A-B-ADS_PHASE1_EXECUTION-READY",
   "supersedes": [
@@ -52,6 +52,8 @@
   },
   "asset_landing_ref": "E:\\bzclaw-side\\reports\\governance\\saves\\20260414-020945-batch5-b-ads-asset-landing\\B_ADS_ASSET_LANDING_NOTE.md",
   "packet_refresh_ref": "E:\\bzclaw-side\\reports\\governance\\saves\\20260414-021624-batch5-b-packet-refresh\\B_ADS_PACKET_REFRESH_NOTE.md",
+  "docs_evidence_landing_ref": "E:\\bzclaw-side\\reports\\governance\\saves\\20260414-033914-batch6-b-docs-evidence-closeout\\B_ADS_DOCS_EVIDENCE_LANDING_NOTE.md",
+  "docs_evidence_packet_refresh_ref": "E:\\bzclaw-side\\reports\\governance\\saves\\20260414-034418-batch6-b-packet-refresh\\B_ADS_DOCS_EVIDENCE_PACKET_REFRESH_NOTE.md",
   "landed_ads_families": [
     "skills/ads_manual_adjustment_bulk_builder",
     "skills/ads_manual_adjustment_materializer",
@@ -60,18 +62,19 @@
     "inputs/ads_manual_adjustment",
     "outputs/ads_manual_adjustment",
     "reports/ads_manual_adjustment",
-    "runs/ads_manual_adjustment"
+    "runs/ads_manual_adjustment",
+    "docs/ads_manual_adjustment"
   ],
   "remaining_partial_blocker": {
-    "docs_family": "docs/ads_manual_adjustment remains not landed under the canonical root in this slice",
-    "verification_note": "reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES.md was not copied because it is anchored to the temp reference root and would become misleading unchanged"
+    "previous_docs_evidence_gap": "CLOSED in Batch6; docs/ads_manual_adjustment and reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES.md are now visible under the canonical root.",
+    "current_review_boundary": "delivery_result remains PARTIAL because the canonical verification note is a provenance-safe normalization of a visible temp-root PASS record, and Batch6 does not claim a fresh canonical-root rerun or any manual platform execution."
   },
   "delivery_result": "PARTIAL",
   "notes": [
     "This V2 packet keeps the canonical main return under E:\\bzclaw-side\\returns\\ads_phase1\\<timestamp> only.",
     "Exchange carries a lightweight signal package plus review subset, not the full canonical return package.",
     "MAIN_RETURN_PATH.txt is retained for audit and follow-up reference only.",
-    "After B-B5-01, a lawful ADS asset slice is now landed under the canonical root for skills, templates, scripts, inputs, outputs, reports, and runs.",
-    "delivery_result remains PARTIAL because the docs family is still not landed and the temp-root-anchored verification note was intentionally excluded from the landing slice."
+    "After B-B5-01 and B-B6-01, a lawful ADS asset/docs/evidence slice is now visible under the canonical root for skills, templates, scripts, inputs, outputs, reports, runs, and docs.",
+    "delivery_result remains PARTIAL because Batch6 landed the docs/evidence slice as a fuller canonical asset base, but it did not introduce a fresh canonical-root rerun or any manual platform execution claim."
   ]
 }

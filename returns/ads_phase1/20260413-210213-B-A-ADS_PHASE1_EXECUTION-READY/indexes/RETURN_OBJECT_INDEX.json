@@ -72,19 +72,24 @@
     },
     {
       "path": "reports/ads_manual_adjustment",
-      "status": "LANDED_PARTIAL"
+      "status": "LANDED_WITH_CANONICALIZED_VERIFICATION_NOTE"
     },
     {
       "path": "runs/ads_manual_adjustment",
       "status": "LANDED"
+    },
+    {
+      "path": "docs/ads_manual_adjustment",
+      "status": "LANDED"
     }
   ],
   "remaining_partial_blocker": {
-    "docs_family": "docs/ads_manual_adjustment is still not landed under the canonical root",
-    "excluded_report": "reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES.md was intentionally excluded because it is temp-root anchored"
+    "previous_docs_evidence_gap": "CLOSED in Batch6; docs/ads_manual_adjustment and reports/ads_manual_adjustment/ADS_PHASE1_VERIFICATION_NOTES.md are now visible under the canonical root.",
+    "current_review_boundary": "delivery_result remains PARTIAL because the canonical verification note is a provenance-safe normalization of a visible temp-root PASS record, and Batch6 does not claim a fresh canonical-root rerun or any manual platform execution."
   },
   "packet_refresh_basis": {
     "asset_landing_ref": "E:\\bzclaw-side\\reports\\governance\\saves\\20260414-020945-batch5-b-ads-asset-landing\\B_ADS_ASSET_LANDING_NOTE.md",
-    "reason": "B-B5-01 changed the truthful packet basis because live ADS business asset families now exist under the canonical root."
+    "docs_evidence_landing_ref": "E:\\bzclaw-side\\reports\\governance\\saves\\20260414-033914-batch6-b-docs-evidence-closeout\\B_ADS_DOCS_EVIDENCE_LANDING_NOTE.md",
+    "reason": "B-B6-01 changed the truthful packet basis because the previously missing canonical docs subtree and a canonicalized verification note now exist under the canonical root."
   }
 }
