@@ -99,6 +99,7 @@ That harness adds:
 
 - mandatory exchange preflight cleanup/archive
 - A-side verification-result gating
+- exact candidate-file linkage against A-side `verification.source_files.candidates`
 - accepted vs rejected import proof notes under `verification/from_b_state/`
 
 It still delegates the actual repo materialization step to this deterministic

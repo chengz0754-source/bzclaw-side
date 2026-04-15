@@ -2,7 +2,7 @@
   "schema_version": "bzclaw.side.state_sync_candidate_record.v1",
   "candidate_family": "current_state_candidate",
   "candidate_id": "exchange_bridge_packet_exchange_happy",
-  "candidate_created_at_utc": "2026-04-15T20:31:29Z",
+  "candidate_created_at_utc": "2026-04-15T21:19:46Z",
   "source_repo": "chengz0754-source/amazon-selection-automation",
   "source_plane": "B_EXECUTION_SIDECAR",
   "source_job": {

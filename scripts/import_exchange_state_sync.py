@@ -79,6 +79,7 @@ class VerificationResult:
     verification_disposition: str
     lifecycle_after_verification: str
     business_verified: bool
+    expected_candidate_paths: tuple[Path, ...]
 
 
 @dataclass(frozen=True)
@@ -284,7 +285,7 @@ def process_exchange_state_sync(
 
     for candidate in preflight.kept_candidates:
         verification = verification_by_packet.get(candidate.packet_id)
-        decision = evaluate_candidate_import_decision(candidate, verification)
+        decision = evaluate_candidate_import_decision(candidate, verification, exchange_root=exchange_paths.root)
         if decision["decision"] == "accepted":
             plan = candidate_ingest.build_ingest_plan(candidate.payload, repo_root, destination_root=destination_root)
             candidate_ingest.materialize_candidate(plan)
@@ -322,7 +323,12 @@ def process_exchange_state_sync(
     }
 
 
-def evaluate_candidate_import_decision(candidate: CandidateEnvelope, verification: VerificationResult | None) -> dict[str, Any]:
+def evaluate_candidate_import_decision(
+    candidate: CandidateEnvelope,
+    verification: VerificationResult | None,
+    *,
+    exchange_root: Path,
+) -> dict[str, Any]:
     base = {
         "packet_id": candidate.packet_id,
         "event_id": candidate.event_id,
@@ -361,6 +367,28 @@ def evaluate_candidate_import_decision(candidate: CandidateEnvelope, verificatio
             "downstream_state_sync_allowed": verification.downstream_state_sync_allowed,
         }
 
+    if not verification.expected_candidate_paths:
+        return {
+            **base,
+            "decision": "rejected",
+            "reason_code": "VERIFICATION_CANDIDATE_REF_MISSING",
+            "verification_result_file": verification.source_path.as_posix(),
+            "verification_disposition": verification.verification_disposition,
+            "downstream_state_sync_allowed": verification.downstream_state_sync_allowed,
+        }
+
+    candidate_matches = any(candidate.source_path.resolve() == item.resolve() for item in verification.expected_candidate_paths)
+    if not candidate_matches:
+        return {
+            **base,
+            "decision": "rejected",
+            "reason_code": "VERIFICATION_CANDIDATE_REF_MISMATCH",
+            "verification_result_file": verification.source_path.as_posix(),
+            "verification_disposition": verification.verification_disposition,
+            "downstream_state_sync_allowed": verification.downstream_state_sync_allowed,
+            "verification_candidate_refs": [exchange_relpath(item, exchange_root) for item in verification.expected_candidate_paths],
+        }
+
     return {
         **base,
         "decision": "accepted",
@@ -368,6 +396,7 @@ def evaluate_candidate_import_decision(candidate: CandidateEnvelope, verificatio
         "verification_result_file": verification.source_path.as_posix(),
         "verification_disposition": verification.verification_disposition,
         "downstream_state_sync_allowed": verification.downstream_state_sync_allowed,
+        "verification_candidate_refs": [exchange_relpath(item, exchange_root) for item in verification.expected_candidate_paths],
     }
 
 
@@ -392,6 +421,7 @@ def parse_verification_result(payload: dict[str, Any], path: Path) -> Verificati
         raise ExchangeStateSyncError(f"downstream_state_sync_allowed must be boolean: {path.name}")
     if not isinstance(payload.get("business_verified"), bool):
         raise ExchangeStateSyncError(f"business_verified must be boolean: {path.name}")
+    expected_candidate_paths = tuple(resolve_verification_candidate_paths(verification, exchange_root=path.resolve().parents[3]))
     return VerificationResult(
         source_path=path.resolve(),
         payload=payload,
@@ -404,6 +434,7 @@ def parse_verification_result(payload: dict[str, Any], path: Path) -> Verificati
         verification_disposition=str(payload["verification_disposition"]).strip(),
         lifecycle_after_verification=str(payload["lifecycle_after_verification"]).strip(),
         business_verified=bool(payload["business_verified"]),
+        expected_candidate_paths=expected_candidate_paths,
     )
 
 
@@ -496,6 +527,43 @@ def read_json_object_no_bom(path: Path) -> dict[str, Any]:
     return payload
 
 
+def resolve_verification_candidate_paths(verification_payload: dict[str, Any], *, exchange_root: Path) -> list[Path]:
+    source_files = verification_payload.get("source_files", {})
+    if not isinstance(source_files, dict):
+        return []
+    raw_candidates = source_files.get("candidates", [])
+    if not isinstance(raw_candidates, list):
+        return []
+    resolved: list[Path] = []
+    seen: set[str] = set()
+    for item in raw_candidates:
+        mapped = map_exchange_reference_to_b_path(str(item), exchange_root=exchange_root)
+        if mapped is None:
+            continue
+        key = str(mapped.resolve())
+        if key in seen:
+            continue
+        seen.add(key)
+        resolved.append(mapped.resolve())
+    return resolved
+
+
+def map_exchange_reference_to_b_path(value: str, *, exchange_root: Path) -> Path | None:
+    text = str(value or "").strip().replace("\\", "/")
+    if not text:
+        return None
+    if text.startswith("Z:/"):
+        relative = text[3:].lstrip("/")
+        return (exchange_root / Path(relative)).resolve()
+    if text.startswith("E:/bzclaw-exchange/"):
+        relative = text[len("E:/bzclaw-exchange/") :]
+        return (exchange_root / Path(relative)).resolve()
+    candidate = Path(text)
+    if candidate.is_absolute():
+        return candidate.resolve()
+    return None
+
+
 def verification_summary_packet_id(path: Path) -> str:
     marker = "__verification_summary__"
     if marker not in path.name:
@@ -543,6 +611,13 @@ def exchange_relative(exchange_paths: ExchangeStatePaths, path: Path) -> str:
 
 def relpath_str(path: Path, base: Path) -> str:
     return str(path.resolve().relative_to(base.resolve())).replace("\\", "/")
+
+
+def exchange_relpath(path: Path, exchange_root: Path) -> str:
+    try:
+        return str(path.resolve().relative_to(exchange_root.resolve())).replace("\\", "/")
+    except ValueError:
+        return path.as_posix()
 
 
 def proof_packet_label(decisions: list[dict[str, Any]]) -> str:

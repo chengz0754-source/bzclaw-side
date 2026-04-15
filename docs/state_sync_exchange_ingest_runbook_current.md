@@ -77,6 +77,7 @@ The harness rejects candidate import when:
 
 - no verification result exists for the candidate packet
 - verification linkage is ambiguous or mismatched
+- verification does not point to the exact exchange candidate file being imported
 - A-side verification explicitly denies downstream sync
 
 ## Import Target

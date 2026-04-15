@@ -25,15 +25,21 @@ class ExchangeStateSyncIngestTests(unittest.TestCase):
             exchange_paths.ensure_dirs()
             self._write_json(
                 exchange_paths.verification_results_dir / "20260416_120001__verification_result__packet_exchange_happy.json",
-                self._verification_result("packet_exchange_happy", downstream_allowed=True),
+                self._verification_result(
+                    "packet_exchange_happy",
+                    downstream_allowed=True,
+                    candidate_refs=[
+                        "Z:/state_sync/from_b/candidates/20260416_120101__state_candidate__packet_exchange_happy.json"
+                    ],
+                ),
             )
             self._write_json(
                 exchange_paths.verification_results_dir / "20260416_120002__verification_result__packet_exchange_rollback.json",
-                self._verification_result("packet_exchange_rollback", downstream_allowed=False),
+                self._verification_result("packet_exchange_rollback", downstream_allowed=False, candidate_refs=[]),
             )
             self._write_json(
                 exchange_paths.verification_results_dir / "20260416_110000__verification_result__packet_exchange_cli.json",
-                self._verification_result("packet_exchange_cli", downstream_allowed=True),
+                self._verification_result("packet_exchange_cli", downstream_allowed=True, candidate_refs=[]),
             )
             (exchange_paths.verification_results_dir / "20260416_120001__verification_summary__packet_exchange_happy.md").write_text(
                 "# happy\n",
@@ -80,11 +86,17 @@ class ExchangeStateSyncIngestTests(unittest.TestCase):
             exchange_paths.ensure_dirs()
             self._write_json(
                 exchange_paths.verification_results_dir / "20260416_120001__verification_result__packet_exchange_happy.json",
-                self._verification_result("packet_exchange_happy", downstream_allowed=True),
+                self._verification_result(
+                    "packet_exchange_happy",
+                    downstream_allowed=True,
+                    candidate_refs=[
+                        "Z:/state_sync/from_b/candidates/20260416_120101__state_candidate__packet_exchange_happy.json"
+                    ],
+                ),
             )
             self._write_json(
                 exchange_paths.verification_results_dir / "20260416_120002__verification_result__packet_exchange_rollback.json",
-                self._verification_result("packet_exchange_rollback", downstream_allowed=False),
+                self._verification_result("packet_exchange_rollback", downstream_allowed=False, candidate_refs=[]),
             )
             self._write_json(
                 exchange_paths.state_candidates_dir / "20260416_120101__state_candidate__packet_exchange_happy.json",
@@ -148,6 +160,36 @@ class ExchangeStateSyncIngestTests(unittest.TestCase):
             self.assertEqual(happy["decision"], "rejected")
             self.assertEqual(happy["reason_code"], "VERIFICATION_GATE_MISSING")
 
+    def test_candidate_ref_mismatch_rejects_even_when_packet_identity_matches(self) -> None:
+        with tempfile.TemporaryDirectory() as exchange_root_text, tempfile.TemporaryDirectory() as import_root_text:
+            exchange_paths = MODULE.ExchangeStatePaths.from_root(Path(exchange_root_text))
+            exchange_paths.ensure_dirs()
+            self._write_json(
+                exchange_paths.verification_results_dir / "20260416_120001__verification_result__packet_exchange_happy.json",
+                self._verification_result(
+                    "packet_exchange_happy",
+                    downstream_allowed=True,
+                    candidate_refs=[
+                        "Z:/state_sync/from_b/candidates/20260416_999999__state_candidate__happy.json"
+                    ],
+                ),
+            )
+            self._write_json(
+                exchange_paths.state_candidates_dir / "20260416_120101__state_candidate__packet_exchange_happy.json",
+                self._candidate_envelope("packet_exchange_happy", "exchange_bridge_packet_exchange_happy"),
+            )
+
+            preflight = MODULE.run_exchange_preflight(exchange_paths, repo_root=REPO_ROOT)
+            proof = MODULE.process_exchange_state_sync(
+                exchange_paths,
+                repo_root=REPO_ROOT,
+                preflight=preflight,
+                import_destination_root=Path(import_root_text),
+            )
+            happy = self._decision_by_packet(proof, "packet_exchange_happy")
+            self.assertEqual(happy["decision"], "rejected")
+            self.assertEqual(happy["reason_code"], "VERIFICATION_CANDIDATE_REF_MISMATCH")
+
     @staticmethod
     def _candidate_envelope(packet_id: str, candidate_id: str) -> dict[str, object]:
         return {
@@ -199,7 +241,7 @@ class ExchangeStateSyncIngestTests(unittest.TestCase):
         }
 
     @staticmethod
-    def _verification_result(packet_id: str, *, downstream_allowed: bool) -> dict[str, object]:
+    def _verification_result(packet_id: str, *, downstream_allowed: bool, candidate_refs: list[str]) -> dict[str, object]:
         return {
             "harness_kind": "a_exchange_verification_result_v1",
             "verified_at": "2026-04-16T00:10:00Z",
@@ -216,6 +258,9 @@ class ExchangeStateSyncIngestTests(unittest.TestCase):
                 "receipt_visible": True,
                 "manifest_present": True,
                 "summary": "test verification",
+                "source_files": {
+                    "candidates": candidate_refs,
+                },
             },
         }
 
