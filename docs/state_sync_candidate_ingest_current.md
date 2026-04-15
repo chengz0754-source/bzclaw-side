@@ -89,3 +89,17 @@ python scripts/import_state_sync_candidate.py --input path\\to\\candidate.json
 The importer will refuse owner-writeback automation, forbidden provenance
 prefixes, business-promotion claims, and payload/path overrides outside the
 frozen candidate roots.
+
+## Exchange-Gated Mode
+
+When candidate envelopes arrive through the shared exchange plane, use
+`scripts/import_exchange_state_sync.py`.
+
+That harness adds:
+
+- mandatory exchange preflight cleanup/archive
+- A-side verification-result gating
+- accepted vs rejected import proof notes under `verification/from_b_state/`
+
+It still delegates the actual repo materialization step to this deterministic
+candidate importer and does not overwrite active hosts directly.

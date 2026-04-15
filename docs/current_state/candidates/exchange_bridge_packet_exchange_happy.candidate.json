@@ -1,0 +1,47 @@
+{
+  "schema_version": "bzclaw.side.state_sync_candidate_record.v1",
+  "candidate_family": "current_state_candidate",
+  "candidate_id": "exchange_bridge_packet_exchange_happy",
+  "candidate_created_at_utc": "2026-04-15T20:31:29Z",
+  "source_repo": "chengz0754-source/amazon-selection-automation",
+  "source_plane": "B_EXECUTION_SIDECAR",
+  "source_job": {
+    "job_id": "machine-b-job:decision-packet-event:packet_exchange_happy",
+    "run_id": "run:machine-b-job_decision-packet-event_packet_exchange_happy",
+    "event_id": "decision-packet-event:packet_exchange_happy",
+    "packet_id": "packet_exchange_happy"
+  },
+  "content_format": "json",
+  "staging_root": "docs/current_state/candidates",
+  "active_hosts_unchanged": [
+    "README.md",
+    "reports/latest_sellersprite_stage_status.json"
+  ],
+  "record_path": "docs/current_state/candidates/exchange_bridge_packet_exchange_happy.candidate.json",
+  "materialized_payload_path": "docs/current_state/candidates/exchange_bridge_packet_exchange_happy.payload.json",
+  "payload_sha256": "c47dadeac1334a42960c95f333bd513f4406cf3e0159cb9dbfffc743b80a931a",
+  "provenance_refs": [
+    {
+      "ref_kind": "machine_b_run_receipt",
+      "ref_path": "outputs/worker_runs/exchange_bridge/packet_exchange_happy/02_generated_outputs/machine_b_run_receipt.json"
+    },
+    {
+      "ref_kind": "machine_b_artifact_manifest",
+      "ref_path": "outputs/worker_runs/exchange_bridge/packet_exchange_happy/02_generated_outputs/machine_b_artifact_manifest.json"
+    },
+    {
+      "ref_kind": "machine_b_run_summary",
+      "ref_path": "outputs/worker_runs/exchange_bridge/packet_exchange_happy/00_run_summary.md"
+    }
+  ],
+  "review_flags": {
+    "candidate_truth_only": true,
+    "runtime_payload_embedded": false,
+    "business_promotion_claimed": false
+  },
+  "summary_lines": [
+    "Exchange bridge emitted a candidate truth object only.",
+    "technical_success=true receipt_visible=true",
+    "business_promotion_status=BUSINESS_NOT_PROMOTED"
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "bzclaw.side.current_state_candidate_payload.v1",
+  "candidate_kind": "machine_b_exchange_bridge_current_state",
+  "event_id": "decision-packet-event:packet_exchange_happy",
+  "packet_id": "packet_exchange_happy",
+  "job_id": "machine-b-job:decision-packet-event:packet_exchange_happy",
+  "worker_job_kind": "worker.healthcheck.runtime",
+  "handler_name": "worker.healthcheck.runtime",
+  "technical_status": "PASS",
+  "technical_success": true,
+  "receipt_visible": true,
+  "reason_code": "PASS",
+  "state_token": "INGEST_READY",
+  "business_promotion_status": "BUSINESS_NOT_PROMOTED",
+  "business_completion_claim": "NOT_CLAIMED",
+  "repo_refs": {
+    "run_receipt_ref": "outputs/worker_runs/exchange_bridge/packet_exchange_happy/02_generated_outputs/machine_b_run_receipt.json",
+    "artifact_manifest_ref": "outputs/worker_runs/exchange_bridge/packet_exchange_happy/02_generated_outputs/machine_b_artifact_manifest.json",
+    "run_summary_ref": "outputs/worker_runs/exchange_bridge/packet_exchange_happy/00_run_summary.md"
+  }
+}
