@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-04-15T15:58:21",
+  "sidecar_control_root": "E:\\bzclaw-side\\toolchain_setup",
+  "normalized_sidecar_root": "E:\\bzclaw-side",
+  "working_directory_used_for_setup": "E:\\bzclaw side",
+  "repo_path_visible_on_b_machine": false,
+  "repo_validation_status": "DEFERRED",
+  "repo_validation_reason": "REPO_IS_NOT_PRESENT_ON_B_MACHINE",
+  "versions": {
+    "node": "v24.14.1",
+    "pnpm": "9.15.0",
+    "python_3_12": "Python 3.12.10",
+    "uv": "uv 0.11.6 (65950801c 2026-04-09 x86_64-pc-windows-msvc)",
+    "ruff": "ruff 0.15.10",
+    "corepack": "0.34.6",
+    "playwright_cli_equivalent": "Version 1.59.1"
+  },
+  "install_methods": {
+    "node": "official latest-v24.x zip extracted to user-space tool root",
+    "pnpm": "corepack enable + corepack prepare pnpm@9.15.0 --activate",
+    "python_3_12": "existing install reused",
+    "uv": "py -3.12 -m pip install --user --upgrade uv",
+    "ruff": "uv tool install ruff@latest",
+    "playwright_runtime": "pnpm dlx playwright@latest install"
+  },
+  "paths": {
+    "node_current": "C:\\Users\\Administrator\\AppData\\Local\\BZCLAWToolchain\\node\\current",
+    "python_user_scripts": "C:\\Users\\Administrator\\AppData\\Roaming\\Python\\Python312\\Scripts",
+    "uv_tool_bin": "C:\\Users\\Administrator\\.local\\bin",
+    "playwright_cache": "C:\\Users\\Administrator\\AppData\\Local\\ms-playwright"
+  },
+  "playwright_cache_entries": [
+    ".links",
+    ".settings",
+    "chromium-1208",
+    "chromium-1217",
+    "chromium_headless_shell-1208",
+    "chromium_headless_shell-1217",
+    "ffmpeg-1011",
+    "firefox-1511",
+    "webkit-2272",
+    "winldd-1007"
+  ],
+  "user_environment": {
+    "current_user_execution_policy": "RemoteSigned",
+    "hkcu_path_entries_added": [
+      "C:\\Users\\Administrator\\.local\\bin",
+      "C:\\Users\\Administrator\\AppData\\Roaming\\Python\\Python312\\Scripts",
+      "C:\\Users\\Administrator\\AppData\\Local\\BZCLAWToolchain\\node\\current"
+    ],
+    "winget_available": false
+  },
+  "exact_blockers": []
+}
