@@ -1,6 +1,6 @@
 # skill_sellersprite_four_line_runtime_registry
 
-This registry is a deterministic current-state host rendered by `scripts/write_sellersprite_current_state.py`.
+This registry is a deterministic current-state host rendered by `scripts/run_sellersprite_stage_closure.py`.
 
 ## Current Git Truth
 

@@ -10,8 +10,12 @@ from typing import Any
 
 TASK_DATE = "2026-04-13"
 TASK_STAMP = "20260413"
+REPO_ROLE_FREEZE_DATE = "2026-04-15"
 EXPECTED_LANES = ("T11", "T12")
 EXPECTED_ARTIFACT_CODES = ("12", "22", "42", "60")
+OWNER_WRITEBACK_EXPORT_CONTRACT_ID = "sellersprite_owner_writeback_export_contract_v1"
+OWNER_WRITEBACK_EXPORT_VERSION = 1
+OWNER_WRITEBACK_BOUNDARY = "BUSINESS_NOT_PROMOTED"
 
 
 def utc_now_iso() -> str:
@@ -103,6 +107,7 @@ def repo_paths(repo_root: Path) -> dict[str, Path]:
         "registry": repo_root / "skills" / "skill_sellersprite_four_line_runtime_registry.md",
         "contract": repo_root / "contracts" / "sellersprite_current_stage_closure_contract_v1.json",
         "owner_handoff_contract": repo_root / "contracts" / "sellersprite_owner_handoff_contract_v1.json",
+        "owner_writeback_export_contract": repo_root / "contracts" / "sellersprite_owner_writeback_export_contract_v1.json",
         "truth_pack": reports_dir / "sellersprite_truth_pack_current.json",
         "board": resolve_existing_path(
             [
@@ -119,8 +124,10 @@ def repo_paths(repo_root: Path) -> dict[str, Path]:
         "owner_packet": repo_root / "templates" / "owner_manual_writeback" / "02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
         "latest_status": reports_dir / "latest_sellersprite_stage_status.json",
         "latest_owner_handoff": reports_dir / "latest_sellersprite_owner_handoff.json",
+        "latest_owner_writeback_export": reports_dir / "latest_sellersprite_owner_writeback_export.json",
         "implementation_summary": reports_dir / "CODEX_IMPLEMENT_DETERMINISTIC_PY_STAGE_EVALUATOR_SUMMARY_20260413.md",
         "truth_pack_implementation_summary": reports_dir / "CODEX_IMPLEMENT_MACHINE_READABLE_TRUTH_PACK_AND_REMOVE_SUMMARY_PARSING_SUMMARY_20260413.md",
+        "owner_handoff_summary": reports_dir / "CODEX_IMPLEMENT_NEXT_STAGE_OWNER_HANDOFF_GENERATOR_SUMMARY_20260413.md",
     }
 
 
@@ -271,7 +278,45 @@ def render_readme(evaluation: dict[str, Any], canonical_rows: list[dict[str, str
     current_legal_wording = evaluation["current_legal_wording"]
     return f"""# SellerSprite Current-Stage Closure Contract
 
-This file is a deterministic current-state host rendered by `scripts/write_sellersprite_current_state.py`.
+> Repo role freeze on `{REPO_ROLE_FREEZE_DATE}`: `E:\\bzclaw-side` is the Machine B business
+> state host. It is not an online execution bus, not a worker host, and not
+> the A-side control plane. The frozen state-sync contract lives at
+> `docs/state_sync_contract_current.md`.
+
+## Repo Role Freeze
+
+- A `bzclaw`: only control plane, approval plane, dispatch truth, and final
+  verification owner
+- B `amazon-selection-automation`: execution sidecar, local model runtime,
+  Playwright, receipts, and runtime artifacts
+- B `bzclaw-side`: business state host for truth-pack, board, current-state,
+  and owner writeback
+- Active truth-pack host: `reports/sellersprite_truth_pack_current.json`
+- Active board host: `reports/selection/MASTER_PROGRESS_BOARD__20260412.csv`
+- Active current-state hosts:
+  - `README.md`
+  - `reports/latest_sellersprite_stage_status.json`
+- Active owner writeback hosts:
+  - `templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv`
+  - `reports/latest_sellersprite_owner_handoff.json`
+  - `reports/latest_sellersprite_owner_writeback_export.json`
+
+## Candidate Sync Layer
+
+Automated candidate ingest is frozen to reviewable staging roots only:
+
+- `docs/truth_pack/candidates/`
+- `reports/board/candidates/`
+- `docs/current_state/candidates/`
+
+Those roots accept candidate truth objects only. They do not replace the active
+hosts above, and they must not become runtime drop zones.
+
+Standardized Machine B receipts, manifests, and run summaries may appear only
+as provenance refs inside candidate metadata. Raw runtime logs, Playwright
+artifacts, queue traffic, and secrets still stay out of git truth.
+
+This file is a deterministic current-state host rendered by `scripts/run_sellersprite_stage_closure.py`.
 
 ## Current Verdict
 
@@ -319,7 +364,7 @@ def render_registry(evaluation: dict[str, Any], canonical_rows: list[dict[str, s
     truth_pack_path = evaluation["paths"]["truth_pack"]
     return f"""# skill_sellersprite_four_line_runtime_registry
 
-This registry is a deterministic current-state host rendered by `scripts/write_sellersprite_current_state.py`.
+This registry is a deterministic current-state host rendered by `scripts/run_sellersprite_stage_closure.py`.
 
 ## Current Git Truth
 
@@ -370,6 +415,190 @@ def build_reason_messages(reason_enums: dict[str, Any], reason_key: str) -> list
     catalog = reason_enums.get("catalog", {})
     codes = reason_enums.get(reason_key, [])
     return [catalog.get(code, code) for code in codes]
+
+
+def load_stage_evaluation_payload(payload: dict[str, Any]) -> dict[str, Any]:
+    if "evaluation_after_write" in payload:
+        return payload["evaluation_after_write"]
+    return payload
+
+
+def build_owner_writeback_candidate_rows(truth_pack: dict[str, Any], owner_contract: dict[str, Any]) -> tuple[list[dict[str, Any]], str]:
+    packet_columns = owner_contract["packet_columns"]
+    candidates: list[dict[str, Any]] = []
+    for candidate in truth_pack.get("candidate_path_truth", []):
+        if not candidate.get("eligible_for_owner_review"):
+            continue
+        row = {column: "" for column in packet_columns}
+        row.update(
+            {
+                "candidate_id": candidate.get("candidate_id", ""),
+                "direction_id": candidate.get("direction_id", ""),
+                "keyword": candidate.get("keyword", ""),
+                "site": candidate.get("site", ""),
+                "candidate_source_mode": candidate.get("candidate_source_mode", "deterministic_truth_pack"),
+                "candidate_path_id": candidate.get("candidate_path_id", ""),
+                "eligible_candidate_count": str(candidate.get("eligible_candidate_count", "")),
+                "sample_id": candidate.get("sample_id", ""),
+                "sample_asin": candidate.get("sample_asin", ""),
+                "sample_title": candidate.get("sample_title", ""),
+                "candidate_market_name": candidate.get("candidate_market_name", ""),
+                "current_pool_status": candidate.get("current_pool_status", ""),
+                "owner_review_status": candidate.get("owner_review_status", owner_contract.get("default_owner_review_status", "PENDING")),
+                "compliance": candidate.get("compliance", ""),
+                "improvement_points": candidate.get("improvement_points", ""),
+                "final_explanation": candidate.get("final_explanation", ""),
+                "profit_pricing": candidate.get("profit_pricing", ""),
+                "decision": candidate.get("decision", ""),
+                "notes": candidate.get("notes", ""),
+            }
+        )
+        candidates.append(row)
+    return candidates, "deterministic_truth_pack"
+
+
+def render_owner_writeback_summary(handoff: dict[str, Any], export_payload: dict[str, Any]) -> str:
+    warnings = "\n".join(f"- {item}" for item in handoff["warnings"]) or "- none"
+    eligible = "\n".join(
+        f"- `{item['candidate_path_id']}` | `{item['direction_id']}` | `{item['keyword']}` | status `{item['current_pool_status']}` | eligible_count `{item['eligible_candidate_count']}`"
+        for item in handoff["eligible_candidate_paths"]
+    ) or "- none"
+    debts = "\n".join(
+        f"- `{item['line_id']}` | `{item['exact_debt']}`"
+        for item in handoff["post_stage_open_debts_snapshot"]
+    ) or "- none"
+    return f"""# CODEX Implement Next-Stage Owner Handoff Generator Summary ({TASK_DATE})
+
+## Scope
+
+- Added deterministic owner/business next-stage handoff generation.
+- The generator now reads machine-readable truth-pack and contract inputs only.
+- The owner writeback export remains externalized from runtime logs.
+
+## Current Result
+
+- `current_stage_closed = {str(handoff['current_stage_closed']).lower()}`
+- `next_stage_required = {str(handoff['next_stage_required']).lower()}`
+- `candidate_source_mode = {handoff['candidate_source_mode']}`
+- owner writeback packet: `{handoff['owner_writeback_packet_path']}`
+- owner writeback export: `{export_payload['owner_writeback_export_path']}`
+- business promotion boundary: `{export_payload['business_promotion_boundary']}`
+
+## Eligible Candidate Paths
+
+{eligible}
+
+## Post-Stage Open Debts
+
+{debts}
+
+## Warnings
+
+{warnings}
+"""
+
+
+def build_owner_writeback_bundle(
+    stage_evaluation: dict[str, Any],
+    repo_root: Path | None = None,
+    *,
+    generated_at_utc: str | None = None,
+) -> dict[str, Any]:
+    root = find_repo_root(repo_root)
+    paths = repo_paths(root)
+    evaluation = load_stage_evaluation_payload(stage_evaluation)
+    truth_pack = read_json(paths["truth_pack"])
+    owner_contract = read_json(paths["owner_handoff_contract"])
+    export_contract = read_json(paths["owner_writeback_export_contract"])
+
+    candidate_rows, candidate_source_mode = build_owner_writeback_candidate_rows(truth_pack, owner_contract)
+    generated_at = generated_at_utc or evaluation.get("generated_at_utc") or utc_now_iso()
+
+    warnings: list[str] = []
+    if candidate_source_mode != "deterministic_truth_pack":
+        warnings.append(f"Candidate source mode is `{candidate_source_mode}`, expected `deterministic_truth_pack`.")
+    if not candidate_rows and bool(evaluation["signals"]["next_stage_required"]):
+        warnings.append("Truth pack did not expose any eligible owner-review candidate paths even though next_stage_required=true.")
+    if evaluation.get("current_legal_wording", {}).get("overall_repo_wording") != "SELLERSPRITE_FLOW_CLOSED__BUSINESS_NOT_PROMOTED":
+        warnings.append("Overall repo wording drifted away from the required BUSINESS_NOT_PROMOTED boundary.")
+
+    reason_enums = truth_pack.get("reason_enums", {})
+    handoff = {
+        "generated_at_utc": generated_at,
+        "stage_status_path": relpath_str(paths["latest_status"], root),
+        "truth_pack_path": relpath_str(paths["truth_pack"], root),
+        "owner_handoff_contract_path": relpath_str(paths["owner_handoff_contract"], root),
+        "candidate_source_mode": candidate_source_mode,
+        "candidate_source_reason": "Canonical candidate-path truth was loaded from the structured truth pack.",
+        "current_stage_closed": bool(evaluation["signals"]["current_stage_closed"]),
+        "next_stage_required": bool(evaluation["signals"]["next_stage_required"]),
+        "current_legal_wording": truth_pack.get("current_legal_wording", {}),
+        "next_stage_reason_codes": reason_enums.get("next_stage_required", []) if evaluation["signals"]["next_stage_required"] else [],
+        "why_next_stage_starts": build_reason_messages(reason_enums, "next_stage_required") if evaluation["signals"]["next_stage_required"] else [],
+        "eligible_candidate_paths": candidate_rows,
+        "next_stage_candidate_list": candidate_rows,
+        "required_owner_side_fields": owner_contract.get("required_owner_side_fields", []),
+        "owner_handoff_field_schema": truth_pack.get("owner_handoff_field_schema", {}),
+        "post_stage_open_debts_snapshot": truth_pack.get("post_stage_open_debts_snapshot", []),
+        "owner_writeback_packet_path": relpath_str(paths["owner_packet"], root),
+        "warnings": warnings,
+    }
+
+    export_payload = {
+        "contract_id": export_contract.get("contract_id", OWNER_WRITEBACK_EXPORT_CONTRACT_ID),
+        "version": export_contract.get("version", OWNER_WRITEBACK_EXPORT_VERSION),
+        "generated_at_utc": generated_at,
+        "scope": export_contract.get("scope", "SellerSprite owner writeback externalized export"),
+        "stage_status_path": relpath_str(paths["latest_status"], root),
+        "truth_pack_path": relpath_str(paths["truth_pack"], root),
+        "owner_handoff_contract_path": relpath_str(paths["owner_handoff_contract"], root),
+        "owner_writeback_packet_path": relpath_str(paths["owner_packet"], root),
+        "owner_handoff_json_path": relpath_str(paths["latest_owner_handoff"], root),
+        "owner_writeback_export_path": relpath_str(paths["latest_owner_writeback_export"], root),
+        "business_promotion_boundary": OWNER_WRITEBACK_BOUNDARY,
+        "current_stage_closure_status": evaluation["current_legal_wording"].get("current_stage_closure_status"),
+        "overall_repo_wording": evaluation["current_legal_wording"].get("overall_repo_wording"),
+        "current_stage_closed": bool(evaluation["signals"]["current_stage_closed"]),
+        "next_stage_required": bool(evaluation["signals"]["next_stage_required"]),
+        "eligible_candidate_count": len(candidate_rows),
+        "eligible_candidate_ids": [row["candidate_id"] for row in candidate_rows],
+        "eligible_candidate_paths": candidate_rows,
+        "required_owner_side_fields": owner_contract.get("required_owner_side_fields", []),
+        "next_stage_reason_codes": handoff["next_stage_reason_codes"],
+        "why_next_stage_starts": handoff["why_next_stage_starts"],
+        "warnings": warnings,
+    }
+
+    required_fields = export_contract.get("required_export_fields", [])
+    missing_fields = [field for field in required_fields if field not in export_payload]
+    if missing_fields:
+        raise ValueError(f"Owner writeback export is missing required fields: {', '.join(missing_fields)}")
+
+    return {
+        "candidate_rows": candidate_rows,
+        "handoff": handoff,
+        "export_payload": export_payload,
+    }
+
+
+def write_owner_writeback_bundle(bundle: dict[str, Any], repo_root: Path | None = None) -> list[str]:
+    root = find_repo_root(repo_root)
+    paths = repo_paths(root)
+    owner_contract = read_json(paths["owner_handoff_contract"])
+    candidate_rows = bundle["candidate_rows"]
+    if candidate_rows:
+        write_csv_rows(paths["owner_packet"], candidate_rows)
+    else:
+        write_csv_rows(paths["owner_packet"], [{field: "" for field in owner_contract["packet_columns"]}])
+    write_json(paths["latest_owner_handoff"], bundle["handoff"])
+    write_json(paths["latest_owner_writeback_export"], bundle["export_payload"])
+    write_text(paths["owner_handoff_summary"], render_owner_writeback_summary(bundle["handoff"], bundle["export_payload"]))
+    return [
+        relpath_str(paths["owner_packet"], root),
+        relpath_str(paths["latest_owner_handoff"], root),
+        relpath_str(paths["latest_owner_writeback_export"], root),
+        relpath_str(paths["owner_handoff_summary"], root),
+    ]
 
 
 def validate_truth_pack(truth_pack: dict[str, Any], contract: dict[str, Any], owner_contract: dict[str, Any], paths: dict[str, Path], repo_root: Path) -> bool:
@@ -579,9 +808,11 @@ def render_implementation_summary(final_result: dict[str, Any], repo_root: Path 
     post_eval = final_result["evaluation_after_write"]
     signals = post_eval["signals"]
     written_files = final_result["written_files"]
+    owner_writeback_written_files = final_result.get("owner_writeback_written_files", [])
+    consistency = final_result.get("consistency_check", {})
     artifact_mode = post_eval["artifacts"]["source_mode"]
     warning_lines = "\n".join(f"- {warning}" for warning in post_eval["warnings"]) or "- none"
-    written_lines = "\n".join(f"- `{item}`" for item in written_files)
+    written_lines = "\n".join(f"- `{item}`" for item in [*written_files, *owner_writeback_written_files])
     truth_pack_path = post_eval["paths"]["truth_pack"]
     return f"""# CODEX Implement Deterministic Py Stage Evaluator Summary ({TASK_DATE})
 
@@ -606,6 +837,14 @@ def render_implementation_summary(final_result: dict[str, Any], repo_root: Path 
 
 {written_lines}
 - `reports/latest_sellersprite_stage_status.json`
+
+## Consistency Check
+
+- `truth_pack_to_render_consistent = {str(consistency.get("truth_pack_to_render_consistent", False)).lower()}`
+- `readme_render_aligned = {str(consistency.get("readme_render_aligned", False)).lower()}`
+- `board_render_aligned = {str(consistency.get("board_render_aligned", False)).lower()}`
+- `owner_template_aligned = {str(consistency.get("owner_template_aligned", False)).lower()}`
+- `owner_writeback_boundary_preserved = {str(consistency.get("owner_writeback_boundary_preserved", False)).lower()}`
 
 ## Warnings
 

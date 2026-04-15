@@ -10,6 +10,8 @@
     "repo_role",
     "truth_priority",
     "sync_entrypoints",
+    "candidate_sync_entrypoints",
+    "manual_only_sync_families",
     "git_allowed_inputs",
     "git_forbidden_inputs",
     "online_execution_bus"
@@ -41,7 +43,8 @@
         "current_state_readme_host",
         "current_state_json_host",
         "owner_writeback_packet_host",
-        "owner_handoff_host"
+        "owner_handoff_host",
+        "owner_writeback_export_host"
       ],
       "properties": {
         "truth_pack_host": {
@@ -61,7 +64,38 @@
         },
         "owner_handoff_host": {
           "const": "reports/latest_sellersprite_owner_handoff.json"
+        },
+        "owner_writeback_export_host": {
+          "const": "reports/latest_sellersprite_owner_writeback_export.json"
         }
+      }
+    },
+    "candidate_sync_entrypoints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "truth_pack_candidate_root",
+        "board_candidate_root",
+        "current_state_candidate_root"
+      ],
+      "properties": {
+        "truth_pack_candidate_root": {
+          "const": "docs/truth_pack/candidates"
+        },
+        "board_candidate_root": {
+          "const": "reports/board/candidates"
+        },
+        "current_state_candidate_root": {
+          "const": "docs/current_state/candidates"
+        }
+      }
+    },
+    "manual_only_sync_families": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 1
       }
     },
     "git_allowed_inputs": {

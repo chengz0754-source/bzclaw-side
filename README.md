@@ -21,8 +21,24 @@
 - Active owner writeback hosts:
   - `templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv`
   - `reports/latest_sellersprite_owner_handoff.json`
+  - `reports/latest_sellersprite_owner_writeback_export.json`
 
-This file is a deterministic current-state host rendered by `scripts/write_sellersprite_current_state.py`.
+## Candidate Sync Layer
+
+Automated candidate ingest is frozen to reviewable staging roots only:
+
+- `docs/truth_pack/candidates/`
+- `reports/board/candidates/`
+- `docs/current_state/candidates/`
+
+Those roots accept candidate truth objects only. They do not replace the active
+hosts above, and they must not become runtime drop zones.
+
+Standardized Machine B receipts, manifests, and run summaries may appear only
+as provenance refs inside candidate metadata. Raw runtime logs, Playwright
+artifacts, queue traffic, and secrets still stay out of git truth.
+
+This file is a deterministic current-state host rendered by `scripts/run_sellersprite_stage_closure.py`.
 
 ## Current Verdict
 

@@ -1,0 +1,25 @@
+{
+  "contract_id": "state_sync_candidate_record_contract_v1",
+  "version": 1,
+  "effective_date": "2026-04-16",
+  "scope": "Deterministic candidate record written by the bzclaw-side ingest module",
+  "record_schema_version": "bzclaw.side.state_sync_candidate_record.v1",
+  "required_record_fields": [
+    "schema_version",
+    "candidate_family",
+    "candidate_id",
+    "candidate_created_at_utc",
+    "source_repo",
+    "source_plane",
+    "source_job",
+    "content_format",
+    "staging_root",
+    "active_hosts_unchanged",
+    "record_path",
+    "materialized_payload_path",
+    "payload_sha256",
+    "provenance_refs",
+    "review_flags",
+    "summary_lines"
+  ]
+}

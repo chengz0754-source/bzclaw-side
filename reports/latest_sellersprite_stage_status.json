@@ -1,27 +1,31 @@
 {
-  "generated_at_utc": "2026-04-13T17:23:13+00:00",
+  "generated_at_utc": "2026-04-15T18:52:32+00:00",
   "pipeline": [
     "evaluate_sellersprite_stage_status",
     "reconcile_sellersprite_truth_hosts",
     "write_sellersprite_current_state",
-    "evaluate_sellersprite_stage_status(post_write_verification)"
+    "evaluate_sellersprite_stage_status(post_write_verification)",
+    "write_owner_writeback_externalization"
   ],
   "evaluation_before_write": {
-    "generated_at_utc": "2026-04-13T17:23:13+00:00",
+    "generated_at_utc": "2026-04-15T18:52:32+00:00",
     "repo_root": "E:/bzclaw-side",
     "paths": {
       "readme": "README.md",
       "registry": "skills/skill_sellersprite_four_line_runtime_registry.md",
       "contract": "contracts/sellersprite_current_stage_closure_contract_v1.json",
       "owner_handoff_contract": "contracts/sellersprite_owner_handoff_contract_v1.json",
+      "owner_writeback_export_contract": "contracts/sellersprite_owner_writeback_export_contract_v1.json",
       "truth_pack": "reports/sellersprite_truth_pack_current.json",
       "board": "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
       "debt_register": "reports/selection/SELLERSPRITE_POST_STAGE_OPEN_DEBT_REGISTER__20260413.csv",
       "owner_packet": "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
       "latest_status": "reports/latest_sellersprite_stage_status.json",
       "latest_owner_handoff": "reports/latest_sellersprite_owner_handoff.json",
+      "latest_owner_writeback_export": "reports/latest_sellersprite_owner_writeback_export.json",
       "implementation_summary": "reports/CODEX_IMPLEMENT_DETERMINISTIC_PY_STAGE_EVALUATOR_SUMMARY_20260413.md",
-      "truth_pack_implementation_summary": "reports/CODEX_IMPLEMENT_MACHINE_READABLE_TRUTH_PACK_AND_REMOVE_SUMMARY_PARSING_SUMMARY_20260413.md"
+      "truth_pack_implementation_summary": "reports/CODEX_IMPLEMENT_MACHINE_READABLE_TRUTH_PACK_AND_REMOVE_SUMMARY_PARSING_SUMMARY_20260413.md",
+      "owner_handoff_summary": "reports/CODEX_IMPLEMENT_NEXT_STAGE_OWNER_HANDOFF_GENERATOR_SUMMARY_20260413.md"
     },
     "truth_priority": [
       "sellersprite_truth_pack_current.json",
@@ -358,7 +362,7 @@
     ]
   },
   "reconciliation": {
-    "generated_at_utc": "2026-04-13T17:23:13+00:00",
+    "generated_at_utc": "2026-04-15T18:52:32+00:00",
     "repo_root": "E:/bzclaw-side",
     "truth_priority_applied": [
       "sellersprite_truth_pack_current.json",
@@ -444,8 +448,8 @@
       "readme_path": "README.md",
       "board_path": "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
       "registry_path": "skills/skill_sellersprite_four_line_runtime_registry.md",
-      "readme_content": "# SellerSprite Current-Stage Closure Contract\n\nThis file is a deterministic current-state host rendered by `scripts/write_sellersprite_current_state.py`.\n\n## Current Verdict\n\n- SellerSprite current-stage closure = `FLOW_CLOSED`.\n- `flow_closed = true`\n- `artifact_depth_reconciled = true`\n- `hardening_debt_blocking = false`\n- `post_stage_open_debt_present = true`\n- `current_stage_closed = true`\n- `next_stage_required = true`\n- overall legal wording = `SELLERSPRITE_FLOW_CLOSED__BUSINESS_NOT_PROMOTED`\n\n## Current Git Truth\n\n- `P0` shared continuity remains `NON_BLOCKING_HARDENING_DEBT`.\n- `T11 / T12` artifact-depth is reconciled and remains the canonical file-backed T01 reference pair.\n- `T01`, `T02`, `T03`, and `T04` are SellerSprite line-level `FLOW_CLOSED` lines.\n- `T02 / T03 / T04` remain `POST_STAGE_OPEN_DEBT`, but that debt does not reopen current-stage closure.\n- Owner-side manual writeback fields remain outside the current-stage closure gate.\n\n## Machine Status Host\n\n- latest machine-readable status: `reports/latest_sellersprite_stage_status.json`\n- latest machine-readable truth pack: `reports/sellersprite_truth_pack_current.json`\n- artifact evidence mode for the latest evaluation: `truth_pack`\n- physical progress-board host in this workspace: `reports/selection/MASTER_PROGRESS_BOARD__20260412.csv`\n\n## Current Board Snapshot\n\n- `P1` = `CURRENT_STAGE_FLOW_CLOSED__STABILITY_CONFIRMED__NEXT_STAGE_OWNER_PROMOTION_PENDING`\n- `P2` = `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- `P3` = `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- `P4` = `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n\n## Next-Stage Boundary\n\n- `BUSINESS_PROMOTED` belongs to the next-stage owner/business flow.\n- Owner-side manual writeback starts after current-stage flow closure.\n- If promotion work is needed, move forward from current `HOLD` candidate rows without reopening current-stage SellerSprite continuity.\n",
-      "registry_content": "# skill_sellersprite_four_line_runtime_registry\n\nThis registry is a deterministic current-state host rendered by `scripts/write_sellersprite_current_state.py`.\n\n## Current Git Truth\n\n- SellerSprite current-stage closure contract is flow-only:\n  - `current_stage_closure_status = FLOW_CLOSED`\n  - `current_stage_closed = true`\n  - `artifact_depth_reconciled = true`\n- `business_promotion_status` belongs to the next-stage owner/business flow and does not reopen current-stage closure.\n- `P0` remains non-blocking hardening debt:\n  - `hardening_debt_blocking = false`\n- `T02 / T03 / T04` remain `POST_STAGE_OPEN_DEBT`, not current-stage blockers.\n- latest machine-readable status host: `reports/latest_sellersprite_stage_status.json`\n- latest machine-readable truth pack: `reports/sellersprite_truth_pack_current.json`\n\n## Runtime Registry\n\n### T01 / MARKET_DISCOVERY\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__STABILITY_CONFIRMED__NEXT_STAGE_OWNER_PROMOTION_PENDING`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n\n### T02 / PRODUCT_IDEA_VALIDATION\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n\n### T03 / COMPETITOR_REVERSE_MINING\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n\n### T04 / SUPPLY_CHAIN_BACKSOLVE\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n"
+      "readme_content": "# SellerSprite Current-Stage Closure Contract\n\n> Repo role freeze on `2026-04-15`: `E:\\bzclaw-side` is the Machine B business\n> state host. It is not an online execution bus, not a worker host, and not\n> the A-side control plane. The frozen state-sync contract lives at\n> `docs/state_sync_contract_current.md`.\n\n## Repo Role Freeze\n\n- A `bzclaw`: only control plane, approval plane, dispatch truth, and final\n  verification owner\n- B `amazon-selection-automation`: execution sidecar, local model runtime,\n  Playwright, receipts, and runtime artifacts\n- B `bzclaw-side`: business state host for truth-pack, board, current-state,\n  and owner writeback\n- Active truth-pack host: `reports/sellersprite_truth_pack_current.json`\n- Active board host: `reports/selection/MASTER_PROGRESS_BOARD__20260412.csv`\n- Active current-state hosts:\n  - `README.md`\n  - `reports/latest_sellersprite_stage_status.json`\n- Active owner writeback hosts:\n  - `templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv`\n  - `reports/latest_sellersprite_owner_handoff.json`\n  - `reports/latest_sellersprite_owner_writeback_export.json`\n\n## Candidate Sync Layer\n\nAutomated candidate ingest is frozen to reviewable staging roots only:\n\n- `docs/truth_pack/candidates/`\n- `reports/board/candidates/`\n- `docs/current_state/candidates/`\n\nThose roots accept candidate truth objects only. They do not replace the active\nhosts above, and they must not become runtime drop zones.\n\nStandardized Machine B receipts, manifests, and run summaries may appear only\nas provenance refs inside candidate metadata. Raw runtime logs, Playwright\nartifacts, queue traffic, and secrets still stay out of git truth.\n\nThis file is a deterministic current-state host rendered by `scripts/run_sellersprite_stage_closure.py`.\n\n## Current Verdict\n\n- SellerSprite current-stage closure = `FLOW_CLOSED`.\n- `flow_closed = true`\n- `artifact_depth_reconciled = true`\n- `hardening_debt_blocking = false`\n- `post_stage_open_debt_present = true`\n- `current_stage_closed = true`\n- `next_stage_required = true`\n- overall legal wording = `SELLERSPRITE_FLOW_CLOSED__BUSINESS_NOT_PROMOTED`\n\n## Current Git Truth\n\n- `P0` shared continuity remains `NON_BLOCKING_HARDENING_DEBT`.\n- `T11 / T12` artifact-depth is reconciled and remains the canonical file-backed T01 reference pair.\n- `T01`, `T02`, `T03`, and `T04` are SellerSprite line-level `FLOW_CLOSED` lines.\n- `T02 / T03 / T04` remain `POST_STAGE_OPEN_DEBT`, but that debt does not reopen current-stage closure.\n- Owner-side manual writeback fields remain outside the current-stage closure gate.\n\n## Machine Status Host\n\n- latest machine-readable status: `reports/latest_sellersprite_stage_status.json`\n- latest machine-readable truth pack: `reports/sellersprite_truth_pack_current.json`\n- artifact evidence mode for the latest evaluation: `truth_pack`\n- physical progress-board host in this workspace: `reports/selection/MASTER_PROGRESS_BOARD__20260412.csv`\n\n## Current Board Snapshot\n\n- `P1` = `CURRENT_STAGE_FLOW_CLOSED__STABILITY_CONFIRMED__NEXT_STAGE_OWNER_PROMOTION_PENDING`\n- `P2` = `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- `P3` = `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- `P4` = `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n\n## Next-Stage Boundary\n\n- `BUSINESS_PROMOTED` belongs to the next-stage owner/business flow.\n- Owner-side manual writeback starts after current-stage flow closure.\n- If promotion work is needed, move forward from current `HOLD` candidate rows without reopening current-stage SellerSprite continuity.\n",
+      "registry_content": "# skill_sellersprite_four_line_runtime_registry\n\nThis registry is a deterministic current-state host rendered by `scripts/run_sellersprite_stage_closure.py`.\n\n## Current Git Truth\n\n- SellerSprite current-stage closure contract is flow-only:\n  - `current_stage_closure_status = FLOW_CLOSED`\n  - `current_stage_closed = true`\n  - `artifact_depth_reconciled = true`\n- `business_promotion_status` belongs to the next-stage owner/business flow and does not reopen current-stage closure.\n- `P0` remains non-blocking hardening debt:\n  - `hardening_debt_blocking = false`\n- `T02 / T03 / T04` remain `POST_STAGE_OPEN_DEBT`, not current-stage blockers.\n- latest machine-readable status host: `reports/latest_sellersprite_stage_status.json`\n- latest machine-readable truth pack: `reports/sellersprite_truth_pack_current.json`\n\n## Runtime Registry\n\n### T01 / MARKET_DISCOVERY\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__STABILITY_CONFIRMED__NEXT_STAGE_OWNER_PROMOTION_PENDING`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n\n### T02 / PRODUCT_IDEA_VALIDATION\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n\n### T03 / COMPETITOR_REVERSE_MINING\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n\n### T04 / SUPPLY_CHAIN_BACKSOLVE\n\n- flow_closure_status: `FLOW_CLOSED`\n- business_promotion_status: `BUSINESS_NOT_PROMOTED`\n- current line truth: `CURRENT_STAGE_FLOW_CLOSED__REUSABLE_LINE__POST_STAGE_OPEN_DEBT_TRACKED`\n- current-stage blocker status: `NONE__CURRENT_STAGE_FLOW_CLOSED`\n"
     }
   },
   "written_files": [
@@ -454,21 +458,24 @@
     "skills/skill_sellersprite_four_line_runtime_registry.md"
   ],
   "evaluation_after_write": {
-    "generated_at_utc": "2026-04-13T17:23:13+00:00",
+    "generated_at_utc": "2026-04-15T18:52:32+00:00",
     "repo_root": "E:/bzclaw-side",
     "paths": {
       "readme": "README.md",
       "registry": "skills/skill_sellersprite_four_line_runtime_registry.md",
       "contract": "contracts/sellersprite_current_stage_closure_contract_v1.json",
       "owner_handoff_contract": "contracts/sellersprite_owner_handoff_contract_v1.json",
+      "owner_writeback_export_contract": "contracts/sellersprite_owner_writeback_export_contract_v1.json",
       "truth_pack": "reports/sellersprite_truth_pack_current.json",
       "board": "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
       "debt_register": "reports/selection/SELLERSPRITE_POST_STAGE_OPEN_DEBT_REGISTER__20260413.csv",
       "owner_packet": "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
       "latest_status": "reports/latest_sellersprite_stage_status.json",
       "latest_owner_handoff": "reports/latest_sellersprite_owner_handoff.json",
+      "latest_owner_writeback_export": "reports/latest_sellersprite_owner_writeback_export.json",
       "implementation_summary": "reports/CODEX_IMPLEMENT_DETERMINISTIC_PY_STAGE_EVALUATOR_SUMMARY_20260413.md",
-      "truth_pack_implementation_summary": "reports/CODEX_IMPLEMENT_MACHINE_READABLE_TRUTH_PACK_AND_REMOVE_SUMMARY_PARSING_SUMMARY_20260413.md"
+      "truth_pack_implementation_summary": "reports/CODEX_IMPLEMENT_MACHINE_READABLE_TRUTH_PACK_AND_REMOVE_SUMMARY_PARSING_SUMMARY_20260413.md",
+      "owner_handoff_summary": "reports/CODEX_IMPLEMENT_NEXT_STAGE_OWNER_HANDOFF_GENERATOR_SUMMARY_20260413.md"
     },
     "truth_priority": [
       "sellersprite_truth_pack_current.json",
@@ -803,5 +810,139 @@
       "T02/T03/T04 remain tracked as post-stage open debt and do not block the current-stage closure.",
       "Owner-side manual writeback fields were externalized from the current-stage closure gate."
     ]
+  },
+  "owner_writeback_written_files": [
+    "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
+    "reports/latest_sellersprite_owner_handoff.json",
+    "reports/latest_sellersprite_owner_writeback_export.json",
+    "reports/CODEX_IMPLEMENT_NEXT_STAGE_OWNER_HANDOFF_GENERATOR_SUMMARY_20260413.md"
+  ],
+  "owner_writeback_externalization": {
+    "contract_id": "sellersprite_owner_writeback_export_contract_v1",
+    "version": 1,
+    "generated_at_utc": "2026-04-15T18:52:32+00:00",
+    "scope": "SellerSprite deterministic owner writeback externalized export",
+    "stage_status_path": "reports/latest_sellersprite_stage_status.json",
+    "truth_pack_path": "reports/sellersprite_truth_pack_current.json",
+    "owner_handoff_contract_path": "contracts/sellersprite_owner_handoff_contract_v1.json",
+    "owner_writeback_packet_path": "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
+    "owner_handoff_json_path": "reports/latest_sellersprite_owner_handoff.json",
+    "owner_writeback_export_path": "reports/latest_sellersprite_owner_writeback_export.json",
+    "business_promotion_boundary": "BUSINESS_NOT_PROMOTED",
+    "current_stage_closure_status": "FLOW_CLOSED",
+    "overall_repo_wording": "SELLERSPRITE_FLOW_CLOSED__BUSINESS_NOT_PROMOTED",
+    "current_stage_closed": true,
+    "next_stage_required": true,
+    "eligible_candidate_count": 2,
+    "eligible_candidate_ids": [
+      "T11__CURRENT_HOLD_CANDIDATE_PATH",
+      "T12__CURRENT_HOLD_CANDIDATE_PATH"
+    ],
+    "eligible_candidate_paths": [
+      {
+        "candidate_id": "T11__CURRENT_HOLD_CANDIDATE_PATH",
+        "direction_id": "T11",
+        "keyword": "Squeeze Toys",
+        "site": "US",
+        "candidate_source_mode": "deterministic_truth_pack",
+        "candidate_path_id": "T11::CURRENT_HOLD_CANDIDATE_PATH",
+        "eligible_candidate_count": "10",
+        "sample_id": "",
+        "sample_asin": "",
+        "sample_title": "",
+        "candidate_market_name": "Squeeze Toys",
+        "current_pool_status": "HOLD",
+        "owner_review_status": "PENDING",
+        "compliance": "",
+        "improvement_points": "",
+        "final_explanation": "",
+        "profit_pricing": "",
+        "decision": "",
+        "notes": "Canonical candidate-path truth carried by the deterministic truth pack."
+      },
+      {
+        "candidate_id": "T12__CURRENT_HOLD_CANDIDATE_PATH",
+        "direction_id": "T12",
+        "keyword": "Multi-Item Party Favor Packs",
+        "site": "US",
+        "candidate_source_mode": "deterministic_truth_pack",
+        "candidate_path_id": "T12::CURRENT_HOLD_CANDIDATE_PATH",
+        "eligible_candidate_count": "5",
+        "sample_id": "",
+        "sample_asin": "",
+        "sample_title": "",
+        "candidate_market_name": "Multi-Item Party Favor Packs",
+        "current_pool_status": "HOLD",
+        "owner_review_status": "PENDING",
+        "compliance": "",
+        "improvement_points": "",
+        "final_explanation": "",
+        "profit_pricing": "",
+        "decision": "",
+        "notes": "Canonical candidate-path truth carried by the deterministic truth pack."
+      }
+    ],
+    "required_owner_side_fields": [
+      {
+        "field_id": "owner_review_status",
+        "csv_column": "owner_review_status",
+        "required": true,
+        "description": "Track owner-side packet progress with PENDING / IN_PROGRESS / DONE."
+      },
+      {
+        "field_id": "compliance_review",
+        "csv_column": "compliance",
+        "required": true,
+        "description": "Owner-side compliance judgment for the candidate path."
+      },
+      {
+        "field_id": "improvement_points",
+        "csv_column": "improvement_points",
+        "required": true,
+        "description": "Owner-side improvement plan before promotion or sourcing."
+      },
+      {
+        "field_id": "final_explanation",
+        "csv_column": "final_explanation",
+        "required": true,
+        "description": "Owner-side final business explanation for why the path should continue or stop."
+      },
+      {
+        "field_id": "profit_pricing",
+        "csv_column": "profit_pricing",
+        "required": true,
+        "description": "Owner-side profit and pricing check for the next-stage decision."
+      },
+      {
+        "field_id": "decision",
+        "csv_column": "decision",
+        "required": true,
+        "description": "Owner-side next-stage decision such as HOLD / GO / NO_GO."
+      },
+      {
+        "field_id": "notes",
+        "csv_column": "notes",
+        "required": false,
+        "description": "Optional owner/business annotations for the packet."
+      }
+    ],
+    "next_stage_reason_codes": [
+      "NEXT_STAGE_OWNER_BUSINESS_PROMOTION_PENDING",
+      "POST_STAGE_OPEN_DEBT_TRACKED",
+      "OWNER_MANUAL_WRITEBACK_EXTERNALIZED"
+    ],
+    "why_next_stage_starts": [
+      "Business promotion remains pending and belongs to the next-stage owner/business flow.",
+      "T02/T03/T04 remain tracked as post-stage open debt and do not block the current-stage closure.",
+      "Owner-side manual writeback fields were externalized from the current-stage closure gate."
+    ],
+    "warnings": []
+  },
+  "consistency_check": {
+    "truth_pack_to_render_consistent": true,
+    "readme_render_aligned": true,
+    "board_render_aligned": true,
+    "owner_template_aligned": true,
+    "owner_writeback_boundary_preserved": true
   }
 }

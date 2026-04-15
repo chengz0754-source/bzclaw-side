@@ -4,7 +4,7 @@
 
 - Added deterministic owner/business next-stage handoff generation.
 - The generator now reads machine-readable truth-pack and contract inputs only.
-- The current-stage blocker hosts were not modified by this slice.
+- The owner writeback export remains externalized from runtime logs.
 
 ## Current Result
 
@@ -12,6 +12,8 @@
 - `next_stage_required = true`
 - `candidate_source_mode = deterministic_truth_pack`
 - owner writeback packet: `templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv`
+- owner writeback export: `reports/latest_sellersprite_owner_writeback_export.json`
+- business promotion boundary: `BUSINESS_NOT_PROMOTED`
 
 ## Eligible Candidate Paths
 

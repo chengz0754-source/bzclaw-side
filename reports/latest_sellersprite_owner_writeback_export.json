@@ -1,0 +1,121 @@
+{
+  "contract_id": "sellersprite_owner_writeback_export_contract_v1",
+  "version": 1,
+  "generated_at_utc": "2026-04-15T18:52:32+00:00",
+  "scope": "SellerSprite deterministic owner writeback externalized export",
+  "stage_status_path": "reports/latest_sellersprite_stage_status.json",
+  "truth_pack_path": "reports/sellersprite_truth_pack_current.json",
+  "owner_handoff_contract_path": "contracts/sellersprite_owner_handoff_contract_v1.json",
+  "owner_writeback_packet_path": "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
+  "owner_handoff_json_path": "reports/latest_sellersprite_owner_handoff.json",
+  "owner_writeback_export_path": "reports/latest_sellersprite_owner_writeback_export.json",
+  "business_promotion_boundary": "BUSINESS_NOT_PROMOTED",
+  "current_stage_closure_status": "FLOW_CLOSED",
+  "overall_repo_wording": "SELLERSPRITE_FLOW_CLOSED__BUSINESS_NOT_PROMOTED",
+  "current_stage_closed": true,
+  "next_stage_required": true,
+  "eligible_candidate_count": 2,
+  "eligible_candidate_ids": [
+    "T11__CURRENT_HOLD_CANDIDATE_PATH",
+    "T12__CURRENT_HOLD_CANDIDATE_PATH"
+  ],
+  "eligible_candidate_paths": [
+    {
+      "candidate_id": "T11__CURRENT_HOLD_CANDIDATE_PATH",
+      "direction_id": "T11",
+      "keyword": "Squeeze Toys",
+      "site": "US",
+      "candidate_source_mode": "deterministic_truth_pack",
+      "candidate_path_id": "T11::CURRENT_HOLD_CANDIDATE_PATH",
+      "eligible_candidate_count": "10",
+      "sample_id": "",
+      "sample_asin": "",
+      "sample_title": "",
+      "candidate_market_name": "Squeeze Toys",
+      "current_pool_status": "HOLD",
+      "owner_review_status": "PENDING",
+      "compliance": "",
+      "improvement_points": "",
+      "final_explanation": "",
+      "profit_pricing": "",
+      "decision": "",
+      "notes": "Canonical candidate-path truth carried by the deterministic truth pack."
+    },
+    {
+      "candidate_id": "T12__CURRENT_HOLD_CANDIDATE_PATH",
+      "direction_id": "T12",
+      "keyword": "Multi-Item Party Favor Packs",
+      "site": "US",
+      "candidate_source_mode": "deterministic_truth_pack",
+      "candidate_path_id": "T12::CURRENT_HOLD_CANDIDATE_PATH",
+      "eligible_candidate_count": "5",
+      "sample_id": "",
+      "sample_asin": "",
+      "sample_title": "",
+      "candidate_market_name": "Multi-Item Party Favor Packs",
+      "current_pool_status": "HOLD",
+      "owner_review_status": "PENDING",
+      "compliance": "",
+      "improvement_points": "",
+      "final_explanation": "",
+      "profit_pricing": "",
+      "decision": "",
+      "notes": "Canonical candidate-path truth carried by the deterministic truth pack."
+    }
+  ],
+  "required_owner_side_fields": [
+    {
+      "field_id": "owner_review_status",
+      "csv_column": "owner_review_status",
+      "required": true,
+      "description": "Track owner-side packet progress with PENDING / IN_PROGRESS / DONE."
+    },
+    {
+      "field_id": "compliance_review",
+      "csv_column": "compliance",
+      "required": true,
+      "description": "Owner-side compliance judgment for the candidate path."
+    },
+    {
+      "field_id": "improvement_points",
+      "csv_column": "improvement_points",
+      "required": true,
+      "description": "Owner-side improvement plan before promotion or sourcing."
+    },
+    {
+      "field_id": "final_explanation",
+      "csv_column": "final_explanation",
+      "required": true,
+      "description": "Owner-side final business explanation for why the path should continue or stop."
+    },
+    {
+      "field_id": "profit_pricing",
+      "csv_column": "profit_pricing",
+      "required": true,
+      "description": "Owner-side profit and pricing check for the next-stage decision."
+    },
+    {
+      "field_id": "decision",
+      "csv_column": "decision",
+      "required": true,
+      "description": "Owner-side next-stage decision such as HOLD / GO / NO_GO."
+    },
+    {
+      "field_id": "notes",
+      "csv_column": "notes",
+      "required": false,
+      "description": "Optional owner/business annotations for the packet."
+    }
+  ],
+  "next_stage_reason_codes": [
+    "NEXT_STAGE_OWNER_BUSINESS_PROMOTION_PENDING",
+    "POST_STAGE_OPEN_DEBT_TRACKED",
+    "OWNER_MANUAL_WRITEBACK_EXTERNALIZED"
+  ],
+  "why_next_stage_starts": [
+    "Business promotion remains pending and belongs to the next-stage owner/business flow.",
+    "T02/T03/T04 remain tracked as post-stage open debt and do not block the current-stage closure.",
+    "Owner-side manual writeback fields were externalized from the current-stage closure gate."
+  ],
+  "warnings": []
+}

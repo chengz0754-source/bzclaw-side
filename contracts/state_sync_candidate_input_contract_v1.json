@@ -1,0 +1,120 @@
+{
+  "contract_id": "state_sync_candidate_input_contract_v1",
+  "version": 1,
+  "effective_date": "2026-04-16",
+  "scope": "Machine B execution sidecar candidate truth import into bzclaw-side",
+  "repo_role": "BUSINESS_STATE_HOST",
+  "accepted_source_repo": "chengz0754-source/amazon-selection-automation",
+  "accepted_source_plane": "B_EXECUTION_SIDECAR",
+  "input_schema_version": "bzclaw.side.state_sync_candidate_input.v1",
+  "candidate_families": {
+    "truth_pack_candidate": {
+      "staging_root": "docs/truth_pack/candidates",
+      "active_host": "reports/sellersprite_truth_pack_current.json",
+      "allowed_content_formats": [
+        "json"
+      ],
+      "payload_extension_by_format": {
+        "json": ".payload.json"
+      }
+    },
+    "board_candidate": {
+      "staging_root": "reports/board/candidates",
+      "active_host": "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
+      "allowed_content_formats": [
+        "csv",
+        "json",
+        "markdown"
+      ],
+      "payload_extension_by_format": {
+        "csv": ".payload.csv",
+        "json": ".payload.json",
+        "markdown": ".payload.md"
+      }
+    },
+    "current_state_candidate": {
+      "staging_root": "docs/current_state/candidates",
+      "active_hosts": [
+        "README.md",
+        "reports/latest_sellersprite_stage_status.json"
+      ],
+      "allowed_content_formats": [
+        "json",
+        "markdown"
+      ],
+      "payload_extension_by_format": {
+        "json": ".payload.json",
+        "markdown": ".payload.md"
+      }
+    }
+  },
+  "manual_only_families": {
+    "owner_writeback": {
+      "reason": "Owner writeback remains a manual-only next-stage surface and is excluded from automated ingest."
+    }
+  },
+  "required_input_fields": [
+    "schema_version",
+    "candidate_family",
+    "candidate_id",
+    "candidate_created_at_utc",
+    "source_repo",
+    "source_plane",
+    "source_job",
+    "content_format",
+    "provenance_refs",
+    "review_flags"
+  ],
+  "required_review_flags": {
+    "candidate_truth_only": true,
+    "runtime_payload_embedded": false,
+    "business_promotion_claimed": false
+  },
+  "allowed_provenance_ref_kinds": {
+    "machine_b_run_receipt": {
+      "allowed_prefixes": [
+        "outputs/worker_runs/"
+      ]
+    },
+    "machine_b_artifact_manifest": {
+      "allowed_prefixes": [
+        "outputs/worker_runs/"
+      ]
+    },
+    "machine_b_run_summary": {
+      "allowed_prefixes": [
+        "outputs/worker_runs/"
+      ]
+    },
+    "repo_visible_state_snapshot": {
+      "allowed_prefixes": [
+        "contracts/",
+        "docs/",
+        "reports/"
+      ]
+    },
+    "repo_visible_contract": {
+      "allowed_prefixes": [
+        "contracts/",
+        "docs/"
+      ]
+    }
+  },
+  "forbidden_provenance_prefixes": [
+    ".env",
+    "archive/",
+    "inbox/",
+    "logs/",
+    "playwright/",
+    "runs/",
+    "storage_state"
+  ],
+  "forbidden_embedded_content": [
+    "raw_playwright_capture",
+    "raw_runtime_log",
+    "raw_callback_body",
+    "raw_worker_lease",
+    "secret_material",
+    "token_or_cookie_dump"
+  ]
+}

@@ -50,14 +50,29 @@ truth chain above.
 | `truth_pack` | `reports/sellersprite_truth_pack_current.json` | Canonical fact bundle for current SellerSprite business-state truth | Repo-visible JSON only; no raw runtime payloads |
 | `board` | `reports/selection/MASTER_PROGRESS_BOARD__20260412.csv` | Current progress board and per-line status host | Repo-visible CSV only; not a queue, not a scheduler |
 | `current_state` | `README.md` and `reports/latest_sellersprite_stage_status.json` | Deterministic current-state render for human and machine readers | Must mirror repo truth; must not imply business promotion |
-| `owner_writeback` | `templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv` and `reports/latest_sellersprite_owner_handoff.json` | Manual owner/business handoff and writeback | Manual-only next-stage surface; externalized from current-stage closure |
+| `owner_writeback` | `templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv`, `reports/latest_sellersprite_owner_handoff.json`, and `reports/latest_sellersprite_owner_writeback_export.json` | Manual owner/business handoff and externalized writeback export | Manual-only next-stage surface; externalized from current-stage closure |
 
 The following documentation-only entrypoints are reserved to make those roles
 explicit without changing the active host paths:
 
 - `docs/truth_pack/README.md`
+- `docs/current_state/README.md`
 - `reports/board/README.md`
 - `docs/owner_writeback/README.md`
+
+## Candidate Sync Entry Layer
+
+Automated candidate ingest from `chengz0754-source/amazon-selection-automation`
+is limited to the following staging roots:
+
+| Candidate family | Staging root | Rule |
+| --- | --- | --- |
+| `truth_pack_candidate` | `docs/truth_pack/candidates/` | Candidate truth only; active truth-pack host stays `reports/sellersprite_truth_pack_current.json` |
+| `board_candidate` | `reports/board/candidates/` | Candidate board objects only; not a queue, not a scheduler |
+| `current_state_candidate` | `docs/current_state/candidates/` | Candidate current-state objects only; active hosts stay `README.md` and `reports/latest_sellersprite_stage_status.json` |
+
+`owner_writeback` remains manual-only next-stage material and is excluded from
+the automated candidate ingest surface.
 
 ## What May Sync Into Git
 
@@ -69,7 +84,8 @@ Only the following input classes may sync into git truth:
 | truth pack | Yes | Curated repo-visible truth-pack JSON such as `reports/sellersprite_truth_pack_current.json` |
 | board | Yes | Repo-visible board CSV/MD that carries stable status meaning |
 | deterministic current-state render | Yes | `README.md` and `reports/latest_sellersprite_stage_status.json` may mirror repo truth |
-| owner writeback packet and handoff | Yes | Manual-only owner packet template and repo-visible handoff JSON |
+| candidate truth objects | Yes | Only via the frozen candidate staging roots and `contracts/state_sync_candidate_input_contract_v1.json` |
+| owner writeback packet and handoff | Yes | Manual-only owner packet template, repo-visible handoff JSON, and deterministic externalized export JSON |
 | redacted evidence summaries | Yes | Only after they are rewritten into stable, reviewable repo-visible state objects |
 
 ## What Must Never Sync Into Git
@@ -91,6 +107,10 @@ become git truth directly:
   temp files
 - online dispatch instructions, worker heartbeats, or API request/response
   traffic
+
+Standardized Machine B run receipts, manifests, and run summaries may be kept
+only as provenance refs inside candidate metadata. They must not be committed
+here as raw runtime bodies or treated as active git truth by themselves.
 
 If a runtime artifact matters, summarize it into a reviewed repo-visible state
 object first. Never commit the raw runtime object itself as business truth.

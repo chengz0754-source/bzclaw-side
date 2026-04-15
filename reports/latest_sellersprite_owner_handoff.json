@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-04-13T17:23:13+00:00",
+  "generated_at_utc": "2026-04-15T18:52:32+00:00",
   "stage_status_path": "reports/latest_sellersprite_stage_status.json",
   "truth_pack_path": "reports/sellersprite_truth_pack_current.json",
   "owner_handoff_contract_path": "contracts/sellersprite_owner_handoff_contract_v1.json",

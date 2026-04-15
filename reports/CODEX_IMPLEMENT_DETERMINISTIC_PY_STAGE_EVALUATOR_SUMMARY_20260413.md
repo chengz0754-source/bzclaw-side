@@ -22,7 +22,19 @@
 - `README.md`
 - `reports/selection/MASTER_PROGRESS_BOARD__20260412.csv`
 - `skills/skill_sellersprite_four_line_runtime_registry.md`
+- `templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv`
+- `reports/latest_sellersprite_owner_handoff.json`
+- `reports/latest_sellersprite_owner_writeback_export.json`
+- `reports/CODEX_IMPLEMENT_NEXT_STAGE_OWNER_HANDOFF_GENERATOR_SUMMARY_20260413.md`
 - `reports/latest_sellersprite_stage_status.json`
+
+## Consistency Check
+
+- `truth_pack_to_render_consistent = true`
+- `readme_render_aligned = true`
+- `board_render_aligned = true`
+- `owner_template_aligned = true`
+- `owner_writeback_boundary_preserved = true`
 
 ## Warnings
 

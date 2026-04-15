@@ -1,0 +1,41 @@
+{
+  "contract_id": "sellersprite_owner_writeback_export_contract_v1",
+  "version": 1,
+  "effective_date": "2026-04-16",
+  "scope": "SellerSprite deterministic owner writeback externalized export",
+  "business_promotion_boundary": "BUSINESS_NOT_PROMOTED",
+  "input_hosts": [
+    "reports/latest_sellersprite_stage_status.json",
+    "reports/sellersprite_truth_pack_current.json",
+    "contracts/sellersprite_owner_handoff_contract_v1.json"
+  ],
+  "output_hosts": {
+    "owner_writeback_packet_csv": "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
+    "owner_handoff_json": "reports/latest_sellersprite_owner_handoff.json",
+    "owner_writeback_export_json": "reports/latest_sellersprite_owner_writeback_export.json"
+  },
+  "required_export_fields": [
+    "contract_id",
+    "version",
+    "generated_at_utc",
+    "scope",
+    "stage_status_path",
+    "truth_pack_path",
+    "owner_handoff_contract_path",
+    "owner_writeback_packet_path",
+    "owner_handoff_json_path",
+    "owner_writeback_export_path",
+    "business_promotion_boundary",
+    "current_stage_closure_status",
+    "overall_repo_wording",
+    "current_stage_closed",
+    "next_stage_required",
+    "eligible_candidate_count",
+    "eligible_candidate_ids",
+    "eligible_candidate_paths",
+    "required_owner_side_fields",
+    "next_stage_reason_codes",
+    "why_next_stage_starts",
+    "warnings"
+  ]
+}

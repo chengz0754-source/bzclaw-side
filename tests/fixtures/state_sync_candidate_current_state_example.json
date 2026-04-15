@@ -1,0 +1,44 @@
+{
+  "schema_version": "bzclaw.side.state_sync_candidate_input.v1",
+  "candidate_family": "current_state_candidate",
+  "candidate_id": "p15_current_state_candidate_sample",
+  "candidate_created_at_utc": "2026-04-16T00:00:00+00:00",
+  "source_repo": "chengz0754-source/amazon-selection-automation",
+  "source_plane": "B_EXECUTION_SIDECAR",
+  "source_job": {
+    "job_id": "P13_CLI_HEALTHCHECK",
+    "run_id": "p13_cli_healthcheck",
+    "handler_kind": "worker.healthcheck.runtime"
+  },
+  "content_format": "json",
+  "candidate_payload_json": {
+    "line_id": "SELLERSPRITE",
+    "current_stage_closure_status": "FLOW_CLOSED",
+    "business_promotion_status": "BUSINESS_NOT_PROMOTED",
+    "candidate_note": "Candidate current-state object only. Active hosts remain unchanged until review."
+  },
+  "provenance_refs": [
+    {
+      "ref_kind": "machine_b_run_receipt",
+      "ref_path": "outputs/worker_runs/p13_cli_healthcheck/02_generated_outputs/machine_b_run_receipt.json"
+    },
+    {
+      "ref_kind": "machine_b_artifact_manifest",
+      "ref_path": "outputs/worker_runs/p13_cli_healthcheck/02_generated_outputs/machine_b_artifact_manifest.json"
+    },
+    {
+      "ref_kind": "machine_b_run_summary",
+      "ref_path": "outputs/worker_runs/p13_cli_healthcheck/01_run_summary/summary.md"
+    }
+  ],
+  "review_flags": {
+    "candidate_truth_only": true,
+    "runtime_payload_embedded": false,
+    "business_promotion_claimed": false
+  },
+  "summary_lines": [
+    "Technical execution succeeded on Machine B.",
+    "Receipt is visible for audit.",
+    "Business promotion remains NOT_PROMOTED."
+  ]
+}
