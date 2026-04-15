@@ -1,4 +1,4 @@
-[CmdletBinding()]
+[CmdletBinding(PositionalBinding = $false)]
 param(
     [string]$TargetRepoPath
 )
@@ -58,13 +58,23 @@ function Write-HookWrapper {
         [string]$HookType
     )
 
-    $content = @'
+    $content = if ($HookType -eq "pre-push") {
+@'
 #!/bin/sh
 {0}
 REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 1
 RUNNER="$REPO_ROOT/ruff_git_hook_setup/run_ruff_git_hook.ps1"
-exec "{1}" -NoProfile -ExecutionPolicy Bypass -File "$RUNNER" -HookType {2} "$@"
+exec "{1}" -NoProfile -ExecutionPolicy Bypass -File "$RUNNER" -HookType {2} -RepoPath "$REPO_ROOT" -RemoteName "$1" -RemoteUrl "$2"
 '@ -f $wrapperHeader, $powershellExe, $HookType
+    } else {
+@'
+#!/bin/sh
+{0}
+REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null) || exit 1
+RUNNER="$REPO_ROOT/ruff_git_hook_setup/run_ruff_git_hook.ps1"
+exec "{1}" -NoProfile -ExecutionPolicy Bypass -File "$RUNNER" -HookType {2} -RepoPath "$REPO_ROOT"
+'@ -f $wrapperHeader, $powershellExe, $HookType
+    }
 
     Set-Content -LiteralPath $HookPath -Value $content -Encoding ascii
 }

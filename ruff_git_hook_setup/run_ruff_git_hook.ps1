@@ -1,4 +1,4 @@
-[CmdletBinding()]
+[CmdletBinding(PositionalBinding = $false)]
 param(
     [Parameter(Mandatory = $true)]
     [ValidateSet("pre-commit", "pre-push")]
@@ -12,13 +12,8 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-if ([string]::IsNullOrWhiteSpace($RepoPath)) {
-    $RepoPath = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
-}
-
 $ZeroObjectId = "0000000000000000000000000000000000000000"
 $ExcludePattern = "(^|/)(node_modules|\.next|playwright-report|test-results|\.venv[^/]*|\.pnpm-store)(/|$)"
-$ConfigPath = Join-Path $RepoPath ".pre-commit-config.yaml"
 $UserHome = if (-not [string]::IsNullOrWhiteSpace($env:USERPROFILE)) {
     $env:USERPROFILE
 } elseif (-not [string]::IsNullOrWhiteSpace($env:HOME)) {
@@ -30,6 +25,38 @@ $PreCommitExe = if ([string]::IsNullOrWhiteSpace($UserHome)) {
     $null
 } else {
     Join-Path $UserHome ".local\bin\pre-commit.exe"
+}
+
+function Resolve-RepoRoot {
+    param(
+        [string]$CandidatePath
+    )
+
+    $fallbackRoot = (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
+    $candidates = New-Object System.Collections.Generic.List[string]
+
+    if (-not [string]::IsNullOrWhiteSpace($CandidatePath)) {
+        $candidates.Add($CandidatePath.Trim())
+    }
+    $candidates.Add($fallbackRoot)
+
+    foreach ($candidate in $candidates) {
+        if ([string]::IsNullOrWhiteSpace($candidate)) {
+            continue
+        }
+
+        $resolvedCandidate = Resolve-Path -LiteralPath $candidate -ErrorAction SilentlyContinue
+        if (-not $resolvedCandidate) {
+            continue
+        }
+
+        $repoRoot = & git -C $resolvedCandidate.Path rev-parse --show-toplevel 2>$null
+        if ($LASTEXITCODE -eq 0 -and -not [string]::IsNullOrWhiteSpace(($repoRoot | Out-String).Trim())) {
+            return (Resolve-Path -LiteralPath (($repoRoot | Out-String).Trim())).Path
+        }
+    }
+
+    throw "Unable to resolve repo root from RepoPath='$CandidatePath' or script root '$fallbackRoot'."
 }
 
 function Invoke-GitText {
@@ -46,6 +73,9 @@ function Invoke-GitText {
 
     return @($output)
 }
+
+$RepoPath = Resolve-RepoRoot -CandidatePath $RepoPath
+$ConfigPath = Join-Path $RepoPath ".pre-commit-config.yaml"
 
 function Get-PreCommitCommandPrefix {
     if ($PreCommitExe -and (Test-Path -LiteralPath $PreCommitExe)) {
@@ -178,6 +208,12 @@ $candidateFiles = if ($Files -and $Files.Count -gt 0) {
     @(Get-StagedPaths)
 } else {
     @(Get-PushedPathsFromStdin)
+}
+
+$candidateFiles = @($candidateFiles | Where-Object { -not [string]::IsNullOrWhiteSpace($_) })
+if ($candidateFiles.Count -eq 0) {
+    Write-Output "[ruff-$HookType] No candidate files were provided by the hook."
+    exit 0
 }
 
 $pythonFiles = @(Select-PythonFiles -Paths @($candidateFiles))

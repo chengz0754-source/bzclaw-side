@@ -1,4 +1,4 @@
-[CmdletBinding()]
+[CmdletBinding(PositionalBinding = $false)]
 param(
     [string]$TargetRepoPath
 )
@@ -89,10 +89,10 @@ try {
         output = $preCommitRun.Output
     }
 
+    $prePushInput = "refs/heads/main $(git -C $repoPath rev-parse HEAD) refs/remotes/origin/main $(git -C $repoPath rev-parse origin/main)"
     $prePushRun = Invoke-CheckedCommand -Command @(
-        "powershell.exe", "-NoProfile", "-ExecutionPolicy", "Bypass", "-File", $runnerPath,
-        "-HookType", "pre-push", "-Files", $probeRelativePath
-    )
+        $shExe, $prePushHookPath, "origin", "https://github.com/chengz0754-source/bzclaw-side.git"
+    ) -InputText $prePushInput
     $report.pre_push_manual_probe = [ordered]@{
         exit_code = $prePushRun.ExitCode
         output = $prePushRun.Output
