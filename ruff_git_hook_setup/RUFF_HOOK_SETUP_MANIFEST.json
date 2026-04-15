@@ -1,0 +1,105 @@
+{
+  "timestamp": "2026-04-15T22:02:57+08:00",
+  "scope_understanding": "Install Ruff-triggered Git hook enforcement on B machine without touching business code; prefer the real bzclaw main repo if visible, otherwise fall back to bzclaw-side and mark the result truthfully as side-only.",
+  "main_repo_visible": false,
+  "side_repo_visible": true,
+  "selected_hook_target": "E:\\bzclaw-side",
+  "hook_scope": "BZCLAW_SIDE_ONLY",
+  "main_repo_hook_status": "DEFERRED_BECAUSE_MAIN_REPO_NOT_VISIBLE",
+  "repo_probe": {
+    "main_candidates": [
+      {
+        "path": "E:\\bzclaw",
+        "exists": false,
+        "git_worktree": false
+      },
+      {
+        "path": "D:\\bzclaw",
+        "exists": false,
+        "git_worktree": false
+      },
+      {
+        "path": "C:\\bzclaw",
+        "exists": false,
+        "git_worktree": false
+      },
+      {
+        "path": "F:\\bzclaw",
+        "exists": false,
+        "git_worktree": false
+      }
+    ],
+    "side_candidates": [
+      {
+        "path": "E:\\bzclaw-side",
+        "exists": true,
+        "git_worktree": true,
+        "remote": "https://github.com/chengz0754-source/bzclaw-side.git"
+      },
+      {
+        "path": "E:\\bzclaw side",
+        "exists": true,
+        "git_worktree": true,
+        "remote": "https://github.com/chengz0754-source/bzclaw-side.git"
+      }
+    ]
+  },
+  "toolchain_recheck": {
+    "direct_ruff_on_path": false,
+    "direct_uv_on_path": false,
+    "python": "Python 3.12.10",
+    "uv": "uv 0.11.6 (65950801c 2026-04-09 x86_64-pc-windows-msvc)",
+    "ruff_via_uv_run": "ruff 0.15.10",
+    "pre_commit": "pre-commit 4.5.1",
+    "git": "git version 2.53.0.windows.2"
+  },
+  "hook_strategy_selected": {
+    "type": "PRE_COMMIT_CONFIG_PLUS_CUSTOM_GIT_WRAPPERS",
+    "repo_config_path": "E:\\bzclaw-side\\.pre-commit-config.yaml",
+    "runner_path": "E:\\bzclaw-side\\ruff_git_hook_setup\\run_ruff_git_hook.ps1",
+    "pre_commit_hook_path": "E:\\bzclaw-side\\.git\\hooks\\pre-commit",
+    "pre_push_hook_path": "E:\\bzclaw-side\\.git\\hooks\\pre-push",
+    "pre_commit_install_command": "py -3.12 -m uv tool install pre-commit",
+    "ruff_execution_command": "py -3.12 -m uv run --with ruff ruff check --force-exclude",
+    "pre_commit_runtime_preference": "C:\\Users\\Administrator\\.local\\bin\\pre-commit.exe",
+    "pre_commit_runtime_fallback": "py -3.12 -m uv run --with pre-commit pre-commit"
+  },
+  "hook_install_result": {
+    "status": "SUCCESS",
+    "commit_blocking_enabled": true,
+    "push_blocking_enabled": true,
+    "side_only": true
+  },
+  "hook_validation_result": {
+    "hook_files_exist": true,
+    "pre_commit_run_all_files_exit_code": 1,
+    "pre_commit_run_all_files_status": "FAILED_AS_EXPECTED_ON_EXISTING_REPO_DEBT",
+    "pre_commit_manual_probe_exit_code": 1,
+    "pre_commit_manual_probe_status": "BLOCKED_BAD_PYTHON_FILE_AS_EXPECTED",
+    "pre_push_manual_probe_exit_code": 1,
+    "pre_push_manual_probe_status": "BLOCKED_BAD_PYTHON_FILE_AS_EXPECTED",
+    "representative_existing_repo_findings": [
+      "skills\\skill-market-route-step1-to-step3\\scripts\\run_market_route_pipeline.py -> E402",
+      "skills\\skill-market-route-step1-to-step3\\scripts\\run_step1_m03.py -> E402",
+      "skills\\skill-market-route-step1-to-step3\\scripts\\run_step2_benchmark.py -> E402",
+      "skills\\skill-market-route-step1-to-step3\\scripts\\run_step3_keywords.py -> E402,F401",
+      "skills\\skill-semantic-filter-local\\scripts\\run_semantic_filter.py -> E712"
+    ],
+    "temporary_probe_cleaned": true
+  },
+  "written_files": [
+    "E:\\bzclaw-side\\.pre-commit-config.yaml",
+    "E:\\bzclaw-side\\ruff_git_hook_setup\\00_repo_probe.md",
+    "E:\\bzclaw-side\\ruff_git_hook_setup\\01_hook_plan.md",
+    "E:\\bzclaw-side\\ruff_git_hook_setup\\02_hook_install_result.md",
+    "E:\\bzclaw-side\\ruff_git_hook_setup\\03_hook_validation_result.md",
+    "E:\\bzclaw-side\\ruff_git_hook_setup\\RUFF_HOOK_SETUP_MANIFEST.json",
+    "E:\\bzclaw-side\\ruff_git_hook_setup\\install_ruff_git_hooks.ps1",
+    "E:\\bzclaw-side\\ruff_git_hook_setup\\validate_ruff_git_hooks.ps1",
+    "E:\\bzclaw-side\\ruff_git_hook_setup\\run_ruff_git_hook.ps1",
+    "E:\\bzclaw-side\\.git\\hooks\\pre-commit",
+    "E:\\bzclaw-side\\.git\\hooks\\pre-push"
+  ],
+  "exact_blocker_if_any": "MAIN_REPO_NOT_VISIBLE_ON_B_MACHINE; repository-wide pre-commit run --all-files currently fails because bzclaw-side already contains historical Ruff findings.",
+  "next_action": "If and when the real bzclaw main repo becomes visible on B machine, rerun E:\\bzclaw-side\\ruff_git_hook_setup\\install_ruff_git_hooks.ps1 against that repo path to install the same hook stack there."
+}
