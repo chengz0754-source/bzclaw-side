@@ -1,5 +1,27 @@
 # SellerSprite Current-Stage Closure Contract
 
+> Repo role freeze on `2026-04-15`: `E:\bzclaw-side` is the Machine B business
+> state host. It is not an online execution bus, not a worker host, and not
+> the A-side control plane. The frozen state-sync contract lives at
+> `docs/state_sync_contract_current.md`.
+
+## Repo Role Freeze
+
+- A `bzclaw`: only control plane, approval plane, dispatch truth, and final
+  verification owner
+- B `amazon-selection-automation`: execution sidecar, local model runtime,
+  Playwright, receipts, and runtime artifacts
+- B `bzclaw-side`: business state host for truth-pack, board, current-state,
+  and owner writeback
+- Active truth-pack host: `reports/sellersprite_truth_pack_current.json`
+- Active board host: `reports/selection/MASTER_PROGRESS_BOARD__20260412.csv`
+- Active current-state hosts:
+  - `README.md`
+  - `reports/latest_sellersprite_stage_status.json`
+- Active owner writeback hosts:
+  - `templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv`
+  - `reports/latest_sellersprite_owner_handoff.json`
+
 This file is a deterministic current-state host rendered by `scripts/write_sellersprite_current_state.py`.
 
 ## Current Verdict

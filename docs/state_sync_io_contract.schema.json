@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chengz0754-source.github.io/bzclaw-side/docs/state_sync_io_contract.schema.json",
+  "title": "BZCLAW Side State Sync Contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "repo_id",
+    "repo_role",
+    "truth_priority",
+    "sync_entrypoints",
+    "git_allowed_inputs",
+    "git_forbidden_inputs",
+    "online_execution_bus"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "bzclaw.side.state_sync_contract.v1"
+    },
+    "repo_id": {
+      "const": "chengz0754-source/bzclaw-side"
+    },
+    "repo_role": {
+      "const": "BUSINESS_STATE_HOST"
+    },
+    "truth_priority": {
+      "type": "array",
+      "minItems": 6,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "sync_entrypoints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "truth_pack_host",
+        "board_host",
+        "current_state_readme_host",
+        "current_state_json_host",
+        "owner_writeback_packet_host",
+        "owner_handoff_host"
+      ],
+      "properties": {
+        "truth_pack_host": {
+          "const": "reports/sellersprite_truth_pack_current.json"
+        },
+        "board_host": {
+          "const": "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv"
+        },
+        "current_state_readme_host": {
+          "const": "README.md"
+        },
+        "current_state_json_host": {
+          "const": "reports/latest_sellersprite_stage_status.json"
+        },
+        "owner_writeback_packet_host": {
+          "const": "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv"
+        },
+        "owner_handoff_host": {
+          "const": "reports/latest_sellersprite_owner_handoff.json"
+        }
+      }
+    },
+    "git_allowed_inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/inputRule"
+      }
+    },
+    "git_forbidden_inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/inputRule"
+      }
+    },
+    "online_execution_bus": {
+      "const": false
+    }
+  },
+  "$defs": {
+    "inputRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "class",
+        "rule"
+      ],
+      "properties": {
+        "class": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rule": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    }
+  }
+}
