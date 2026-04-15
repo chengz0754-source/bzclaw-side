@@ -1,0 +1,47 @@
+{
+  "generated_at": "2026-04-15T16:00:00",
+  "control_root": "E:\\bzclaw-side\\repo_toolchain_bootstrap",
+  "machine_toolchain_recheck": {
+    "status": "OK",
+    "process_path_injected": [
+      "C:\\Users\\Administrator\\AppData\\Local\\BZCLAWToolchain\\node\\current",
+      "C:\\Users\\Administrator\\AppData\\Roaming\\Python\\Python312\\Scripts",
+      "C:\\Users\\Administrator\\.local\\bin"
+    ],
+    "versions": {
+      "node": "v24.14.1",
+      "pnpm": "9.15.0",
+      "python_3_12": "Python 3.12.10",
+      "uv": "uv 0.11.6 (65950801c 2026-04-09 x86_64-pc-windows-msvc)",
+      "ruff": "ruff 0.15.10",
+      "corepack": "0.34.6"
+    }
+  },
+  "repo_visibility_probe": {
+    "repo_path_visible_on_b_machine": false,
+    "repo_root": null,
+    "exact_blocker": "REPO_PATH_NOT_VISIBLE_FROM_B_MACHINE",
+    "network_mappings_visible": false,
+    "local_direct_candidates_checked": [
+      "E:\\bzclaw",
+      "D:\\bzclaw",
+      "C:\\bzclaw",
+      "F:\\bzclaw"
+    ],
+    "root_directories_matching_bzclaw": [
+      "E:\\bzclaw side",
+      "E:\\bzclaw-exchange",
+      "E:\\bzclaw-route-a-runner",
+      "E:\\bzclaw-side"
+    ],
+    "workspace_name_hits": [
+      "E:\\$RECYCLE.BIN\\S-1-5-21-3660710328-2089016820-2379128882-500\\$R2NRFQQ\\agent-kernel"
+    ]
+  },
+  "repo_dependency_install_result": "NOT_EXECUTED",
+  "repo_validation_result": "NOT_EXECUTED",
+  "next_action": "Expose the repo root from A machine to B machine through a shared path or mapped drive, then rerun the bootstrap scripts.",
+  "exact_blockers": [
+    "REPO_PATH_NOT_VISIBLE_FROM_B_MACHINE"
+  ]
+}
