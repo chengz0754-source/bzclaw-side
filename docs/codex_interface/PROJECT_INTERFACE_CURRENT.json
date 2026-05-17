@@ -1,0 +1,48 @@
+{
+  "schema_version": "2",
+  "updated_at": "2026-05-18T07:43:39+08:00",
+  "run_id": "r3a_bzclaw_side_remote_interface_sync_20260518",
+  "repo": {
+    "slug": "chengz0754-source/bzclaw-side",
+    "name": "bzclaw-side",
+    "role": "sellersprite_business_state_host",
+    "positioning": "Machine B SellerSprite business state host for truth-pack / board / current-state / owner writeback.",
+    "local_path": "E:\\bzclaw-Bworkspace\\bzclaw-side",
+    "expected_remote": "https://github.com/chengz0754-source/bzclaw-side.git",
+    "observed_origin": "https://github.com/chengz0754-source/bzclaw-side.git",
+    "branch": "main",
+    "worktree": "clean"
+  },
+  "not": [
+    "online execution bus",
+    "worker host",
+    "A-side control plane"
+  ],
+  "known_boundaries": [
+    "Current legal wording: SELLERSPRITE_FLOW_CLOSED__BUSINESS_NOT_PROMOTED.",
+    "Forbidden wording unless active truth hosts change: SELLERSPRITE_CLOSED.",
+    "Forbidden wording unless active truth hosts change: BUSINESS_PROMOTED.",
+    "Current-stage SellerSprite flow closure does not imply business promotion.",
+    "Owner-side manual writeback and promotion are next-stage owner/business flow."
+  ],
+  "truth_hosts": [
+    "README.md",
+    "docs/state_sync_contract_current.md",
+    "reports/latest_sellersprite_stage_status.json",
+    "reports/sellersprite_truth_pack_current.json",
+    "reports/selection/MASTER_PROGRESS_BOARD__20260412.csv",
+    "templates/owner_manual_writeback/02__SELLERSPRITE_OWNER_STAGE_WRITEBACK_PACKET__20260413.csv",
+    "reports/latest_sellersprite_owner_handoff.json",
+    "reports/latest_sellersprite_owner_writeback_export.json"
+  ],
+  "forbidden_actions": [
+    "Do not claim SELLERSPRITE_CLOSED unless active truth hosts explicitly change.",
+    "Do not claim BUSINESS_PROMOTED unless active truth hosts explicitly change.",
+    "Do not treat this repo as online execution bus or A-side control plane."
+  ],
+  "reuse_pointers": [
+    "E:/BZCLAW_WORKSPACE/docs/codex_interface/reuse/LINGXING_FUNCTIONAL_PAGE_FLOW_REUSE_POINTER_CURRENT.md"
+  ],
+  "end_of_task_update_required": true,
+  "update_protocol": "docs/codex_interface/INTERFACE_UPDATE_PROTOCOL_CURRENT.md"
+}
