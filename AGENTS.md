@@ -24,3 +24,21 @@ End-of-task rule: before replying `TASK COMPLETE`, update the interface or write
 
 Do not add repo-scoped model pins.
 <!-- BZCLAW_CODEX_INTERFACE_END -->
+
+<!-- BZCLAW_OPERATING_KB_GATEWAY_BEGIN -->
+## Operating KB Gateway
+
+If a task mentions SOP, skill, playbook, reusable flow, operating workflow, owner-review pack, SIF, SellerSprite, Lingxing, Keepa, MCP, Amazon reports, or AIOps, first use the Operating KB Gateway.
+
+Required workspace files:
+
+- `E:\BZCLAW_WORKSPACE\docs\operating_kb\OPERATING_KB_GATEWAY_GOVERNANCE_CURRENT.md`
+- `E:\BZCLAW_WORKSPACE\docs\operating_kb\OPERATING_TOOL_REUSABLE_KB_MAP_CURRENT.md`
+- `E:\BZCLAW_WORKSPACE\docs\operating_kb\OPERATING_TOOL_REUSABLE_KB_REGISTRY_CURRENT.json`
+
+Preferred bootstrap:
+
+`python E:\BZCLAW_WORKSPACE\scripts\codex_task_bootstrap.py --task "<task>" --target-repo "<repo>"`
+
+Before `TASK COMPLETE`, run the applicable closeout check or write no-change.
+<!-- BZCLAW_OPERATING_KB_GATEWAY_END -->
